@@ -15,9 +15,9 @@ boton.addEventListener('click', () => {
     var Usuario = txtUsu.value;
     var Constraseña = txtPas.value;
 
-    if (Usuario === "Camilo" && Constraseña === "12345") {
+    if (error ==="") {
 
-        window.location = "menu.html"
+        
 
 
     } else {

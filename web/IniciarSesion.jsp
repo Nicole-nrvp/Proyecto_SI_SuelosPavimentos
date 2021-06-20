@@ -18,7 +18,7 @@
 </head>
 
 <body>
-
+    <form method="post" action="Usuario">
     <div class="part1">
 
         <div>
@@ -27,14 +27,21 @@
             <div class="login">
 
                 <h1>Login</h1>
-                <input class="txt" type="text" placeholder="Usuario" id="usu">
+                
+                <input class="txt" type="email" placeholder="Correo" id="usu">
                 <input class="txt" type="password" placeholder="Contraseña" id="pas">
-
+                <input type="hidden" id="opcion" name="opcion" value="1">
                 <input class="submit" type="submit" value="Iniciar Sesion" id="boton">
 
                 <label>Olvidaste tu contraseña?</label>
                 <label>Terminos y condiciones</label>
-                <h2 id="Error">Datos incorrectos</h2>
+                <%
+                    if (request.getAttribute("MensajeError") != null) {  %>
+
+                    <h2 id="Error">${mensajeError}</h2>
+                        <%} else {%>
+                        <h2 id="Error">${mensajeExito}</h2>
+                            <% }%>
 
             </div>
 
@@ -42,7 +49,7 @@
 
     </div>
     <script src="assets/js/Logica.js" type="text/javascript"></script>
-    
+  </form>  
 </body>
 
 </html>
