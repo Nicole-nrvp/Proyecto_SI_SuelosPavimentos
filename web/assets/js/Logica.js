@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-console.log("ACTIVADO")
+console.log("ACTIVADO");
 
 var txtUsu = document.getElementById("usu");
 var txtPas = document.getElementById("pas");
-var error = document.getElementById("Error")
+var error = document.getElementById("Error");
 var boton = document.getElementById("boton");
 
 boton.addEventListener('click', () => {
@@ -31,4 +31,4 @@ boton.addEventListener('click', () => {
 
 
 
-})
+});

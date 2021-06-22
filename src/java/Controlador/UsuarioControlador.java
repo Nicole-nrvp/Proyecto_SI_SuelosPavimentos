@@ -39,9 +39,9 @@ public class UsuarioControlador extends HttpServlet {
          //1. Resibir datos de la vista
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String UsuId = request.getParameter("textId");
-        String UsuCorreo = request.getParameter("txtUsuario");
+        String UsuCorreo = request.getParameter("txtCorreo");
         String UsuPassword = request.getParameter("txtClave");
-        String UsuNombre = request.getParameter("txtUsuario");
+        String UsuNombre = request.getParameter("txtNombre");
         //2. Quien tiene los datos de forma segura?
         //El VO :D
         UsuarioVO usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, UsuCorreo);
@@ -70,16 +70,12 @@ public class UsuarioControlador extends HttpServlet {
                     //miSesion.setAttribute("rol", usuVo);
                    miSesion.setAttribute("rol", listaRoles); 
                    
-                    if (listaRoles.size() > 1) {
+                    if (usuVo.getUsuRol().equals("GERENTE")) {
 
                         request.getRequestDispatcher("Menu.jsp").forward(request, response);
 
-                    } else if (usuVo.getUsuRol().equals("Vendedor")) {
-
-                        request.getRequestDispatcher("Vendedor.jsp").forward(request, response);
-
                     }else{
-                        request.getRequestDispatcher("Comprador.jsp").forward(request, response);
+                        request.getRequestDispatcher("Secretaria.jsp").forward(request, response);
                     }
                     /*datVO = datDAO.ConsultarRegistros(IdUsuario);
                     if(datVO != null){
@@ -98,7 +94,7 @@ public class UsuarioControlador extends HttpServlet {
                     
                 }else{
                 request.setAttribute("MensajeError", "El usuario no se encuentra");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
                 }
                 
                 break;

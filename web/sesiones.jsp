@@ -30,7 +30,7 @@ String Correo ="";
 if (buscarSesion.getAttribute("datosUsuario")== null) {
         
     
-    request.getRequestDispatcher("Login.jsp").forward(request, response);
+    request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
     } else {
     UsuarioVO usuVO = (UsuarioVO)buscarSesion.getAttribute("datosUsuario");
     Correo = usuVO.getUsuCorreo();

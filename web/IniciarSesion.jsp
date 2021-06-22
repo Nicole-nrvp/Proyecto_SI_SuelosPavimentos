@@ -6,50 +6,96 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INICIO</title>
     <link href="assets/css/StyleLogin.css" rel="stylesheet" type="text/css"/>
-
-    <title>Document</title>
 </head>
 
 <body>
-    <form method="post" action="Usuario">
-    <div class="part1">
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a href="index.html">Suelos y Pavimentos Gregorio Rojas</a>
+            </div>
+            <nav>
+                <ul id="Menu">
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><button class="loginbtn" onclick="document.getElementById('login-form').style.display='block'" style="width: auto;">Ingresar</button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="login-form" class="login-page">
+            <div class="form-box">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" onclick="login()" class="toggle-btn">Ingresar</button>
+                    <button type="button" onclick="register()" class="toggle-btn">Registrar</button>
+                </div>
+                <form id="login" class="input-group-login" method="post" action="Usuario">
 
-        <div>
+                    <input type="email" class="input-field" placeholder="Ingresar Correo" name="txtCorreo" required>
+                    <input type="password" class="input-field" placeholder="Ingresar Clave" name="txtClave" required>
+                    <input type="checkbox" class="check-box"><span>Recordar Contraseña</span>
+                    <button type="submit" class="submit-btn">Ingresar</button>
+                    <input type="hidden" id="opcion" name="opcion" value="1">
+                </form>
 
-
-            <div class="login">
-
-                <h1>Login</h1>
-                
-                <input class="txt" type="email" placeholder="Correo" id="usu">
-                <input class="txt" type="password" placeholder="Contraseña" id="pas">
-                <input type="hidden" id="opcion" name="opcion" value="1">
-                <input class="submit" type="submit" value="Iniciar Sesion" id="boton">
-
-                <label>Olvidaste tu contraseña?</label>
-                <label>Terminos y condiciones</label>
-                <%
+                <form id="register" class="input-group-register" method="post" action="Usuario">
+                    <input type="text" class="input-field" placeholder="Nombre" required>
+                    <input type="text" class="input-field" placeholder="Apellido" required>
+                    <input type="email" class="input-field" placeholder="Correo" required>
+                    <input type="password" class="input-field" placeholder="Ingresar Clave" required>
+                    <input type="password" class="input-field" placeholder="Confirmar Clave" required>
+                    <input type="checkbox" class="check-box"><span>Accepto los terminos y condiciones</span>
+                    <button type="submit" class="submit-btn">Registrar</button>
+                    <input type="hidden" id="opcion" name="opcion" value="2">
+                    <%
                     if (request.getAttribute("MensajeError") != null) {  %>
 
-                    <h2 id="Error">${mensajeError}</h2>
+                        <h2 id="Error">${mensajeError}</h2>
                         <%} else {%>
-                        <h2 id="Error">${mensajeExito}</h2>
+                            <h2 id="Error">${mensajeExito}</h2>
                             <% }%>
 
+                </form>
             </div>
-
         </div>
-
     </div>
-    <script src="assets/js/Logica.js" type="text/javascript"></script>
-  </form>  
+
+    <script>
+        var x = document.getElementById('login');
+        var y = document.getElementById('register');
+        var z = document.getElementById('btn');
+
+        function register() {
+            x.style.left = '-400px';
+            y.style.left = '50px';
+            z.style.left = '110px';
+        }
+
+        function login() {
+            x.style.left = '50px';
+            y.style.left = '450px';
+            z.style.left = '0px';
+        }
+    </script>
+    <script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>

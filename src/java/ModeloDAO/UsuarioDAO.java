@@ -12,6 +12,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.security.MessageDigest;
 
 /**
  *
@@ -66,7 +69,7 @@ public class UsuarioDAO extends Conexion implements Crud{
         try {
 
             conexion = this.obtenerConexión();
-            sql = "select * from usuario where usuLogin=? and usuPassWord=?";
+            sql = "select * from usuario where USU_CORREO=? and USU_CLAVE=md5(?)";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, correo);
             puente.setString(2, clave);
@@ -85,7 +88,7 @@ public class UsuarioDAO extends Conexion implements Crud{
         return operacion;
 
     }
-    public ArrayList<UsuarioVO> rol(String usuario) {
+    public ArrayList<UsuarioVO> rol(String correo) {
 
         
         ArrayList<UsuarioVO> listaRoles = new ArrayList<>();
@@ -93,13 +96,9 @@ public class UsuarioDAO extends Conexion implements Crud{
         try {
 
             conexion = this.obtenerConexión();
-            sql = "SELECT usuario.USUID, rol.ROLTIPO\n"
-                    + "FROM rol INNER JOIN\n"
-                    + "usuario_rol ON rol.ROLID = usuario_rol.ROLID INNER JOIN\n"
-                    + "usuario ON usuario_rol.USUID = usuario.USUID\n"
-                    + "WHERE usuario.USULOGIN = ?";
+            sql = "SELECT usuario.USU_ID,ROL_NOMBRE FROM usuario INNER JOIN rol on usuario.FK_rol = rol.ROL_ID WHERE usuario.USU_CORREO =?";
             puente  = conexion.prepareStatement(sql);
-            puente.setString(1,usuario);
+            puente.setString(1,correo);
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
                 UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1),mensajero.getString(2));
