@@ -15,7 +15,6 @@
     <body>
         <h1>Menu</h1>
         <a href="RegistrarUsuario.jsp"><label>Registrar Usuario</label></a>
-        <a href="ActualizarUsuario.jsp"><label>Registrar Usuario</label></a>
-        <a href="ConsultarUsuario.jsp"><label>Registrar Usuario</label></a>
+        <a href="ConsultarUsuario.jsp"><label>ConsultarUsuario</label></a>
     </body>
 </html>

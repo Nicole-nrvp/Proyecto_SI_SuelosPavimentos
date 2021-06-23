@@ -11,20 +11,26 @@ package ModeloVO;
  */
 public class UsuarioVO {
 
+    
     private String usuId, UsuNombre, UsuPassword, UsuRol,UsuCorreo;
 
-    
-     public UsuarioVO(String usuId, String UsuRol) {
+    public UsuarioVO() {
+    }
+
+    public UsuarioVO(String usuId, String UsuNombre, String UsuPassword, String UsuRol, String UsuCorreo) {
+        this.usuId = usuId;
+        this.UsuNombre = UsuNombre;
+        this.UsuPassword = UsuPassword;
+        this.UsuRol = UsuRol;
+        this.UsuCorreo = UsuCorreo;
+    }
+    public UsuarioVO(String usuId, String UsuRol) {
         this.usuId = usuId;
         this.UsuRol = UsuRol;
     }
 
-    public UsuarioVO(String usuId, String UsuNombre, String UsuPassword,String UsuCorreo) {
-        this.usuId = usuId;
-        this.UsuNombre = UsuNombre;
-        this.UsuPassword = UsuPassword;
-        this.UsuCorreo = UsuCorreo;
-    }
+    
+     
 
     public String getUsuRol() {
         return UsuRol;

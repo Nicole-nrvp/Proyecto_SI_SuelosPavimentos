@@ -11,33 +11,44 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="assets/css/EstiloModulo.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="post" action="Usuario">
-            <input type="text" class="input-field" placeholder="Nombre" required>
-            <select name="TxtRolid">
-                <option>Seleccione...</option>
-                <%
-                RolDAO rolDAO = new RolDAO();
-                for (RolVO rolVO : rolDAO.listar()) {
-        %> 
-        <option value="<%=rolVO.getRolId()%>"><%=rolVO.getRolNombre()%></option>
-        <%}%>
-            </select><br><br>
-            <input type="email" class="input-field" placeholder="Correo" required>
-            <input type="password" class="input-field" placeholder="Ingresar Clave" required>
-            <input type="password" class="input-field" placeholder="Confirmar Clave" required name="txtClave">
-            <button type="submit" class="submit-btn">Registrar</button>
-            <input type="hidden" id="opcion" name="opcion" value="2">
-            <%
-                    if (request.getAttribute("mensajeError") != null) {  %>
+        <div class="Contenido">
+        <a href="Menu.jsp"><button type="submit" id="boton" class="submit-btn">Atras</button></a>
+        <form method="post" action="Usuario">                             
+            
+                <div class="inputs">
+                    <h2 class="Titulo">Registrar Usuario</h2>
+                    <input type="email" placeholder="Correo" name="txtCorreo">
+                    <input type="text" placeholder="Nombre"  name="txtNombre">
+                    <input type="password" class="input-field" placeholder="Ingresar Clave"  id="Contra2" name="txtClave">
 
-                        <h2 id="Error">${mensajeError}</h2>
-                        <%} else {%>
-                            <h2 id="Error">${mensajeExito}</h2>
-                            <% }%>
+                    <input type="password" class="input-field" placeholder="Confirmar Clave"  id="Contra1">
+                    <select name="txtRolId" class="select">
+                        <option>Seleccione...</option>
+                        <%
+                            RolDAO rolDAO = new RolDAO();
+                            for (RolVO rolVO : rolDAO.listar()) {
+                        %> 
+                        <option value="<%=rolVO.getRolId()%>"><%=rolVO.getRolNombre()%></option>
+                        <%}%>
+                    </select>
+                    <button type="submit" id="boton" class="submit-btn">Registrar</button>
+                    <input type="hidden" id="opcion" name="opcion" value="2">
+                    <%
+                if (request.getAttribute("mensajeError") != null) {  %>
 
-        </form>
+                    <h2 id="Error" class="Error">${mensajeError}</h2>
+                    <%} else {%>
+                    <h2 id="Error" class="Exito">${mensajeExito}</h2>
+                    <% }%>
+                    </form>    
+                    <script src="assets/js/Contras.js" type="text/javascript"></script>
+                    
+                    
+                </div>
+            </div>
     </body>
 </html>

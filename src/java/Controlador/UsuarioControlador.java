@@ -51,14 +51,14 @@ public class UsuarioControlador extends HttpServlet {
         String FunSexo = request.getParameter("txtSexo");
         String FunFechaNacimiento = request.getParameter("txtFechaNacimiento");
         String FunDireccion = request.getParameter("txtDireccion");
-        String FunPuesto = request.getParameter("txtPuesto");
-        String RolId = request.getParameter("txtRolId");*/
+        String FunPuesto = request.getParameter("txtPuesto");*/
+        String RolId = request.getParameter("txtRolId");
         
-        UsuarioVO usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, UsuCorreo);
-        
+        UsuarioVO usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, RolId, UsuCorreo);
         //FuncionarioVO funVO = new FuncionarioVO(UsuId,UsuNombre, FunApellido, FunTipoDoc, FunDoc, FunCelular, FunSexo, FunFechaNacimiento, FunDireccion, UsuCorreo,FunPuesto);
         UsuarioDAO usuDAO = new UsuarioDAO(usuVo);
-        //FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
+        FuncionarioVO funVO = new FuncionarioVO();
+        FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
         
         switch(opcion){
             case 1:
@@ -66,7 +66,7 @@ public class UsuarioControlador extends HttpServlet {
                 if (usuDAO.iniciarSesion(UsuCorreo, UsuPassword)){
                     String IdUsuario = "";
                     HttpSession miSesion = request.getSession(true);
-                    usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, UsuCorreo);
+                    usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, UsuId, UsuCorreo);
                     miSesion.setAttribute("datosUsuario", usuVo);
                     
                     
@@ -89,13 +89,13 @@ public class UsuarioControlador extends HttpServlet {
                     }else{
                         request.getRequestDispatcher("Secretaria.jsp").forward(request, response);
                     }
-                    /*datVO = datDAO.ConsultarRegistros(IdUsuario);
-                    if(datVO != null){
-                        miSesion.setAttribute("DatosCargados",datVO);
+                    funVO = funDAO.ConsultarRegistros(IdUsuario);
+                    if(funVO != null){
+                        miSesion.setAttribute("DatosCargados",funVO);
                         request.setAttribute("usuarioId", IdUsuario);
                     }else{
                         request.setAttribute("MensajeError", "El usuario no se encontro");
-                    }*/
+                    }
                           
                      
                     
@@ -114,6 +114,7 @@ public class UsuarioControlador extends HttpServlet {
                 
                 if (usuDAO.agregarRegistro()) {
                     request.setAttribute("mensajeExito", "El Usuario se registro correctamente");
+                    request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
                                 
 
                 }else{

@@ -1,0 +1,89 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23/06/2021, 08:19:40 AM
+    Author     : Camilo
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+html,
+body {
+    flex-direction: row-reverse;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.Contenido {
+    display: flex;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(../imj/fondopantalla.jpg);
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.inputs {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    width: 380px;
+    height: 480px;
+    flex-wrap: wrap;
+    border-radius: 2%;
+    margin: 1% auto;
+    padding: 10px;
+    
+}
+.Error{
+    color: rgb(207, 46, 46);
+    font-size: 14px;
+    margin-left: 75px;
+}
+.Exito{
+    color: RGB(40, 180, 99);
+    font-size: 14px;
+    margin-left: 75px;
+}
+.Titulo{
+        
+    margin-left: 80px;
+}
+input{
+    padding: 10px 25px;
+    cursor: pointer;
+    background: transparent;
+    border: 1;
+    outline: none;
+    position: relative;
+}
+.submit-btn
+{   
+    font-family: 'Poppins', sans-serif;
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: #eba83a;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    
+     
+}
+.select{
+    font-family: 'Poppins', sans-serif;
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: #eba83a;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    
+}

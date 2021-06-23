@@ -137,5 +137,35 @@ public class FuncionarioDAO extends Conexion implements Crud{
         }
         return operacion;
     }
+    public FuncionarioVO ConsultarRegistros(String usuId) {
+        FuncionarioVO funVO = null;
+        try {
+
+            conexion = this.obtenerConexión();
+            sql = "SELECT * FROM datospersonales WHERE USUID = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, usuId);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+
+                /*FuncionarioVO = new FuncionarioVO(
+                        usuId,
+                        mensajero.getString(2),
+                        mensajero.getString(3),
+                        mensajero.getString(4),
+                        mensajero.getString(5),
+                        mensajero.getString(6),
+                        mensajero.getString(7),
+                         mensajero.getString(8));*/
+
+            }
+
+        } catch (SQLException e) {
+
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return funVO;
+
+    }
     
 }

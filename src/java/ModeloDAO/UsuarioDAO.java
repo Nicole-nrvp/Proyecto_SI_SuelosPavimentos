@@ -5,7 +5,9 @@
  */
 package ModeloDAO;
 
+
 import ModeloVO.FuncionarioVO;
+import ModeloVO.RolVO;
 import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import Util.Crud;
@@ -36,6 +38,7 @@ public class UsuarioDAO extends Conexion implements Crud{
     public UsuarioDAO(UsuarioVO usuVO) {
 
         super();
+        
         try {
             //3.Conectarse a la BD 
             conexion = this.obtenerConexión();
@@ -61,8 +64,8 @@ public class UsuarioDAO extends Conexion implements Crud{
             puente.setString(1, UsuCorreo);
             puente.setString(2, UsuPassword);
             puente.setString(3, UsuNombre);
-            puente.setString(2, Rol);
-            
+            puente.setString(4, Rol);
+            puente.executeUpdate();
             
             operacion = true;
 
@@ -156,5 +159,39 @@ public class UsuarioDAO extends Conexion implements Crud{
         
         return listaRoles;
     }
+    public ArrayList<UsuarioVO> listar() {
+
+        ArrayList<UsuarioVO> ListaUsuario = new ArrayList<>();
+
+        try {
+            conexion = this.obtenerConexión();
+            sql = "SELECT USU_NOMBRE,USU_CORREO FROM usuario";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                UsuarioVO usuVO = new UsuarioVO(
+                        mensajero.getString(1),
+                        mensajero.getString(2));
+
+                ListaUsuario.add(usuVO);
+
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return ListaUsuario;
+    }
+    
     }
 

@@ -13,6 +13,9 @@ public class FuncionarioVO {
 
      private String FunId,FunNombre,FunApellido,FunTipoDoc,FunDoc,
             FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto;
+
+    public FuncionarioVO() {
+    }
    
     public FuncionarioVO(String FunId, String FunNombre, String FunApellido, String FunTipoDoc, String FunDoc, String FunCelular, String FunSexo, String FechaNacimiento, String FunDireccion, String FunCorreo, String FunPuesto) {
         this.FunId = FunId;
