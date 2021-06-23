@@ -4,7 +4,7 @@
     Author     : Camilo
 --%>
 
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="sesiones.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -14,5 +14,8 @@
     </head>
     <body>
         <h1>Menu</h1>
+        <a href="RegistrarUsuario.jsp"><label>Registrar Usuario</label></a>
+        <a href="ActualizarUsuario.jsp"><label>Registrar Usuario</label></a>
+        <a href="ConsultarUsuario.jsp"><label>Registrar Usuario</label></a>
     </body>
 </html>

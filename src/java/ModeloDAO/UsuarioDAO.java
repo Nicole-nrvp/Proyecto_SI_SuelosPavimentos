@@ -5,6 +5,7 @@
  */
 package ModeloDAO;
 
+import ModeloVO.FuncionarioVO;
 import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import Util.Crud;
@@ -12,9 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.security.MessageDigest;
+
 
 /**
  *
@@ -30,8 +29,9 @@ public class UsuarioDAO extends Conexion implements Crud{
     private boolean operacion = false;
     private String sql;
 
-    private String usuId = "", UsuNombre = "", UsuPassword = "",UsuCorreo="";
-
+    private String usuId = "", UsuNombre = "", UsuPassword = "",UsuCorreo="", Rol="";
+    
+    
     //2. Metodo principal para recibir los datos del VO
     public UsuarioDAO(UsuarioVO usuVO) {
 
@@ -44,6 +44,7 @@ public class UsuarioDAO extends Conexion implements Crud{
             UsuNombre = usuVO.getUsuNombre();
             UsuCorreo = usuVO.getUsuCorreo();
             UsuPassword = usuVO.getUsuPassword();
+            Rol = usuVO.getUsuRol();
             
 
         } catch (Exception e) {
@@ -53,12 +54,54 @@ public class UsuarioDAO extends Conexion implements Crud{
     }
     @Override
     public boolean agregarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        try {
+            sql = "INSERT into usuario(USU_CORREO,USU_CLAVE,USU_NOMBRE,FK_rol) "
+                    + "VALUES(?,md5(?),?,?)";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, UsuCorreo);
+            puente.setString(2, UsuPassword);
+            puente.setString(3, UsuNombre);
+            puente.setString(2, Rol);
+            
+            
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return operacion;
+        }
 
     @Override
     public boolean actualizarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            sql = "UPDATE usuario set USU_NOMBRE=?,USU_CORREO=?,USU_CLAVE=md5(?) WHERE USU_ID=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, UsuNombre);
+            puente.setString(2, UsuCorreo);
+            puente.setString(3, UsuPassword);
+            puente.setString(4, usuId);
+            
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
     @Override

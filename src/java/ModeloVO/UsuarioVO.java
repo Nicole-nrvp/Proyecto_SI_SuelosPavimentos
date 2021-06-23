@@ -13,11 +13,8 @@ public class UsuarioVO {
 
     private String usuId, UsuNombre, UsuPassword, UsuRol,UsuCorreo;
 
-
-
     
-
-    public UsuarioVO(String usuId, String UsuRol) {
+     public UsuarioVO(String usuId, String UsuRol) {
         this.usuId = usuId;
         this.UsuRol = UsuRol;
     }
@@ -27,9 +24,6 @@ public class UsuarioVO {
         this.UsuNombre = UsuNombre;
         this.UsuPassword = UsuPassword;
         this.UsuCorreo = UsuCorreo;
-    }
-
-    public UsuarioVO() {
     }
 
     public String getUsuRol() {

@@ -5,10 +5,13 @@
  */
 package Controlador;
 
+import ModeloDAO.FuncionarioDAO;
 import ModeloDAO.UsuarioDAO;
+import ModeloVO.FuncionarioVO;
+import ModeloVO.RolVO;
 import ModeloVO.UsuarioVO;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,19 +39,27 @@ public class UsuarioControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         //1. Resibir datos de la vista
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String UsuId = request.getParameter("textId");
         String UsuCorreo = request.getParameter("txtCorreo");
         String UsuPassword = request.getParameter("txtClave");
         String UsuNombre = request.getParameter("txtNombre");
-        //2. Quien tiene los datos de forma segura?
-        //El VO :D
+        /*String FunApellido = request.getParameter("txtApellido");
+        String FunCelular = request.getParameter("txtCelular");
+        String FunTipoDoc = request.getParameter("txtTipoDoc");
+        String FunDoc = request.getParameter("txtDoc");
+        String FunSexo = request.getParameter("txtSexo");
+        String FunFechaNacimiento = request.getParameter("txtFechaNacimiento");
+        String FunDireccion = request.getParameter("txtDireccion");
+        String FunPuesto = request.getParameter("txtPuesto");
+        String RolId = request.getParameter("txtRolId");*/
+        
         UsuarioVO usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, UsuCorreo);
-        //3. Quien hace las operaciones?
-        //El DAO :D
+        
+        //FuncionarioVO funVO = new FuncionarioVO(UsuId,UsuNombre, FunApellido, FunTipoDoc, FunDoc, FunCelular, FunSexo, FunFechaNacimiento, FunDireccion, UsuCorreo,FunPuesto);
         UsuarioDAO usuDAO = new UsuarioDAO(usuVo);
-        //4. Administrar operaciones
+        //FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
+        
         switch(opcion){
             case 1:
 
@@ -65,6 +76,7 @@ public class UsuarioControlador extends HttpServlet {
 
                         usuVo = listaRoles.get(i);
                         IdUsuario = usuVo.getUsuId();
+                        
 
                     }
                     //miSesion.setAttribute("rol", usuVo);
@@ -98,6 +110,20 @@ public class UsuarioControlador extends HttpServlet {
                 }
                 
                 break;
+            case 2:
+                
+                if (usuDAO.agregarRegistro()) {
+                    request.setAttribute("mensajeExito", "El Usuario se registro correctamente");
+                                
+
+                }else{
+                    
+                    request.setAttribute("mensajeError", "El Usuario se registro incorrectamente");
+                    request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
+                }
+                
+                break;
+                
         }
     }
 

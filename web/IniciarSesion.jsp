@@ -38,15 +38,26 @@
                 <div class="button-box">
                     <div id="btn"></div>
                     <button type="button" onclick="login()" class="toggle-btn">Ingresar</button>
-                    <button type="button" onclick="register()" class="toggle-btn">Registrar</button>
+                    
                 </div>
                 <form id="login" class="input-group-login" method="post" action="Usuario">
 
                     <input type="email" class="input-field" placeholder="Ingresar Correo" name="txtCorreo" required>
                     <input type="password" class="input-field" placeholder="Ingresar Clave" name="txtClave" required>
-                    <input type="checkbox" class="check-box"><span>Recordar Contraseña</span>
+                    
+                    <input type="checkbox" class="check-box"><span>Acepto los terminos y condiciones</span>
+                    
                     <button type="submit" class="submit-btn">Ingresar</button>
+                    
                     <input type="hidden" id="opcion" name="opcion" value="1">
+                    <%
+                    if (request.getAttribute("MensajeError") != null) {  %>
+
+                        <h2 id="Error">${mensajeError}</h2>
+                        <%} else {%>
+                            <h2 id="Error">${mensajeExito}</h2>
+                            <% }%>
+
                 </form>
 
                 <form id="register" class="input-group-register" method="post" action="Usuario">
@@ -58,14 +69,7 @@
                     <input type="checkbox" class="check-box"><span>Accepto los terminos y condiciones</span>
                     <button type="submit" class="submit-btn">Registrar</button>
                     <input type="hidden" id="opcion" name="opcion" value="2">
-                    <%
-                    if (request.getAttribute("MensajeError") != null) {  %>
-
-                        <h2 id="Error">${mensajeError}</h2>
-                        <%} else {%>
-                            <h2 id="Error">${mensajeExito}</h2>
-                            <% }%>
-
+                    
                 </form>
             </div>
         </div>
@@ -76,7 +80,7 @@
         var y = document.getElementById('register');
         var z = document.getElementById('btn');
 
-        function register() {
+        function recuperar() {
             x.style.left = '-400px';
             y.style.left = '50px';
             z.style.left = '110px';
