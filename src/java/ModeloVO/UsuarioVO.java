@@ -12,24 +12,64 @@ package ModeloVO;
 public class UsuarioVO {
 
     
-    private String usuId, UsuNombre, UsuPassword, UsuRol,UsuCorreo;
+
+    
+
+    
+    private String usuId, UsuNombre, UsuPassword, UsuRol,UsuCorreo,UsuEstado,UsuVerificacion;
+
+    
 
     public UsuarioVO() {
     }
-
-    public UsuarioVO(String usuId, String UsuNombre, String UsuPassword, String UsuRol, String UsuCorreo) {
+    
+    //Constructores
+    public UsuarioVO(String usuId, String UsuNombre, String UsuPassword, String UsuRol, String UsuCorreo,String UsuEstado) {
         this.usuId = usuId;
         this.UsuNombre = UsuNombre;
         this.UsuPassword = UsuPassword;
         this.UsuRol = UsuRol;
         this.UsuCorreo = UsuCorreo;
+        this.UsuEstado = UsuEstado;
+        
     }
+    public UsuarioVO(String usuId, String UsuNombre, String UsuPassword, String UsuRol, String UsuCorreo, String UsuEstado, String UsuVerificacion) {
+        this.usuId = usuId;
+        this.UsuNombre = UsuNombre;
+        this.UsuPassword = UsuPassword;
+        this.UsuRol = UsuRol;
+        this.UsuCorreo = UsuCorreo;
+        this.UsuEstado = UsuEstado;
+        this.UsuVerificacion = UsuVerificacion;
+    }
+    public UsuarioVO(String UsuPassword) {
+        this.UsuPassword = UsuPassword;
+    }
+    
     public UsuarioVO(String usuId, String UsuRol) {
         this.usuId = usuId;
         this.UsuRol = UsuRol;
     }
-
+    //Encapsulamiento
     
+    
+    
+    public String getUsuVerificacion() {
+        return UsuVerificacion;
+    }
+
+    public void setUsuVerificacion(String UsuVerificacion) {
+        this.UsuVerificacion = UsuVerificacion;
+    }
+
+        
+    public String getUsuEstado() {
+        return UsuEstado;
+    }
+
+    public void setUsuEstado(String UsuEstado) {
+        this.UsuEstado = UsuEstado;
+    }
      
 
     public String getUsuRol() {

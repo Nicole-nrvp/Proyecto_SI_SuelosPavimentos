@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Camilo
+ * @author Valentina
  */
 @WebServlet(name = "Sesiones", urlPatterns = {"/Sesiones"})
 public class Sesiones extends HttpServlet {
@@ -33,11 +33,15 @@ public class Sesiones extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession buscarSesion = request.getSession();
         buscarSesion.removeAttribute("datosUsuario");
-        //buscarSesion.removeAttribute("rol");
+        buscarSesion.removeAttribute("DatosCargados");
+        buscarSesion.removeAttribute("rol");
         buscarSesion.invalidate();
-        request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

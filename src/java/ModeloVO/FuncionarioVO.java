@@ -12,12 +12,12 @@ package ModeloVO;
 public class FuncionarioVO {
 
      private String FunId,FunNombre,FunApellido,FunTipoDoc,FunDoc,
-            FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto;
+            FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto,FunEstado;
 
     public FuncionarioVO() {
     }
    
-    public FuncionarioVO(String FunId, String FunNombre, String FunApellido, String FunTipoDoc, String FunDoc, String FunCelular, String FunSexo, String FechaNacimiento, String FunDireccion, String FunCorreo, String FunPuesto) {
+    public FuncionarioVO(String FunId, String FunNombre, String FunApellido, String FunTipoDoc, String FunDoc, String FunCelular, String FunSexo, String FechaNacimiento, String FunDireccion, String FunCorreo, String FunPuesto,String FunEstado) {
         this.FunId = FunId;
         this.FunNombre = FunNombre;
         this.FunApellido = FunApellido;
@@ -29,6 +29,7 @@ public class FuncionarioVO {
         this.FunDireccion = FunDireccion;
         this.FunCorreo = FunCorreo;
         this.FunPuesto = FunPuesto;
+        this.FunEstado = FunEstado;
     }
 
     public String getFunId() {
@@ -118,6 +119,12 @@ public class FuncionarioVO {
     public void setFunPuesto(String FunPuesto) {
         this.FunPuesto = FunPuesto;
     }
-    
+    public String getFunEstado() {
+        return FunEstado;
+    }
+
+    public void setFunEstado(String FunEstado) {
+        this.FunEstado = FunEstado;
+    }
     
 }
