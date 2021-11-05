@@ -4,55 +4,46 @@
     Author     : Camilo
 --%>
 
+<%@page import="ModeloDAO.UsuarioDAO"%>
+<%@page import="ModeloVO.FuncionarioVO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
 
-    response.setHeader("Pragma","No-cache");
+    response.setHeader("Pragma", "No-cache");
     response.setHeader("Cache-control", "no-cache,no-store,must-revalidate");
-    response.setDateHeader("Expires",0);
+    response.setDateHeader("Expires", 0);
 
 %>
 
-<%
-HttpSession buscarSesion = (HttpSession)request.getSession();
-String usuario = "";
-String usuarioId = "";
-String datoId ="";
-String Nombre ="";
-String Apellido ="";
-String TipoDoc ="";
-String NumeroDoc ="";
-String Telefono ="";
-String Correo ="";
-
-if (buscarSesion.getAttribute("datosUsuario")== null) {
-        
+<%    
     
-    request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+    HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO2 = (UsuarioVO) buscarSesion.getAttribute("UsuarioConsultado");
+    String Nombre = "";
+    String Id = "";
+    String UsuId ="";
+    if (buscarSesion.getAttribute("datosUsuario") == null) {
+
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
     } else {
-    UsuarioVO usuVO = (UsuarioVO)buscarSesion.getAttribute("datosUsuario");
-    Correo = usuVO.getUsuCorreo();
-   
+
+        UsuarioVO usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+        FuncionarioVO funVO = new FuncionarioVO();
+        funVO = (FuncionarioVO) buscarSesion.getAttribute("DatosCargados");
+        UsuId = usuVO2.getUsuId();
+        if (funVO == null) {
+            
+        } else {
+            Nombre = funVO.getFunNombre();
+            Id = funVO.getFunId();
+            
+        }
+
+    }  
     
-}
 
 
 %>
 
-
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        
-        <h1>Bienvenido: <%=usuario%></h1>
-        
-        <form method="post" action="Sesiones">
-            <input type="submit" value="Cerrar Sesion">
-        </form>
-    </body>
-</html>
