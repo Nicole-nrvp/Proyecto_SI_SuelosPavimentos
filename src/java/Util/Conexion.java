@@ -28,11 +28,7 @@ public class Conexion {
         //llenamos los datos corresponientes
         user="root";
         password="";
-<<<<<<< HEAD
         nombreBd="bdestudiosuelos";
-=======
-        nombreBd="dbestudiosuelos";
->>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
         //url de la base de datos y siempre concatenamos el nombrebD
         urlBd="jdbc:mysql://localhost:3306/"+nombreBd;
         

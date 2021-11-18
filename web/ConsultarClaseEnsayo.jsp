@@ -194,20 +194,12 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-<<<<<<< HEAD
                                                 <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
                                                 <li><a href="AsPru.jsp">ASP - PRU</a></li>
-=======
-                                                <li><a href="">Prueba</a></li>  
-                                                <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="#">Aspecto</a></li>
-                                                <li><a href="#">Procedimiento</a></li>
->>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                             </ul>
                                         </li>
 
@@ -227,11 +219,7 @@
                                     <ul class="submenu">
 
                                         <li>
-<<<<<<< HEAD
                                             <a href="Calendario.jsp">Calendario </a>
-=======
-                                            <a href="#">Calendario </a>
->>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                         </li>
 
                                     </ul>
@@ -256,11 +244,7 @@
 
                                     </ul>
                                 </li>
-<<<<<<< HEAD
 
-=======
-                                
->>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
