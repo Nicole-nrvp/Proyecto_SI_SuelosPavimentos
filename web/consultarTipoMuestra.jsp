@@ -17,12 +17,17 @@
 <html lang="en">
 
     <head>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
         <!--plantilla nueva-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -44,6 +49,29 @@
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+=======
+        
+        <!--plantilla nueva-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Terre | Tipo Muestra </title>
+    
+        <link rel="shortcut icon" href="assets/img/icon/icono.png">
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+        
+        <!-- DataTables -->
+    <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
 
     </head>
 
@@ -200,12 +228,20 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
+<<<<<<< HEAD
                                                 <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
                                                 <li><a href="AsPru.jsp">ASP - PRU</a></li>
+=======
+                                                <li><a href="">Prueba</a></li>  
+                                                <li><a href="consultarMuestra.jsp">Muestra</a></li>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <li><a href="#">Aspecto</a></li>
+                                                <li><a href="#">Procedimiento</a></li>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                             </ul>
                                         </li>
 
@@ -225,7 +261,11 @@
                                     <ul class="submenu">
 
                                         <li>
+<<<<<<< HEAD
                                             <a href="Calendario.jsp">Calendario </a>
+=======
+                                            <a href="#">Calendario </a>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                         </li>
 
                                     </ul>
@@ -250,7 +290,11 @@
 
                                     </ul>
                                 </li>
+<<<<<<< HEAD
 
+=======
+                                
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -306,6 +350,7 @@
                                 <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
+<<<<<<< HEAD
                                 
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
@@ -315,6 +360,8 @@
                                         <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
                                     </form>
                                 </button>
+=======
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
@@ -333,6 +380,7 @@
                                             <div class="modal-body">
                                                 <p class="statusMsg"></p>
 
+<<<<<<< HEAD
                                                 <form method="post" action="TipoMuestra"  class="formulario"  id="register-tipomuestra-form" novalidate="novalidate">
                                             
 
@@ -344,6 +392,19 @@
                                                         <div class="form-group">
                                                             <label for="textMueEstado">Estado</label>
                                                             <select name="textMueEstado" class="form-control">
+=======
+                                                <form method="post" action="TipoMuestra"  id="frm-usuario">
+                                                    <div class="form-group">
+
+                                                        <div class="form-group">
+                                                            <label for="txtNombre">Nombre</label>
+                                                            <input type="text" name="textMueNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <label for="txtNombre">Estado</label>
+                                                            <select name="textMueEstado" required>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                                                 <option> ACTIVO </option>
                                                                 <option> INACTIVO </option>
                                                             </select> 
@@ -355,11 +416,21 @@
 
                                                         </div>
 
+<<<<<<< HEAD
                                                 </form>
 </div>
                                                 <!-- Modal Footer -->
 
                                             
+=======
+
+                                                    </div>
+                                                </form>
+
+                                                <!-- Modal Footer -->
+
+                                            </div>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                         </div>
                                     </div>
                                 </div>
@@ -376,9 +447,14 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Estado</th>
+<<<<<<< HEAD
                                             <th>Editar</th>
                                             <th>Inactivar</th>
                                             <th>Reporte</th>
+=======
+                                             <th>Editar</th>
+                                            <th>Inactivar</th>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                         </tr>
                                     </thead>
 
@@ -423,6 +499,7 @@
 
 
 
+<<<<<<< HEAD
                                                                 <form  method="post" action="TipoMuestra" class="formulario"  id="update-tipomuestra-form" novalidate="novalidate" >
                                                                     <div class="form-group">
                                                                         <label for="textMueId" class="d-none">Id:</label>
@@ -435,6 +512,20 @@
 
                                                                     <div class="form-group">
                                                                         <label for="textMueEstado">Estado</label>
+=======
+                                                                <form class="formulario" method="post" action="TipoMuestra">
+                                                                    <div class="form-group">
+                                                                        <label for="textId" class="d-none">Id:</label>
+                                                                        <input class="d-none" type="number" name="textMueId" class="form-control" id="inputName"  value="<%=tipmueVO.getTipMueId()%>" readonly />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtNombre">Nombre:</label>
+                                                                        <input type="text" name="textMueNombre" class="form-control" id="inputEmail" value="<%=tipmueVO.getTipMueNombre()%>"/>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="txtEstado">Estado</label>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                                                         <select name="textMueEstado" class="select">
                                                                             <option selected><%=tipmueVO.getTipMueEstado()%></option>
                                                                             <%
@@ -481,6 +572,7 @@
                                                 </form> 
 
                                             </td>
+<<<<<<< HEAD
                                             
                                             <td>
                                               
@@ -492,6 +584,8 @@
                                                     </div>
                                                 </form>  
                                             </td>
+=======
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
 
                                             <%}%>
                                         </tr>
@@ -576,6 +670,7 @@
                     ${mensajeExito}
                     <% }%>
 
+<<<<<<< HEAD
                     <!--Validacion de campos-->
                       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
                 <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
@@ -583,5 +678,8 @@
                     <script src="assets/js/validacionesCampo/TipoMuestra/registrarTipoMuestra.js" type="text/javascript"></script>
 
                     <script src="assets/js/validacionesCampo/TipoMuestra/actualizarTipoMuestra.js" type="text/javascript"></script>
+=======
+
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                     </body>
                     </html>

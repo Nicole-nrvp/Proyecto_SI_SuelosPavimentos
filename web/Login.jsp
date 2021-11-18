@@ -75,17 +75,24 @@
                             <input name="txtClave" type="password" class="input" required>
                         </div>
                     </label>
+<<<<<<< HEAD
 
                     <a style=" padding-left: 230px;" class="forgot-pass" href="olvidoClave.jsp">Olvido su contraseña?</a><br>
                     <input type="checkbox" id="cbox1" required /><a style=" padding-left: 160px;" class="forgot-pass" href="TerminosCondicciones.jsp">Estoy de acuerdo con los terminos y condicciones</a>
 
+=======
+                    <a style=" padding-left: 230px;" class="forgot-pass" href="olvidoClave.jsp">Olvido su contraseña?</a>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                     <br>
                     <button type="submit" class="submit" value="Iniciar Sesion">Ingresar</button>
 
                     <input type="hidden" id="opcion" name="opcion" value="1">
                     <script type="text/javascript" src="assets/js/main.js"></script>
                     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                     <%
                         if (request.getAttribute("mensajeError") != null) {  %>           
                     ${mensajeError}
@@ -128,11 +135,19 @@
                     </label>
                     <label>
                         <div class="input-div pass">
+<<<<<<< HEAD
                             <div class="i">
                                 <i class="fas fa-at"></i>
                                 <span >Correo</span>
                             </div>
                             <input name="txtCorreo" type="text" class="input" required> 
+=======
+                        <div class="i">
+                           <i class="fas fa-at"></i>
+                            <span >Correo</span>
+                        </div>
+                        <input name="txtCorreo" type="text" class="input" required> 
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                         </div>
                     </label>
                     <label>
@@ -144,9 +159,15 @@
                             <input name="txtClave" type="password" class="input" required>
                         </div>
                     </label>
+<<<<<<< HEAD
                     <a style="position: absolute; padding-left: 251px;" class="forgot-pass" href="PaginaPrincipal.jsp">Volver al <span>inicio</span></a>
                     <br>
                     <button type="submit" class="submit" value="Iniciar Sesion">Registrarme</button>
+=======
+                      <a style="position: absolute; padding-left: 251px;" class="forgot-pass" href="PaginaPrincipal.jsp">Volver al <span>inicio</span></a>
+                      <br>
+                      <button type="submit" class="submit" value="Iniciar Sesion">Registrarme</button>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                 </div>
             </div>
         </div>

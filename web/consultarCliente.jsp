@@ -15,11 +15,16 @@
 <html lang="en">
 
     <head>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
         <!--plantilla nueva-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -41,6 +46,29 @@
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+=======
+        
+        <!--plantilla nueva-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Terre | Clientes </title>
+    
+        <link rel="shortcut icon" href="assets/img/icon/icono.png">
+    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+        
+        <!-- DataTables -->
+    <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
 
     </head>
 
@@ -197,12 +225,20 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
+<<<<<<< HEAD
                                                 <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
                                                 <li><a href="AsPru.jsp">ASP - PRU</a></li>
+=======
+                                                <li><a href="">Prueba</a></li>  
+                                                <li><a href="consultarMuestra.jsp">Muestra</a></li>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <li><a href="#">Aspecto</a></li>
+                                                <li><a href="#">Procedimiento</a></li>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                             </ul>
                                         </li>
 
@@ -222,7 +258,11 @@
                                     <ul class="submenu">
 
                                         <li>
+<<<<<<< HEAD
                                             <a href="Calendario.jsp">Calendario </a>
+=======
+                                            <a href="#">Calendario </a>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                         </li>
 
                                     </ul>
@@ -247,7 +287,11 @@
 
                                     </ul>
                                 </li>
+<<<<<<< HEAD
 
+=======
+                                
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -315,6 +359,7 @@
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
+<<<<<<< HEAD
                                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
@@ -323,6 +368,8 @@
                                         <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
                                     </form>
                                 </button>
+=======
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                             </div>
 
                                             <!-- Modal Body -->
@@ -370,7 +417,10 @@
 
                                             <th>Editar</th>
                                             <th>Inactivar</th>
+<<<<<<< HEAD
                                             <th>Reporte</th>
+=======
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                         </tr>
                                     </thead>
 
@@ -418,6 +468,7 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
+<<<<<<< HEAD
                                                                 <form method="post" action="Cliente" class="formulario"  id="update-cliente-form" novalidate="novalidate" >
 
                                                                     <div class="form-group">
@@ -436,6 +487,29 @@
                                                                         <label for="textCliTipoDocumento">Tipo Documento:</label>
 
                                                                         <select name="textCliTipoDocumento" class="form-control">
+=======
+                                                                <form class="formulario" method="post" action="Cliente">
+                                                                    <div class="form-group">
+                                                                        <label for="textId" class="d-none">Id:</label>
+                                                                        <input class="d-none" type="number" name="textCliId" class="form-control" id="inputName"  value="<%=cliVO.getCliId()%>" readonly />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtNombre">Nombre:</label>
+                                                                        <input type="text" name="textCliNombre" class="form-control" id="inputEmail" value="<%=cliVO.getCliNombre()%>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtNombre">Apellido:</label>
+                                                                        <input type="text" name="textCliApellido" class="form-control" id="inputEmail" value="<%=cliVO.getCliApellido()%>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtNombre">Documento:</label>
+                                                                        <input type="text" name="textCliDocumento" class="form-control" id="inputEmail" value="<%=cliVO.getCliDocumento()%>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtNombre">Tipo Documento:</label>
+
+                                                                        <select name="textCliTipoDocumento">
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                                                             <option> CC </option>
                                                                             <option> TI </option>
                                                                             <option> CE </option>
@@ -443,6 +517,7 @@
                                                                         </select><br>
                                                                     </div>
                                                                     <div class="form-group">
+<<<<<<< HEAD
                                                                         <label for="textCliCorreo">Correo:</label>
                                                                         <input type="email" name="textCliCorreo" class="form-control" value="<%=cliVO.getCliCorreo()%>" placeholder="Ingrese correo electronico" />
                                                                     </div>
@@ -454,6 +529,19 @@
                                                                     <div class="form-group">
                                                                         <label for="textCliEstado">Estado</label>
                                                                         <select name="textCliEstado" class="form-control">
+=======
+                                                                        <label for="txtNombre">Correo:</label>
+                                                                        <input type="email" name="textCliCorreo" class="form-control" id="inputEmail" value="<%=cliVO.getCliCorreo()%>" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtNombre">Celular:</label>
+                                                                        <input type="number" name="textCliCelular" class="form-control" id="inputEmail" value="<%=cliVO.getCliCelular()%>" />
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="txtEstado">Estado</label>
+                                                                        <select name="textCliEstado" class="select">
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                                                             <option selected><%=cliVO.getCliEstado()%></option>
                                                                             <%
                                                                                 if (cliVO.getCliEstado().equals("ACTIVO")) {
@@ -477,11 +565,14 @@
                                                                         <input type="hidden" value="2" name="opcion">
                                                                     </div>
                                                                 </form>
+<<<<<<< HEAD
                                                                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
                                                                 <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
                                                                 <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
                                                                 <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
 
+=======
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                                                             </div>
 
 
@@ -504,6 +595,7 @@
 
                                             </td>
 
+<<<<<<< HEAD
                                             <td>
 
 
@@ -520,6 +612,13 @@
 
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
 
+=======
+                                        </tr>
+                                        <%}%>
+                                        
+                <script src="assets/js/validar.js" type="text/javascript"></script>
+                                    
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
 
                                     </tbody>
                                 </table>
@@ -544,6 +643,7 @@
                     <script src="assets/js/waves.min.js"></script>
 
                     <!-- Required datatable js -->
+<<<<<<< HEAD
                     <script src="plugins/datatables/jquery.dataTables.min.js"></script>
                     <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
                     <!-- Buttons examples -->
@@ -558,6 +658,22 @@
                     <!-- Responsive examples -->
                     <script src="plugins/datatables/dataTables.responsive.min.js"></script>
                     <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+=======
+                    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                    <!-- Buttons examples -->
+                    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                    <script src="../plugins/datatables/jszip.min.js"></script>
+                    <script src="../plugins/datatables/pdfmake.min.js"></script>
+                    <script src="../plugins/datatables/vfs_fonts.js"></script>
+                    <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                    <script src="../plugins/datatables/buttons.print.min.js"></script>
+                    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
+                    <!-- Responsive examples -->
+                    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
 
                     <!-- Datatable init js -->
                     <script src="assets/pages/datatables.init.js"></script>  
@@ -599,6 +715,11 @@
                     <%} else {%>
                     ${mensajeExito}
                     <% }%>
+<<<<<<< HEAD
                     <!--Validaciones de Campos-->
+=======
+
+
+>>>>>>> 82062e218b7c8eaf0604d196a8b63f2cf1adf84a
                     </body>
                     </html>
