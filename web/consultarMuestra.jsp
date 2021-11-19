@@ -396,6 +396,7 @@
 
                                             <th>Editar</th>
                                             <th>Inactivar</th>
+                                            <th>Reporte</th>
                                         </tr>
                                     </thead>
 
@@ -499,6 +500,17 @@
                                                     </div>
                                                 </form>  
                                             </td>
+                                              <td>
+                                              
+
+                                                <form method="post" action="GenerarPDF.jsp" target="_black">    
+                                                    <div class="frm-g-input">
+                                                        <input type="hidden" value="ReporteM1.jasper" name="nombreReporte">
+                                                        <input style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i>
+                                                    </div>
+                                                </form>  
+                                            </td>
+                                            
 
                                             <%}%>
                                         </tr>

@@ -43,7 +43,7 @@
             //tamaño del reporte y sera igual al tamaño del reporte
             response.setContentLength(reporteBytes.length);
             //propiedad para exportar y guardar 
-            response.setHeader("Content-Disposition", "filename=\"reporte_solicitud.pdf\";");
+            response.setHeader("Content-Disposition", "filename=\"reporte_terre.pdf\";");
             //crear objeto servlet
                 //
             ServletOutputStream salida = response.getOutputStream();
