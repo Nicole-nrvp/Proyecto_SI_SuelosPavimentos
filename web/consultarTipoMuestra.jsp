@@ -17,33 +17,33 @@
 <html lang="en">
 
     <head>
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
-        
+
         <!--plantilla nueva-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Terre | Tipo Muestra </title>
-    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Terre | Tipo Muestra </title>
+
         <link rel="shortcut icon" href="assets/img/icon/icono.png">
-    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-        
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
         <!-- DataTables -->
-    <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Responsive datatable examples -->
-    <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -200,11 +200,12 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="">Prueba</a></li>  
+                                                <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="#">Aspecto</a></li>
-                                                <li><a href="#">Procedimiento</a></li>
+                                                <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <li><a href="Procedimiento.jsp">Procedimiento</a></li>
+                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
                                             </ul>
                                         </li>
 
@@ -224,7 +225,7 @@
                                     <ul class="submenu">
 
                                         <li>
-                                            <a href="#">Calendario </a>
+                                            <a href="Calendario.jsp">Calendario </a>
                                         </li>
 
                                     </ul>
@@ -249,7 +250,7 @@
 
                                     </ul>
                                 </li>
-                                
+
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -305,6 +306,15 @@
                                 <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
+                                
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                    <form method="post" action="GenerarPDF.jsp" target="_black">
+                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
+                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
+                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
+                                        <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
+                                    </form>
+                                </button>
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
@@ -323,17 +333,17 @@
                                             <div class="modal-body">
                                                 <p class="statusMsg"></p>
 
-                                                <form method="post" action="TipoMuestra"  id="frm-usuario">
-                                                    <div class="form-group">
+                                                <form method="post" action="TipoMuestra"  class="formulario"  id="register-tipomuestra-form" novalidate="novalidate">
+                                            
 
                                                         <div class="form-group">
-                                                            <label for="txtNombre">Nombre</label>
-                                                            <input type="text" name="textMueNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                            <label for="textMueNombre">Nombre</label>
+                                                            <input type="text"name="textMueNombre" class="form-control" placeholder="Ingresa un nombre"/>
                                                         </div>
-                                                        
+
                                                         <div class="form-group">
-                                                            <label for="txtNombre">Estado</label>
-                                                            <select name="textMueEstado" required>
+                                                            <label for="textMueEstado">Estado</label>
+                                                            <select name="textMueEstado" class="form-control">
                                                                 <option> ACTIVO </option>
                                                                 <option> INACTIVO </option>
                                                             </select> 
@@ -345,13 +355,11 @@
 
                                                         </div>
 
-
-                                                    </div>
                                                 </form>
-
+</div>
                                                 <!-- Modal Footer -->
 
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -368,8 +376,9 @@
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Estado</th>
-                                             <th>Editar</th>
+                                            <th>Editar</th>
                                             <th>Inactivar</th>
+                                            <th>Reporte</th>
                                         </tr>
                                     </thead>
 
@@ -414,18 +423,18 @@
 
 
 
-                                                                <form class="formulario" method="post" action="TipoMuestra">
+                                                                <form  method="post" action="TipoMuestra" class="formulario"  id="update-tipomuestra-form" novalidate="novalidate" >
                                                                     <div class="form-group">
-                                                                        <label for="textId" class="d-none">Id:</label>
-                                                                        <input class="d-none" type="number" name="textMueId" class="form-control" id="inputName"  value="<%=tipmueVO.getTipMueId()%>" readonly />
+                                                                        <label for="textMueId" class="d-none">Id:</label>
+                                                                        <input class="d-none" type="number" name="textMueId" class="form-control"  value="<%=tipmueVO.getTipMueId()%>" readonly />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Nombre:</label>
-                                                                        <input type="text" name="textMueNombre" class="form-control" id="inputEmail" value="<%=tipmueVO.getTipMueNombre()%>"/>
+                                                                        <label for="textMueNombre">Nombre:</label>
+                                                                        <input type="text" name="textMueNombre" class="form-control"  value="<%=tipmueVO.getTipMueNombre()%>"/>
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="txtEstado">Estado</label>
+                                                                        <label for="textMueEstado">Estado</label>
                                                                         <select name="textMueEstado" class="select">
                                                                             <option selected><%=tipmueVO.getTipMueEstado()%></option>
                                                                             <%
@@ -471,6 +480,17 @@
                                                     </div>
                                                 </form> 
 
+                                            </td>
+                                            
+                                            <td>
+                                              
+
+                                                <form method="post" action="GenerarPDF.jsp" target="_black">    
+                                                    <div class="frm-g-input">
+                                                        <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
+                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i></button> 
+                                                    </div>
+                                                </form>  
                                             </td>
 
                                             <%}%>
@@ -556,6 +576,12 @@
                     ${mensajeExito}
                     <% }%>
 
+                    <!--Validacion de campos-->
+                      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                
+                    <script src="assets/js/validacionesCampo/TipoMuestra/registrarTipoMuestra.js" type="text/javascript"></script>
 
+                    <script src="assets/js/validacionesCampo/TipoMuestra/actualizarTipoMuestra.js" type="text/javascript"></script>
                     </body>
                     </html>

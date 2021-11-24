@@ -34,11 +34,11 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- DataTables -->
-        <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Responsive datatable examples -->
-        <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
@@ -47,7 +47,7 @@
 
     </head>
 
-   <body> 
+    <body> 
 
         <div class="header-bg">
             <!-- Navigation Bar-->
@@ -200,11 +200,12 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="">Prueba</a></li>  
+                                                <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="#">Aspecto</a></li>
-                                                <li><a href="#">Procedimiento</a></li>
+                                                <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <li><a href="Procedimiento.jsp">Procedimiento</a></li>
+                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
                                             </ul>
                                         </li>
 
@@ -224,7 +225,7 @@
                                     <ul class="submenu">
 
                                         <li>
-                                            <a href="#">Calendario </a>
+                                            <a href="Calendario.jsp">Calendario </a>
                                         </li>
 
                                     </ul>
@@ -249,7 +250,7 @@
 
                                     </ul>
                                 </li>
-                                
+
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -306,6 +307,19 @@
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
 
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                    <form method="post" action="GenerarPDFParametrizado.jsp" target="_black">
+                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
+                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
+                                        <select name="textEstado">
+                                            <option value="ACTIVO">ACTIVO</option>
+                                            <option value="INACTIVO">INACTIVO</option>
+                                        </select>
+                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
+                                        <input type="hidden" value="ReporteParametrizado_1.jasper" name="nombreReporte">
+                                    </form>
+                                </button>
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
@@ -324,23 +338,25 @@
                                                 <p class="statusMsg"></p>
 
 
-                                                <form method="post" action="Muestra">
+                                                <form method="post" action="Muestra" class="formulario"  id="register-muestra-form" novalidate="novalidate">
+
+
                                                     <div class="form-group">
-                                                        <label for="txtNombre">Nombre:</label>
-                                                        <input type="text" name="textMueNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                        <label for="textMueNombre">Nombre:</label>
+                                                        <input type="text" name="textMueNombre" class="form-control" placeholder="Ingresa un nombre"/>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txtNombre">Observación:</label>
-                                                        <input type="text" name="textMueObservacion" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                        <label for="textMueObservacion">Observación:</label>
+                                                        <input type="text" name="textMueObservacion" class="form-control"  placeholder="Ingresa observación"/>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="txtNombre">Descripción:</label>
-                                                        <input type="text" name="textMueDescripcion" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                        <label for="textMueDescripcion">Descripción:</label>
+                                                        <textarea type="text" name="textMueDescripcion" class="form-control"  placeholder="Ingresa descripción"></textarea>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="txtNombre">Tipo Muestra:</label>
-                                                        <select name="textfkTipoMuestra">
+                                                        <label for="textfkTipoMuestra">Tipo Muestra:</label>
+                                                        <select name="textfkTipoMuestra" class="form-control">
                                                             <option>Seleccione...</option>
                                                             <%
                                                                 TipoMuestraDAO tipmueDAO = new TipoMuestraDAO();
@@ -352,8 +368,8 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="txtNombre">Estado</label>
-                                                        <select name="textMueEstado" required>
+                                                        <label for="textMueEstado">Estado</label>
+                                                        <select name="textMueEstado" class="form-control">
                                                             <option> ACTIVO </option>
                                                             <option> INACTIVO </option>
                                                         </select>      
@@ -392,7 +408,7 @@
                                             <th>Descripción</th>
                                             <th>Tipo Muestra</th>
                                             <th>Estado</th>
-                                            
+
 
                                             <th>Editar</th>
                                             <th>Inactivar</th>
@@ -414,16 +430,16 @@
 
                                         <tr>
 
-                                            
+
                                             <td><%=mueVO.getMueNombre()%></td>
                                             <td><%=mueVO.getMueObservacion()%></td>
                                             <td><%=mueVO.getMueDescripcion()%></td>
                                             <td><%=mueVO.getFkTipoMuestra()%></td>
                                             <td><%=mueVO.getMueEstado()%></td>
-                                            
-                                            
-                                            
-                                            
+
+
+
+
                                             <td>
 
                                                 <!-- Button to trigger modal -->
@@ -447,28 +463,28 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
-                                                                <form class="formulario" method="post" action="Muestra">
+                                                                <form class="formulario" method="post" action="Muestra" class="formulario"  id="update-muestra-form" novalidate="novalidate" >
                                                                     <div class="form-group">
-                                                                        <label for="textId" class="d-none">Id:</label>
-                                                                        <input class="d-none" type="text" name="textMueId" class="form-control" id="inputName" value="<%=mueVO.getMueId()%>" placeholder="Ingrese el id" readonly/>
+                                                                        <label for="textMueId" class="d-none">Id:</label>
+                                                                        <input class="d-none" type="text" name="textMueId" class="form-control" value="<%=mueVO.getMueId()%>" placeholder="Ingrese el id" readonly/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Nombre:</label>
-                                                                        <input type="text" name="textMueNombre" class="form-control" id="inputEmail" value="<%=mueVO.getMueNombre()%>" placeholder="Ingresa un nombre"/>
+                                                                        <label for="textMueNombre">Nombre:</label>
+                                                                        <input type="text" name="textMueNombre" class="form-control"  value="<%=mueVO.getMueNombre()%>" placeholder="Ingresa un nombre"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Observación:</label>
-                                                                        <input type="text" name="textMueObservacion" class="form-control" id="inputEmail" value="<%=mueVO.getMueObservacion()%>" placeholder="Ingresa un nombre"/>
+                                                                        <label for="textMueObservacion">Observación:</label>
+                                                                        <input type="text" name="textMueObservacion" class="form-control" value="<%=mueVO.getMueObservacion()%>" placeholder="Ingresa observación de la muestra"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Descripción:</label>
-                                                                        <input type="text" name="textMueDescripcion" class="form-control" id="inputEmail" value="<%=mueVO.getMueDescripcion()%>" placeholder="Ingresa un nombre"/>
+                                                                        <label for="textMueDescripcion">Descripción:</label>
+                                                                        <input type="text" name="textMueDescripcion" class="form-control"  value="<%=mueVO.getMueDescripcion()%>" placeholder="Ingresa descripción de la muestra">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Tipo Muestra Nombre: </label>
-                                                                        <input type="text" name="textfkTipoMuestra" class="form-control" id="inputEmail" value="<%=mueVO.getFkTipoMuestra()%>"<%= mueVO.getFkTipoMuestra()%> readonly/>
+                                                                        <label for="textfkTipoMuestra">Tipo Muestra Nombre: </label>
+                                                                        <input type="text" name="textfkTipoMuestra" class="form-control" value="<%=mueVO.getFkTipoMuestra()%>"<%= mueVO.getFkTipoMuestra()%> readonly/>
                                                                     </div>
-                      
+
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                                                         <input type="hidden" value="2" name="opcion"  id="opcion">
@@ -500,17 +516,17 @@
                                                     </div>
                                                 </form>  
                                             </td>
-                                              <td>
-                                              
 
-                                                <form method="post" action="GenerarPDF.jsp" target="_black">    
-                                                    <div class="frm-g-input">
-                                                        <input type="hidden" value="ReporteM1.jasper" name="nombreReporte">
-                                                        <input style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i>
+                                              <td>
+
+                                            
+                                            
+
+                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i></button> 
                                                     </div>
                                                 </form>  
                                             </td>
-                                            
+
 
                                             <%}%>
                                         </tr>
@@ -539,20 +555,20 @@
                 <script src="assets/js/waves.min.js"></script>
 
                 <!-- Required datatable js -->
-                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-                <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
                 <!-- Buttons examples -->
-                <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
-                <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-                <script src="../plugins/datatables/jszip.min.js"></script>
-                <script src="../plugins/datatables/pdfmake.min.js"></script>
-                <script src="../plugins/datatables/vfs_fonts.js"></script>
-                <script src="../plugins/datatables/buttons.html5.min.js"></script>
-                <script src="../plugins/datatables/buttons.print.min.js"></script>
-                <script src="../plugins/datatables/buttons.colVis.min.js"></script>
+                <script src="plugins/datatables/dataTables.buttons.min.js"></script>
+                <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
+                <script src="plugins/datatables/jszip.min.js"></script>
+                <script src="plugins/datatables/pdfmake.min.js"></script>
+                <script src="plugins/datatables/vfs_fonts.js"></script>
+                <script src="plugins/datatables/buttons.html5.min.js"></script>
+                <script src="plugins/datatables/buttons.print.min.js"></script>
+                <script src="plugins/datatables/buttons.colVis.min.js"></script>
                 <!-- Responsive examples -->
-                <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
-                <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
+                <script src="plugins/datatables/dataTables.responsive.min.js"></script>
+                <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
 
                 <!-- Datatable init js -->
                 <script src="assets/pages/datatables.init.js"></script>  
@@ -594,7 +610,10 @@
                 <%} else {%>
                 ${mensajeExito}
                 <% }%>
-
-
+                <!--Validaciones de Campos-->
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                <script src="assets/js/validacionesCampo/Muestra/actualizarMuestra.js" type="text/javascript"></script>
+                <script src="assets/js/validacionesCampo/Muestra/registrarMuestra.js" type="text/javascript"></script>
                 </body>
                 </html>

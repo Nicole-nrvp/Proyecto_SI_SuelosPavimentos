@@ -11,9 +11,12 @@ package ModeloVO;
  */
 public class FuncionarioVO {
 
-     private String FunId,FunNombre,FunApellido,FunTipoDoc,FunDoc,
-            FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto,FunEstado;
+    
 
+     private String FunId,FunNombre,FunApellido,FunTipoDoc,FunDoc,
+            FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto,FunEstado,FunUsuNombre,FunFkUsuario;
+
+    
     public FuncionarioVO() {
     }
    
@@ -30,6 +33,22 @@ public class FuncionarioVO {
         this.FunCorreo = FunCorreo;
         this.FunPuesto = FunPuesto;
         this.FunEstado = FunEstado;
+    }
+    public FuncionarioVO(String FunId, String FunNombre, String FunApellido, String FunTipoDoc, String FunDoc, String FunCelular, String FunSexo, String FechaNacimiento, String FunDireccion, String FunCorreo, String FunPuesto, String FunEstado, String FunUsuNombre, String FunFkUsuario) {
+        this.FunId = FunId;
+        this.FunNombre = FunNombre;
+        this.FunApellido = FunApellido;
+        this.FunTipoDoc = FunTipoDoc;
+        this.FunDoc = FunDoc;
+        this.FunCelular = FunCelular;
+        this.FunSexo = FunSexo;
+        this.FechaNacimiento = FechaNacimiento;
+        this.FunDireccion = FunDireccion;
+        this.FunCorreo = FunCorreo;
+        this.FunPuesto = FunPuesto;
+        this.FunEstado = FunEstado;
+        this.FunUsuNombre = FunUsuNombre;
+        this.FunFkUsuario = FunFkUsuario;
     }
 
     public String getFunId() {
@@ -126,5 +145,21 @@ public class FuncionarioVO {
     public void setFunEstado(String FunEstado) {
         this.FunEstado = FunEstado;
     }
+    public String getFunUsuNombre() {
+        return FunUsuNombre;
+    }
+
+    public void setFunUsuNombre(String FunUsuNombre) {
+        this.FunUsuNombre = FunUsuNombre;
+    }
+
+    public String getFunFkUsuario() {
+        return FunFkUsuario;
+    }
+
+    public void setFunFkUsuario(String FunFkUsuario) {
+        this.FunFkUsuario = FunFkUsuario;
+    }
+
     
 }

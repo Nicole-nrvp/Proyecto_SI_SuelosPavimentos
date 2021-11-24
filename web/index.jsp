@@ -4,6 +4,8 @@
     Author     : Valentina
 --%>
 
+<%@page import="ModeloDAO.UsuarioDAO"%>
+<%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -21,7 +23,7 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!--Morris Chart CSS -->
-        <link rel="stylesheet" href="../plugins/morris/morris.css">
+        <link rel="stylesheet" href="plugins/morris/morris.css">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
@@ -183,11 +185,12 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="">Prueba</a></li>  
+                                                <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="#">Aspecto</a></li>
-                                                <li><a href="#">Procedimiento</a></li>
+                                                <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <li><a href="Procedimiento.jsp">Procedimiento</a></li>
+                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
                                             </ul>
                                         </li>
 
@@ -207,7 +210,7 @@
                                     <ul class="submenu">
 
                                         <li>
-                                            <a href="#">Calendario </a>
+                                            <a href="Calendario.jsp">Calendario </a>
                                         </li>
 
                                     </ul>
@@ -289,7 +292,12 @@
                                 <div>
                                     <h5 class="font-16">Sessiones Activas</h5>
                                 </div>
-                                <h3 class="mt-4">10</h3>
+                                <%
+                                UsuarioVO usuVO = new UsuarioVO();
+                                UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
+                                %>
+                                
+                                <h3 class="mt-4"><!--<//%= usuDAO.sesionesActivas()%>-->10</h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -307,7 +315,7 @@
                                 <div>
                                     <h5 class="font-16">Solicitudes Totales</h5>
                                 </div>
-                                <h3 class="mt-4">10</h3>
+                                <h3 class="mt-4">6</h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -323,9 +331,9 @@
                                     <i class="mdi mdi-tag-text-outline bg-warning text-white"></i>
                                 </div>
                                 <div>
-                                    <h5 class="font-16">Clientes Nuevos</h5>
+                                    <h5 class="font-16">Clientes Terre</h5>
                                 </div>
-                                <h3 class="mt-4">4</h3>
+                                <h3 class="mt-4">7</h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -343,7 +351,7 @@
                                 <div>
                                     <h5 class="font-16">Resultados Eficientes</h5>
                                 </div>
-                                <h3 class="mt-4">86%</h3>
+                                <h3 class="mt-4">6</h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -355,7 +363,7 @@
 
                 </div>
 
-                <!-- <div class="row">
+                 <div class="row">
                       <div class="col-xl-8">
                           <div class="card m-b-30">
                               <div class="card-body">
@@ -367,7 +375,7 @@
                               </div>
                           </div>
                       </div>
-                <!-- end col 
+                <!-- end col -->
 
                 <div class="col-xl-4">
                     <div class="card m-b-30">
@@ -379,7 +387,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- end col -->
+               <!--  end col -->
             </div>
             <!-- end row -->
 
@@ -454,8 +462,8 @@
                                         
                                     </div>
                                 </a>
-
-                                <a href="#" class="friends-suggestions-list">
+                                
+                                 <a href="#" class="friends-suggestions-list">
                                     <div class="border-bottom position-relative">
                                         <div class="float-left mb-0 mr-3">
                                             <img src="assets/img/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
@@ -465,34 +473,18 @@
                                         </div>
 
                                         <div class="desc">
-                                            <h5 class="font-14 mb-1 pt-2 text-dark">Mellany Herrera</h5>
-                                            <p class="text-muted">18 Sugerencias de amigos</p>
+                                            <h5 class="font-14 mb-1 pt-2 text-dark">Andres Camilo</h5>
+                                            <p class="text-muted">16 Sugerencias de amigos</p>
                                         </div>
                                         
                                         
                                     </div>
                                 </a>
-
-                                
-
-
-                            </div>
+                </div>
                         </div>
                     </div>
                 </div>
-                <!--
-                                  <div class="col-xl-4">
-                                      <div class="card m-b-30">
-                                          <div class="card-body">
-                                              <h4 class="mt-0 header-title mb-4">Analitica de Resultados</h4>
-                                              <div id="morris-line-example" class="morris-chart" style="height: 360px"></div>
-              
-                                          </div>
-                                      </div>
-              
-                                  </div>
-                -->
-
+               
                 <div class="col-xl-4">
                     <div class="card m-b-30">
                         <div class="card-body">
@@ -677,8 +669,8 @@
     <script src="assets/js/waves.min.js"></script>
 
     <!--Morris Chart-->
-    <script src="../plugins/morris/morris.min.js"></script>
-    <script src="../plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/morris/morris.min.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
 
     <script src="assets/pages/dashboard.init.js"></script>
 

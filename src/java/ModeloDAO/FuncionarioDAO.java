@@ -286,7 +286,7 @@ public class FuncionarioDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexión();
-            sql = "SELECT * FROM `listarfuncionario`";
+            sql = "SELECT * FROM `ListarTFuncionarios`";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
@@ -304,7 +304,9 @@ public class FuncionarioDAO extends Conexion implements Crud {
                         mensajero.getString(9),
                         mensajero.getString(10),
                         mensajero.getString(11),
-                        mensajero.getString(12));
+                        mensajero.getString(12),
+                        mensajero.getString(13),
+                        mensajero.getString(13));
 
                 ListaUsuario.add(funVO);
 

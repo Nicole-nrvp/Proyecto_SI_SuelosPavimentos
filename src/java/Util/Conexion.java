@@ -26,9 +26,13 @@ public class Conexion {
         //sacamos el driver con el controlador
         driver = "com.mysql.jdbc.Driver";
         //llenamos los datos corresponientes
+
         user = "root";
         password = "";
         nombreBd = "dbestudiosuelos";
+
+        
+
         //url de la base de datos y siempre concatenamos el nombrebD
         urlBd = "jdbc:mysql://localhost:3306/" + nombreBd;
 

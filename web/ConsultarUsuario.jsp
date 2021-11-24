@@ -581,8 +581,8 @@
                     <!--Validaciones de Campos-->
                     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
                     <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                    <script src="assets/js/validacionesCampo/registrarUsuario.js"></script>
-                    <script src="assets/js/validacionesCampo/actualizarUsuarioV.js"></script>
+                    <script src="assets/js/validacionesCampo/Usuario/registrarUsuario.js"></script>
+                    <script src="assets/js/validacionesCampo/Usuario/actualizarUsuarioV.js"></script>
 
                     </body>
                     </html>

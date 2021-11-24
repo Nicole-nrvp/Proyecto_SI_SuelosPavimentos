@@ -1,47 +1,34 @@
 <%-- 
-    Document   : ConsultarClaseEnsayo
-    Created on : 23/06/2021, 09:22:47 AM
-    Author     : as
+    Document   : Calendario
+    Created on : 28/10/2021, 08:05:39 PM
+    Author     : Valentina
 --%>
 
-<%@page import="ModeloVO.ClaseEnsayoVO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="ModeloDAO.ClaseEnsayoDAO"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
-        
-        <!--plantilla nueva-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Terre | Clase de ensayo </title>
-    
-        <link rel="shortcut icon" href="assets/img/icon/icono.png">
+    <title>Terre | Calendario</title>
+    <link rel="shortcut icon" href="assets/img/icon/icono.png">
     <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
     <meta content="Themesdesign" name="author" />
     <link rel="shortcut icon" href="assets/images/favicon.ico">
-        
-        <!-- DataTables -->
-    <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Responsive datatable examples -->
-    <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!--calendar css-->
+    <link href="plugins/fullcalendar/css/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
-    </head>
-    <body> 
+</head>
+
+<body>
 
         <div class="header-bg">
             <!-- Navigation Bar-->
@@ -194,12 +181,11 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <li><a href="">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="Aspecto.jsp">Aspecto</a></li>
-                                                <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <li><a href="#">Aspecto</a></li>
+                                                <li><a href="#">Procedimiento</a></li>
                                             </ul>
                                         </li>
 
@@ -244,7 +230,7 @@
 
                                     </ul>
                                 </li>
-
+                                
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -272,20 +258,18 @@
         </div>
         <!-- header-bg -->
 
-
     <div class="wrapper">
         <div class="container-fluid">
             <!-- Page-Title -->
             <div class="page-title-box">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
-                        <h4 class="page-title"></h4>
+                        <h4 class="page-title">Calendar</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
-                            <li class="breadcrumb-item active">Clase de ensayo</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+                            <li class="breadcrumb-item active">Calendario</li>
                         </ol>
                     </div>
                 </div>
@@ -296,189 +280,45 @@
                 <div class="col-12">
                     <div class="card m-b-30">
                         <div class="card-body">
-                            <!-- modal agregar registro-->
-                            
-                    <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
-                                    <i class="fas fa-plus-circle"></i>
-                                    </button>
 
-                    <!-- Modal -->
-                                    <div class="modal fade" id="modal" role="dialog">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                    
-                                    <h4 class="modal-title" id="myModalLabel">Registrar Clase de Ensayo</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-            
-                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                    <p class="statusMsg"></p>
-                                    
-                                    <form method="post" action="ClaseEnsayo">
-                                    <div class="form-group">
-                                    
-                                    <label for="textId" class="">Id</label>
-                                    <input class="form-group" type="number" name="textId" class="form-control" id="inputid" value="" placeholder="Ingrese el id"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtEstado">Estado</label>
-                                    <select name="txtEstado" class="select">
-                        
-                                        <option value="INACTIVO" >INACTIVO</option>
-                      
-                                        <option value="ACTIVO">ACTIVO</option>
-                        
-                                    </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" id="opcion" name="opcion" value="1">
-                                    <button type="submit" class="btn btn-success submitBtn">Registrar</button>
-                                    
-                                    </div>
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-3 col-md-4">
+
+                                    <h4 class="m-t-5 m-b-15 font-14">Eventos Creados</h4>
+                                    <form method="post" id="add_event_form" class="m-t-5 m-b-20">
+                                        <input type="text" class="form-control new-event-form" placeholder="Add new event..." />
                                     </form>
+
+                                    <div id='external-events'>
+                                        <h4 class="m-b-15 font-14">Eventos arrastrables</h4>
+                                        <div class='fc-event'>My Event 1</div>
+                                        <div class='fc-event'>My Event 2</div>
+                                        <div class='fc-event'>My Event 3</div>
+                                        <div class='fc-event'>My Event 4</div>
+                                        <div class='fc-event'>My Event 5</div>
                                     </div>
-                                    
-                                    
-                    <!-- Modal Footer -->
-                                    
+
+                                    <!-- checkbox -->
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="drop-remove" data-parsley-multiple="groups" data-parsley-mincheck="2">
+                                        <label class="custom-control-label" for="drop-remove">Remove after drop</label>
+                                    </div>
+
                                 </div>
+
+                                <div id='calendar' class="col-xl-10 col-lg-9 col-md-8"></div>
+
                             </div>
-                        </div>
-                    <!-- end modal-->
-                            <h4 class="mt-0 header-title">Clase de Ensayo</h4>
-                            
-                            <p class="sub-title">
-                                la clase de ensayo es aquella que dice si se trata de un ensayo especial o general 
-                            </p>
-                            
-                            
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                <tr>
-                                    <th class="d-none">Id</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
-                                    <th>Editar</th>
-                                    <th>Inactivar</th>
-                                </tr>
-                                </thead>
-
-
-                                <tbody>
-                                <%  
-                    ClaseEnsayoVO clasensVO = new ClaseEnsayoVO(); 
-                    ClaseEnsayoDAO clasensDAO = new ClaseEnsayoDAO();
-                    ArrayList<ClaseEnsayoVO> listaClaseEnsayo = clasensDAO.listar();
-                    for (int i = 0; i < listaClaseEnsayo.size(); i++) {
-                        clasensVO = listaClaseEnsayo.get(i);
-
-                                %>
-                                
-                                    <tr>
-
-                                    <td class="d-none"><%=clasensVO.getClasEnsID()%></td>
-                                    <td><%=clasensVO.getClasEnsNombre()%></td>
-                                    <td><%=clasensVO.getClasEnsEstado()%></td>
-                                    
-                                    <td>
-
-                               <!-- Button to trigger modal -->
-                                    <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=i%>">
-                                    <i class="fas fa-edit"></i>
-                                    </button>
-
-                    <!-- Modal -->
-                                    <div class="modal fade" id="modal<%=i%>" role="dialog">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Actualizar Clase de Ensayo</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-            
-                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                    <p class="statusMsg"></p>
-                                    
-                                    <form class="formulario" method="post" action="ClaseEnsayo">
-                                    <div class="form-group">
-                                    <label for="textId" class="d-none">ID:</label>
-                                    <input class="d-none" type="text" name="textId" class="form-control" id="inputName" value="<%=clasensVO.getClasEnsID()%>" placeholder="Ingrese el id"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="<%=clasensVO.getClasEnsNombre()%>" placeholder="Ingresa un nombre"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtEstado">Estado</label>
-                                    <select name="txtEstado" class="select">
-                        <option selected value="<%=clasensVO.getClasEnsEstado()%> "><%=clasensVO.getClasEnsEstado()%> </option>
-                        <%
-                            if (clasensVO.getClasEnsEstado().equals("ACTIVO")) {
-
-
-                        %>
-
-                        <option value="INACTIVO" >INACTIVO</option>
-                        <%                            } else {
-
-                        %>
-                        <option value="ACTIVO">ACTIVO</option>
-                        <%}%>
-                    </select>
-                                    </div>
-                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" id="opcion" name="opcion" value="3">
-                                    <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
-                                    
-                                    </div>
-                                    </form>
-                                    </div>
-                                    
-                                    
-                    <!-- Modal Footer -->
-                                    
-                                </div>
-                            </div>
-                        </div>
-                                    </td>
-                                    <td>
-                                    
-                                        <form method="POST" action="ClaseEnsayo" id="delete">    
-                                                <div class="frm-g-input">
-                                                    <input type="hidden" placeholder="Nombre"  name="textId" value="<%=clasensVO.getClasEnsID()%>">
-                                                    <input type="hidden" placeholder="estado"  name="txtEstado" value="INACTIVO">
-                                                    <input type="hidden" id="opcion" name="opcion" value="7">
-                                                    <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
-                                                </div>
-                                        </form>  
-                                    </td>
-                                    
-                                    <%}%>
-                                </tr>
-                            <script src="assets/js/validar.js" type="text/javascript"></script>
-                                
-                                </tbody>
-                            </table>
+                            <!-- end row -->
 
                         </div>
                     </div>
                 </div> <!-- end col -->
-            </div> <!-- end row -->
+            </div> <!-- end row --> 
+
+        </div>
+        <!-- end container-fluid -->
+    </div>
     <!-- end wrapper -->
 
     <!-- Footer -->
@@ -494,63 +334,15 @@
     <script src="assets/js/jquery.slimscroll.js"></script>
     <script src="assets/js/waves.min.js"></script>
 
-    <!-- Required datatable js -->
-    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Buttons examples -->
-    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
-    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-    <script src="../plugins/datatables/jszip.min.js"></script>
-    <script src="../plugins/datatables/pdfmake.min.js"></script>
-    <script src="../plugins/datatables/vfs_fonts.js"></script>
-    <script src="../plugins/datatables/buttons.html5.min.js"></script>
-    <script src="../plugins/datatables/buttons.print.min.js"></script>
-    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
-    <!-- Responsive examples -->
-    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
-    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
-
-    <!-- Datatable init js -->
-    <script src="assets/pages/datatables.init.js"></script>  
+    <!-- Jquery-Ui -->
+    <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="plugins/moment/moment.js"></script>
+    <script src='plugins/fullcalendar/js/fullcalendar.min.js'></script>
+    <script src="assets/pages/calendar-init.js"></script>
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-    
-    
-    
-    <!-- jQuery library MODAL-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-<!-- Latest minified bootstrap js MODAL-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 
-
-        
-<!-- Bootstrap core JavaScript-->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
-
-
-
-<!-- Core plugin JavaScript-->
-<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="assets/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="assets/js/demo/datatables-demo.js"></script>
-
-        <%
-            if (request.getAttribute("mensajeError") != null) {  %>           
-        ${mensajeError}
-        <%} else {%>
-        ${mensajeExito}
-        <% }%>
-
-
-    </body>
 </html>

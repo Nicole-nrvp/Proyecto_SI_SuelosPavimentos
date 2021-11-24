@@ -190,11 +190,12 @@
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="">Prueba</a></li>  
+                                                <li><a href="Prueba.jsp">Prueba</a></li>  
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="#">Aspecto</a></li>
-                                                <li><a href="#">Procedimiento</a></li>
+                                                <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <li><a href="Procedimiento.jsp">Procedimiento</a></li>
+                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
                                             </ul>
                                         </li>
 
@@ -214,7 +215,7 @@
                                     <ul class="submenu">
 
                                         <li>
-                                            <a href="#">Calendario </a>
+                                            <a href="Calendario.jsp">Calendario </a>
                                         </li>
 
                                     </ul>
@@ -239,7 +240,7 @@
 
                                     </ul>
                                 </li>
-                                
+
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
