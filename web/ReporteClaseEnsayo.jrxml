@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f4397591-01b5-460d-8788-3b40a46ebf63">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     clase_ensayo.`CLA_ENS_NOMBRE` AS clase_ensayo_CLA_ENS_NOMBRE,
+     clase_ensayo.`CLA_ENS_ESTADO` AS clase_ensayo_CLA_ENS_ESTADO
+FROM
+     `clase_ensayo` clase_ensayo]]>
+	</queryString>
+	<field name="clase_ensayo_CLA_ENS_NOMBRE" class="java.lang.String"/>
+	<field name="clase_ensayo_CLA_ENS_ESTADO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="33" y="11" width="139" height="103" uuid="64590963-d435-4da0-91fe-ad9185d7e66a"/>
+				<imageExpression><![CDATA["TERRE3.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="172" y="0" width="463" height="62" uuid="48465a04-9eec-4c21-920d-a0571eb418e6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="45" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Clases de Ensayo Terre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="72" width="383" height="42" uuid="83642e41-aeea-4b52-b3a4-ae157957830a"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="f9f15290-0131-40b9-8347-eb23c27bcfe9"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="98bf5050-a356-4ef5-9f75-64b8e42f1f20"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="107" y="0" width="185" height="15" forecolor="#736343" uuid="bfa8497e-69bd-464c-86b4-49d638abc08e"/>
+				<text><![CDATA[Nombre Clase Ensayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="353" y="0" width="211" height="15" forecolor="#736343" uuid="c7db19e9-10b7-4d49-b76e-182ba5263d7d"/>
+				<text><![CDATA[Estado  Clase Ensayo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="b45ff58c-d276-439e-9d9d-387a83ad672b"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="106" y="0" width="185" height="15" uuid="a44eb869-a9ee-4e0a-9f4a-709aa8ced082"/>
+					<textFieldExpression><![CDATA[$F{clase_ensayo_CLA_ENS_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="353" y="0" width="211" height="15" uuid="c9e07576-a58b-4506-ab36-70573e6cbb0a"/>
+					<textFieldExpression><![CDATA[$F{clase_ensayo_CLA_ENS_ESTADO}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="525a2013-5729-45d0-a603-5ad4cf71c75c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="25614a2b-b90a-4c92-983f-25f1b7c87494"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="8674326f-f258-4ea5-a081-cbb1775b7e1f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="6a9d63c4-0c64-41cd-86e9-6fc497dbe3b0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="8b75a169-3a20-456e-a9a8-9975767b972d"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

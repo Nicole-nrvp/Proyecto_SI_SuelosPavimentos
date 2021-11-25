@@ -14,8 +14,9 @@ public class FuncionarioVO {
     
 
      private String FunId,FunNombre,FunApellido,FunTipoDoc,FunDoc,
-            FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto,FunEstado,FunUsuNombre,FunFkUsuario;
+            FunCelular,FunSexo,FechaNacimiento,FunDireccion,FunCorreo,FunPuesto,FunEstado,FunUsuNombre,FunFkUsuario,FunFkPuesto;
 
+    
     
     public FuncionarioVO() {
     }
@@ -34,7 +35,12 @@ public class FuncionarioVO {
         this.FunPuesto = FunPuesto;
         this.FunEstado = FunEstado;
     }
-    public FuncionarioVO(String FunId, String FunNombre, String FunApellido, String FunTipoDoc, String FunDoc, String FunCelular, String FunSexo, String FechaNacimiento, String FunDireccion, String FunCorreo, String FunPuesto, String FunEstado, String FunUsuNombre, String FunFkUsuario) {
+
+    public FuncionarioVO(String FunPuesto, String FunFkPuesto) {
+        this.FunPuesto = FunPuesto;
+        this.FunFkPuesto = FunFkPuesto;
+    }
+    public FuncionarioVO(String FunId, String FunNombre, String FunApellido, String FunTipoDoc, String FunDoc, String FunCelular, String FunSexo, String FechaNacimiento, String FunDireccion, String FunCorreo, String FunPuesto, String FunEstado, String FunUsuNombre, String FunFkUsuario,String FunFkPuesto) {
         this.FunId = FunId;
         this.FunNombre = FunNombre;
         this.FunApellido = FunApellido;
@@ -49,6 +55,7 @@ public class FuncionarioVO {
         this.FunEstado = FunEstado;
         this.FunUsuNombre = FunUsuNombre;
         this.FunFkUsuario = FunFkUsuario;
+        this.FunFkPuesto = FunFkPuesto;
     }
 
     public String getFunId() {
@@ -160,6 +167,14 @@ public class FuncionarioVO {
     public void setFunFkUsuario(String FunFkUsuario) {
         this.FunFkUsuario = FunFkUsuario;
     }
+    public String getFunFkPuesto() {
+        return FunFkPuesto;
+    }
+
+    public void setFunFkPuesto(String FunFkPuesto) {
+        this.FunFkPuesto = FunFkPuesto;
+    }
+
 
     
 }

@@ -180,10 +180,13 @@
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
 
-                                        <li>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
-                                        </li>
+                                            <ul class="submenu">
+                                                <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
+                                            </ul>
+                                        </li>
 
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
@@ -304,6 +307,16 @@
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
 
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                    <form method="post" action="GenerarPDF.jsp" target="_black">
+                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
+                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
+                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
+                                        <input type="hidden" value="ReporteCliente.jasper" name="nombreReporte">
+                                    </form>
+                                </button>
+
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
@@ -312,18 +325,14 @@
                                             <div class="modal-header">
 
                                                 <h4 class="modal-title" id="myModalLabel">Registrar Cliente</h4>
+
+                                             
+
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
-                                    <form method="post" action="GenerarPDF.jsp" target="_black">
-                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
-                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
-                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
-                                        <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
-                                    </form>
-                                </button>
-                                            </div>
+                                                
+                                                                                     </div>
 
                                             <!-- Modal Body -->
                                             <div class="modal-body">

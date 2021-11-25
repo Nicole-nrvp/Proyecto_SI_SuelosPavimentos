@@ -306,7 +306,8 @@ public class FuncionarioDAO extends Conexion implements Crud {
                         mensajero.getString(11),
                         mensajero.getString(12),
                         mensajero.getString(13),
-                        mensajero.getString(13));
+                        mensajero.getString(14),
+                        mensajero.getString(15));
 
                 ListaUsuario.add(funVO);
 
@@ -315,7 +316,30 @@ public class FuncionarioDAO extends Conexion implements Crud {
         } catch (Exception e) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } finally {
+        } 
+
+        return ListaUsuario;
+    }
+    public ArrayList<FuncionarioVO> ListarPuestos() {
+
+        ArrayList<FuncionarioVO> listaPuesto = new ArrayList<>();
+
+        try {
+
+            conexion = this.obtenerConexión();
+            sql = "SELECT * FROM ListarPuestos";
+            puente = conexion.prepareStatement(sql);            
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                FuncionarioVO funVO = new FuncionarioVO(
+                        mensajero.getString(1), 
+                        mensajero.getString(2));
+                listaPuesto.add(funVO);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }finally {
             try {
                 this.cerrarConexión();
             } catch (SQLException e) {
@@ -323,7 +347,7 @@ public class FuncionarioDAO extends Conexion implements Crud {
             }
         }
 
-        return ListaUsuario;
+        return listaPuesto;
     }
 
 }

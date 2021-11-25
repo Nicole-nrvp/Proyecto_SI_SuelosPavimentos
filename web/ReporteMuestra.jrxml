@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ab014cf4-a875-4247-800c-706c6c2924a1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     muestra.`MUE_NOMBRE` AS muestra_MUE_NOMBRE,
+     muestra.`MUE_OBSERVARCION` AS muestra_MUE_OBSERVARCION,
+     muestra.`MUE_DESCRIPCION` AS muestra_MUE_DESCRIPCION,
+     muestra.`MUE_ESTADO` AS muestra_MUE_ESTADO,
+     tipo_muestra.`TIP_MUE_NOMBRE` AS tipo_muestra_TIP_MUE_NOMBRE
+FROM
+     `tipo_muestra` tipo_muestra INNER JOIN `muestra` muestra ON tipo_muestra.`TIP_MUE_ID` = muestra.`FK_tipo_muestra`]]>
+	</queryString>
+	<field name="muestra_MUE_NOMBRE" class="java.lang.String"/>
+	<field name="muestra_MUE_OBSERVARCION" class="java.lang.String"/>
+	<field name="muestra_MUE_DESCRIPCION" class="java.lang.String"/>
+	<field name="muestra_MUE_ESTADO" class="java.lang.String"/>
+	<field name="tipo_muestra_TIP_MUE_NOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="48" y="10" width="138" height="104" uuid="7dd2321d-c2fd-4648-82af-2b7a1b6d023a"/>
+				<imageExpression><![CDATA["TERRE3.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="207" y="0" width="348" height="62" uuid="98fa4be5-c6dc-4a29-84c7-3bdc6126fe21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Muestras Terre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="72" width="383" height="42" uuid="2f236edf-8101-4810-b6b5-a57b41303adc"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="4b35da65-41a9-4045-ae02-7f9a67049433"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="30be24f3-7456-4df4-b909-2fcbda19e603"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="160" height="15" forecolor="#736343" uuid="629f740b-864c-4a9f-9c09-77b9af035a2b"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="160" y="0" width="120" height="15" forecolor="#736343" uuid="6bdb8ee3-2b6b-4e61-a1a7-f1fa28488eed"/>
+				<text><![CDATA[Observación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="280" y="0" width="236" height="15" forecolor="#736343" uuid="6c31db26-6f0f-48cd-a2e7-d8411f91fc06"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="555" y="0" width="85" height="15" forecolor="#736343" uuid="9defe375-81f4-49c3-9b46-c1b84abd0505"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="640" y="0" width="160" height="15" forecolor="#736343" uuid="45a52607-90fa-4fe2-8de8-1c6ac54e7ab2"/>
+				<text><![CDATA[Tipo Muestra]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="1ccd9abc-d435-4bf4-8c58-ceb1cf799ca6"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="160" height="15" uuid="e9d1b8e4-f8ae-4f13-9a7d-4bc0c16ae457"/>
+					<textFieldExpression><![CDATA[$F{muestra_MUE_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="160" y="0" width="120" height="15" uuid="554b0f09-b5db-4018-beb0-70578e26df60"/>
+					<textFieldExpression><![CDATA[$F{muestra_MUE_OBSERVARCION}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="280" y="0" width="236" height="15" uuid="42a77950-b235-4d45-8208-9381d7bf0a23"/>
+					<textFieldExpression><![CDATA[$F{muestra_MUE_DESCRIPCION}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="555" y="0" width="85" height="15" uuid="333abd64-1d26-45cd-ae68-a362f9420c54"/>
+					<textFieldExpression><![CDATA[$F{muestra_MUE_ESTADO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="640" y="0" width="160" height="15" uuid="c1de296f-963e-4766-9682-4a8c5622280b"/>
+					<textFieldExpression><![CDATA[$F{tipo_muestra_TIP_MUE_NOMBRE}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="6e57c14a-a986-4274-b817-a146af679fc8"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="93b705b2-b8da-4a48-937b-977e9056386b"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="596686fa-11c3-47de-b1de-d8480c56ce10"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="6c0ff3b7-2b7e-4d1b-8855-98db03d3992d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="b22520c0-bf9d-412b-aad3-24424a1fa42f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

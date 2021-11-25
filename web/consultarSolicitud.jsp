@@ -183,8 +183,12 @@
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
 
-                                        <li>
+                                       <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            <ul class="submenu">
+                                                <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
+
+                                            </ul>
                                         </li>
 
 
@@ -306,6 +310,21 @@
                                 <button style="margin: 3px; float: right; " class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
+                                
+                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                    <form method="post" action="GenerarPDFParametrizado.jsp" target="_black">
+                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
+                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
+                                        <select name="textEstado">
+                                            <option value="ACTIVO">ACTIVO</option>
+                                            <option value="INACTIVO">INACTIVO</option>
+                                        </select>
+                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
+                                        <input type="hidden" value="ReporteParametrizadoSol.jasper" name="nombreReporte">
+                                    </form>
+                                </button>
+                                
+                     
                                 
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">

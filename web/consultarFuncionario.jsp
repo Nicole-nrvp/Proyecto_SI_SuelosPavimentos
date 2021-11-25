@@ -182,7 +182,7 @@
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
 
-                                        <li class="has-submenu">
+                                       <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
@@ -200,7 +200,7 @@
                                         </li>
 
 
-                                        <li >
+                                        <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
                                                 <li><a href="Prueba.jsp">Prueba</a></li>  
@@ -392,26 +392,54 @@
                                                                 <form method="post" action="Usuario" class="formulario"  id="" novalidate="novalidate" >
 
                                                                     <div class="form-group">
-                                                                        <label for="textCliNombre">Nombre:</label>
+                                                                        <label for="txtFunNombre">Nombre:</label>
                                                                         <input type="text" class="form-control"  name="txtFunNombre" value="<%=funVO.getFunNombre()%>"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="textCliApellido">Apellido:</label>
+                                                                        <label for="txtApellido">Apellido:</label>
                                                                         <input type="text" class="form-control" name="txtApellido" value="<%=funVO.getFunApellido()%>" />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="textCliDocumento">Celular: </label>
-                                                                        <input type="text" class="form-control" name="txtCelular" value="<%=funVO.getFunCelular()%>"/>
+                                                                        <label for="txtDireccion">Direccion </label>
+                                                                        <input type="text" class="form-control" name="txtDireccion" value="<%=funVO.getFunDireccion()%>"/>
                                                                     </div>                                                                    
+                                                                    <div class="form-group">
+                                                                        <label for="textCliDocumento">Sexo </label>
+                                                                        <select class="form-control" id="" name="txtTipoDoc">
+                                                                            <%if (funVO.getFunSexo().equals("1")) {%>
+                                                                            <option value="1" selected>Hombre</option>
+                                                                            <option value="2">Mujer</option>
+                                                                            <%} else {%>
+                                                                            <option value="1" >Hombre</option>
+                                                                            <option value="2" selected>Mujer</option>
+                                                                            <%}%>
+                                                                        </select>
+                                                                    </div>   
+                                                                    <div class="form-group">
+                                                                        <label for="textCliDocumento">Fecha de nacimiento </label>
+                                                                        <input type="date" class="form-control" name="txtCelular" value="<%=funVO.getFechaNacimiento()%>"/>
+                                                                    </div>                                                                      
+                                                                    <div class="form-group">
+                                                                        <label for="txtPuesto">Puesto:</label>
+                                                                        <select name="txtPuesto" class="form-control">
+                                                                            <option value="<%=funVO.getFunFkPuesto()%>" selected><%=funVO.getFunPuesto()%></option>
+                                                                            <%
 
-
+                                                                                for (FuncionarioVO PuestoVO : funDAO.ListarPuestos()) {
+                                                                                    
+                                                                            %> 
+                                                                            <option value="<%=PuestoVO.getFunPuesto()%>"><%=PuestoVO.getFunPuesto()%></option>
+                                                                            <%
+                                                                                }%>
+                                                                        </select>
+                                                                    </div>
 
 
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                                                         <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
-
-                                                                        <input type="hidden" value="2" name="opcion">
+                                                                        <input type="hidden" value="<%=funVO.getFunId()%>" name="txtFunId">
+                                                                        <input type="hidden" value="6" name="opcion">
                                                                     </div>
                                                                 </form>
                                                                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -433,7 +461,7 @@
                                                 <form method="POST" action="Usuario" id="delete">   
                                                     <div class="frm-g-input">
                                                         <input type="hidden" name="txtFunId" value="<%=funVO.getFunId()%>">
-                                                        <input type="hidden" name="textId" value="<%=funVO.getFunEstado()%>">
+                                                        <input type="hidden" name="textId" value="<%=funVO.getFunFkUsuario()%>">
                                                         <input type="hidden" placeholder="Nombre"  name="txtEstado" value="INACTIVO">
                                                         <input type="hidden" id="opcion" name="opcion" value="7">
                                                         <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 

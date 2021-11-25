@@ -111,11 +111,13 @@
                                     </div>
                                 </li>
 
+
                                 <li class="dropdown notification-list list-inline-item">
                                     <div class="dropdown notification-list nav-pro-img">
                                         <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                             <img src="assets/img/users/user-4.jpg" alt="user" class="rounded-circle">
                                         </a>
+
                                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                             <!-- item-->
                                             <a class="dropdown-item" href="editarDatos.jsp"><i class="mdi mdi-account-circle"></i> Perfil</a>
@@ -124,8 +126,13 @@
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item text-danger" href="Login.jsp"><i class="mdi mdi-power text-danger"></i> Cerra Sesión</a>
                                         </div>
+                                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                           
+                                        </div>
+
                                     </div>
                                 </li>
+
 
                                 <li class="menu-item dropdown notification-list list-inline-item">
                                     <!-- Mobile menu toggle-->
@@ -168,8 +175,12 @@
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
 
-                                        <li>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            <ul class="submenu">
+                                                <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
+
+                                            </ul>
                                         </li>
 
 
@@ -293,10 +304,10 @@
                                     <h5 class="font-16">Sessiones Activas</h5>
                                 </div>
                                 <%
-                                UsuarioVO usuVO = new UsuarioVO();
-                                UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
+                                    UsuarioVO usuVO = new UsuarioVO();
+                                    UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
                                 %>
-                                
+
                                 <h3 class="mt-4"><!--<//%= usuDAO.sesionesActivas()%>-->10</h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -363,320 +374,319 @@
 
                 </div>
 
-                 <div class="row">
-                      <div class="col-xl-8">
-                          <div class="card m-b-30">
-                              <div class="card-body">
-  
-                                  <h4 class="mt-0 header-title mb-4">Graficos de Terre</h4>
-  
-                                  <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
-  
-                              </div>
-                          </div>
-                      </div>
-                <!-- end col -->
+                <div class="row">
+                    <div class="col-xl-8">
+                        <div class="card m-b-30">
+                            <div class="card-body">
 
-                <div class="col-xl-4">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <h4 class="mt-0 header-title mb-4">GRAFICOS</h4>
+                                <h4 class="mt-0 header-title mb-4">Graficos de Terre</h4>
 
-                            <div id="morris-donut-example" class="morris-charts morris-chart-height"></div>
+                                <div id="morris-area-example" class="morris-charts morris-chart-height"></div>
 
-                        </div>
-                    </div>
-                </div>
-               <!--  end col -->
-            </div>
-            <!-- end row -->
-
-            <div class="row">
-                <div class="col-xl-4">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <h4 class="mt-0 header-title mb-4">Sugerencias de amigos       </h4>
-                            <div class="friends-suggestions">
-                                <a href="#" class="friends-suggestions-list">
-                                    <div class="border-bottom position-relative">
-                                        <div class="float-left mb-0 mr-3">
-                                            <img src="assets/img/users/user-2.jpg" alt="" class="rounded-circle thumb-md">
-                                        </div>
-                                        <div class="suggestion-icon float-right mt-2 pt-1">
-                                            <i class="mdi mdi-plus"></i>
-                                        </div>
-
-                                        <div class="desc">
-                                            <h5 class="font-14 mb-1 pt-2 text-dark">Camilo Blanquicet</h5>
-                                            <p class="text-muted">3 Sugerencias de amigos</p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="friends-suggestions-list">
-                                    <div class="border-bottom position-relative">
-                                        <div class="float-left mb-0 mr-3">
-                                            <img src="assets/img/users/user-3.jpg" alt="" class="rounded-circle thumb-md">
-                                        </div>
-                                        <div class="suggestion-icon float-right mt-2 pt-1">
-                                            <i class="mdi mdi-plus"></i>
-                                        </div>
-
-                                        <div class="desc">
-                                            <h5 class="font-14 mb-1 pt-2 text-dark">Nicole Romero</h5>
-                                            <p class="text-muted">17 Sugerencias de amigos</p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="friends-suggestions-list">
-                                    <div class="border-bottom position-relative">
-                                        <div class="float-left mb-0 mr-3">
-                                            <img src="assets/img/users/user-4.jpg" alt="" class="rounded-circle thumb-md">
-                                        </div>
-                                        <div class="suggestion-icon float-right mt-2 pt-1">
-                                            <i class="mdi mdi-plus"></i>
-                                        </div>
-
-                                        <div class="desc">
-                                            <h5 class="font-14 mb-1 pt-2 text-dark">Viviana Rosillo</h5>
-                                            <p class="text-muted">12 Sugerencias de amigos</p>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="friends-suggestions-list">
-                                    <div class="border-bottom position-relative">
-                                        <div class="float-left mb-0 mr-3">
-                                            <img src="assets/img/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
-                                        </div>
-                                        <div class="suggestion-icon float-right mt-2 pt-1">
-                                            <i class="mdi mdi-plus"></i>
-                                        </div>
-
-                                        <div class="desc">
-                                            <h5 class="font-14 mb-1 pt-2 text-dark">Mellany Herrera</h5>
-                                            <p class="text-muted">18 Sugerencias de amigos</p>
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                </a>
-                                
-                                 <a href="#" class="friends-suggestions-list">
-                                    <div class="border-bottom position-relative">
-                                        <div class="float-left mb-0 mr-3">
-                                            <img src="assets/img/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
-                                        </div>
-                                        <div class="suggestion-icon float-right mt-2 pt-1">
-                                            <i class="mdi mdi-plus"></i>
-                                        </div>
-
-                                        <div class="desc">
-                                            <h5 class="font-14 mb-1 pt-2 text-dark">Andres Camilo</h5>
-                                            <p class="text-muted">16 Sugerencias de amigos</p>
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                </a>
-                </div>
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="col-xl-4">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <h4 class="mt-0 header-title mb-4">Analitica de Resultados</h4>
-                            <img id="morris-line-example" class="morris-chart"  style="height: 375px" src="assets/img/analytics.svg" alt=""/>
-                            
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-xl-4">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-
-                            <h4 class="mt-0 header-title mb-4">Actividad Reciente</h4>
-                            <ol class="activity-feed mb-0">
-                                <li class="feed-item">
-                                    <div class="feed-item-list">
-                                        <p class="text-muted mb-1">Ahora</p>
-                                        <p class="font-15 mt-0 mb-0">Asignacion de nuevas solicitudes: <b class="text-primary">Para Clase De Ensayo</b></p>
-                                    </div>
-                                </li>
-                                <li class="feed-item">
-                                    <p class="text-muted mb-1">Ayer</p>
-                                    <p class="font-15 mt-0 mb-0">Nueva grafica de analitica: <b class="text-primary">Desarrolaldor Camilo</b></p>
-                                </li>
-                                <li class="feed-item">
-                                    <p class="text-muted mb-1">2:30PM</p>
-                                    <p class="font-15 mt-0 mb-0">Modificico calendario, <b class="text-primary"> Desarrolaldora Viviana</b></p>
-                                </li>
-                                <li class="feed-item pb-1">
-                                    <p class="text-muted mb-1">12:48 PM</p>
-                                    <p class="font-15 mt-0 mb-2">Registro Solicitud, <b class="text-primary">UX Mellany</b></p>
-                                </li>
-
-                            </ol>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- START ROW -->
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <h4 class="mt-0 header-title mb-4">Usuarios del Sistema</h4>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Contacto</th>
-                                            <th scope="col">Locación</th>
-                                            <th scope="col" colspan="2">Fecha</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Philip Smead</td>
-                                            <td><span class="badge badge-success">Activo</span></td>
-                                            <td>
-                                                <div>
-                                                    <img src="assets/img/users/user-2.jpg" alt="" class="thumb-md rounded-circle mr-2"> Philip Smead
-                                                </div>
-                                            </td>
-                                            <td>Bogotá D.C Suba 112d #185</td>
-                                            <td>15/1/2018</td>
-
-                                            <td>
-                                                <div>
-                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brent Shipley</td>
-                                            <td><span class="badge badge-warning">Inactivo</span></td>
-                                            <td>
-                                                <div>
-                                                    <img src="assets/img/users/user-3.jpg" alt="" class="thumb-md rounded-circle mr-2"> Brent Shipley
-                                                </div>
-                                            </td>
-                                            <td>Bogotá D.C Soacha 114 #18</td>
-                                            <td>16/1/2019</td>
-
-                                            <td>
-                                                <div>
-                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Robert Sitton</td>
-                                            <td><span class="badge badge-success">Activo</span></td>
-                                            <td>
-                                                <div>
-                                                    <img src="assets/img/users/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Robert Sitton
-                                                </div>
-                                            </td>
-                                            <td>Bogotá D.C Martires 1 #45</td>
-                                            <td>17/1/2019</td>
-
-                                            <td>
-                                                <div>
-                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alberto Jackson</td>
-                                            <td><span class="badge badge-danger">Cancelado</span></td>
-                                            <td>
-                                                <div>
-                                                    <img src="assets/img/users/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Alberto Jackson
-                                                </div>
-                                            </td>
-                                            <td>Bogotá D.C Usaquen 78 #45</td>
-                                            <td>18/1/2019</td>
-
-                                            <td>
-                                                <div>
-                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>David Sanchez</td>
-                                            <td><span class="badge badge-success">Activo</span></td>
-                                            <td>
-                                                <div>
-                                                    <img src="assets/img/users/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> David Sanchez
-                                                </div>
-                                            </td>
-                                            <td>Bogotá D.C Suba 112d #845</td>
-                                            <td>19/1/2019</td>
-
-                                            <td>
-                                                <div>
-                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
 
+                    <div class="col-xl-4">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title mb-4">GRAFICOS</h4>
+
+                                <div id="morris-donut-example" class="morris-charts morris-chart-height"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--  end col -->
+                </div>
+                <!-- end row -->
+
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title mb-4">Sugerencias de amigos       </h4>
+                                <div class="friends-suggestions">
+                                    <a href="#" class="friends-suggestions-list">
+                                        <div class="border-bottom position-relative">
+                                            <div class="float-left mb-0 mr-3">
+                                                <img src="assets/img/users/user-2.jpg" alt="" class="rounded-circle thumb-md">
+                                            </div>
+                                            <div class="suggestion-icon float-right mt-2 pt-1">
+                                                <i class="mdi mdi-plus"></i>
+                                            </div>
+
+                                            <div class="desc">
+                                                <h5 class="font-14 mb-1 pt-2 text-dark">Camilo Blanquicet</h5>
+                                                <p class="text-muted">3 Sugerencias de amigos</p>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#" class="friends-suggestions-list">
+                                        <div class="border-bottom position-relative">
+                                            <div class="float-left mb-0 mr-3">
+                                                <img src="assets/img/users/user-3.jpg" alt="" class="rounded-circle thumb-md">
+                                            </div>
+                                            <div class="suggestion-icon float-right mt-2 pt-1">
+                                                <i class="mdi mdi-plus"></i>
+                                            </div>
+
+                                            <div class="desc">
+                                                <h5 class="font-14 mb-1 pt-2 text-dark">Nicole Romero</h5>
+                                                <p class="text-muted">17 Sugerencias de amigos</p>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#" class="friends-suggestions-list">
+                                        <div class="border-bottom position-relative">
+                                            <div class="float-left mb-0 mr-3">
+                                                <img src="assets/img/users/user-4.jpg" alt="" class="rounded-circle thumb-md">
+                                            </div>
+                                            <div class="suggestion-icon float-right mt-2 pt-1">
+                                                <i class="mdi mdi-plus"></i>
+                                            </div>
+
+                                            <div class="desc">
+                                                <h5 class="font-14 mb-1 pt-2 text-dark">Viviana Rosillo</h5>
+                                                <p class="text-muted">12 Sugerencias de amigos</p>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#" class="friends-suggestions-list">
+                                        <div class="border-bottom position-relative">
+                                            <div class="float-left mb-0 mr-3">
+                                                <img src="assets/img/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
+                                            </div>
+                                            <div class="suggestion-icon float-right mt-2 pt-1">
+                                                <i class="mdi mdi-plus"></i>
+                                            </div>
+
+                                            <div class="desc">
+                                                <h5 class="font-14 mb-1 pt-2 text-dark">Mellany Herrera</h5>
+                                                <p class="text-muted">18 Sugerencias de amigos</p>
+                                            </div>
+
+
+                                        </div>
+                                    </a>
+
+                                    <a href="#" class="friends-suggestions-list">
+                                        <div class="border-bottom position-relative">
+                                            <div class="float-left mb-0 mr-3">
+                                                <img src="assets/img/users/user-5.jpg" alt="" class="rounded-circle thumb-md">
+                                            </div>
+                                            <div class="suggestion-icon float-right mt-2 pt-1">
+                                                <i class="mdi mdi-plus"></i>
+                                            </div>
+
+                                            <div class="desc">
+                                                <h5 class="font-14 mb-1 pt-2 text-dark">Andres Camilo</h5>
+                                                <p class="text-muted">16 Sugerencias de amigos</p>
+                                            </div>
+
+
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title mb-4">Analitica de Resultados</h4>
+                                <img id="morris-line-example" class="morris-chart"  style="height: 375px" src="assets/img/analytics.svg" alt=""/>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-4">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+
+                                <h4 class="mt-0 header-title mb-4">Actividad Reciente</h4>
+                                <ol class="activity-feed mb-0">
+                                    <li class="feed-item">
+                                        <div class="feed-item-list">
+                                            <p class="text-muted mb-1">Ahora</p>
+                                            <p class="font-15 mt-0 mb-0">Asignacion de nuevas solicitudes: <b class="text-primary">Para Clase De Ensayo</b></p>
+                                        </div>
+                                    </li>
+                                    <li class="feed-item">
+                                        <p class="text-muted mb-1">Ayer</p>
+                                        <p class="font-15 mt-0 mb-0">Nueva grafica de analitica: <b class="text-primary">Desarrolaldor Camilo</b></p>
+                                    </li>
+                                    <li class="feed-item">
+                                        <p class="text-muted mb-1">2:30PM</p>
+                                        <p class="font-15 mt-0 mb-0">Modificico calendario, <b class="text-primary"> Desarrolaldora Viviana</b></p>
+                                    </li>
+                                    <li class="feed-item pb-1">
+                                        <p class="text-muted mb-1">12:48 PM</p>
+                                        <p class="font-15 mt-0 mb-2">Registro Solicitud, <b class="text-primary">UX Mellany</b></p>
+                                    </li>
+
+                                </ol>
+
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- START ROW -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <h4 class="mt-0 header-title mb-4">Usuarios del Sistema</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col">Contacto</th>
+                                                <th scope="col">Locación</th>
+                                                <th scope="col" colspan="2">Fecha</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Philip Smead</td>
+                                                <td><span class="badge badge-success">Activo</span></td>
+                                                <td>
+                                                    <div>
+                                                        <img src="assets/img/users/user-2.jpg" alt="" class="thumb-md rounded-circle mr-2"> Philip Smead
+                                                    </div>
+                                                </td>
+                                                <td>Bogotá D.C Suba 112d #185</td>
+                                                <td>15/1/2018</td>
+
+                                                <td>
+                                                    <div>
+                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Brent Shipley</td>
+                                                <td><span class="badge badge-warning">Inactivo</span></td>
+                                                <td>
+                                                    <div>
+                                                        <img src="assets/img/users/user-3.jpg" alt="" class="thumb-md rounded-circle mr-2"> Brent Shipley
+                                                    </div>
+                                                </td>
+                                                <td>Bogotá D.C Soacha 114 #18</td>
+                                                <td>16/1/2019</td>
+
+                                                <td>
+                                                    <div>
+                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Robert Sitton</td>
+                                                <td><span class="badge badge-success">Activo</span></td>
+                                                <td>
+                                                    <div>
+                                                        <img src="assets/img/users/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Robert Sitton
+                                                    </div>
+                                                </td>
+                                                <td>Bogotá D.C Martires 1 #45</td>
+                                                <td>17/1/2019</td>
+
+                                                <td>
+                                                    <div>
+                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alberto Jackson</td>
+                                                <td><span class="badge badge-danger">Cancelado</span></td>
+                                                <td>
+                                                    <div>
+                                                        <img src="assets/img/users/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Alberto Jackson
+                                                    </div>
+                                                </td>
+                                                <td>Bogotá D.C Usaquen 78 #45</td>
+                                                <td>18/1/2019</td>
+
+                                                <td>
+                                                    <div>
+                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>David Sanchez</td>
+                                                <td><span class="badge badge-success">Activo</span></td>
+                                                <td>
+                                                    <div>
+                                                        <img src="assets/img/users/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> David Sanchez
+                                                    </div>
+                                                </td>
+                                                <td>Bogotá D.C Suba 112d #845</td>
+                                                <td>19/1/2019</td>
+
+                                                <td>
+                                                    <div>
+                                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END ROW -->
+
             </div>
-            <!-- END ROW -->
-
+            <!-- end container-fluid -->
         </div>
-        <!-- end container-fluid -->
-    </div>
-    <!-- end wrapper -->
+        <!-- end wrapper -->
 
-    <!-- Footer -->
-    <footer class="footer">
-        © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-    </footer>
+        <!-- Footer -->
+        <footer class="footer">
+            © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
+        </footer>
 
-    <!-- End Footer -->
-    <%
+        <!-- End Footer -->
+        <%
+            if (request.getAttribute(
+                    "mensajeError") != null) {  %>           
+        ${mensajeError}
+        <%} else {%>
+        ${mensajeExito}
+        <% }%>
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
 
-        if (request.getAttribute(
-                "mensajeError") != null) {  %>           
-    ${mensajeError}
-    <%} else {%>
-    ${mensajeExito}
-    <% }%>
-    <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/waves.min.js"></script>
+        <!--Morris Chart-->
+        <script src="plugins/morris/morris.min.js"></script>
+        <script src="plugins/raphael/raphael.min.js"></script>
 
-    <!--Morris Chart-->
-    <script src="plugins/morris/morris.min.js"></script>
-    <script src="plugins/raphael/raphael.min.js"></script>
+        <script src="assets/pages/dashboard.init.js"></script>
 
-    <script src="assets/pages/dashboard.init.js"></script>
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
 
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-
-</body>
+    </body>
 
 </html>

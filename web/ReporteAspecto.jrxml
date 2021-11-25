@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4ef5d7e4-7e3c-486f-92eb-6333a7b29b83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     aspecto.`ASP_NOMBRE` AS aspecto_ASP_NOMBRE,
+     aspecto.`ASP_DESCRIPCION` AS aspecto_ASP_DESCRIPCION,
+     procedimiento.`PRO_NOMBRE` AS procedimiento_PRO_NOMBRE,
+     tipo_ensayo.`TIP_ENS_NOMBRE` AS tipo_ensayo_TIP_ENS_NOMBRE,
+     aspecto.`ASP_ESTADO` AS aspecto_ASP_ESTADO
+FROM
+     `procedimiento` procedimiento INNER JOIN `aspecto` aspecto ON procedimiento.`PRO_ID` = aspecto.`FK_Procedimiento`
+     INNER JOIN `tipo_ensayo` tipo_ensayo ON aspecto.`FK_Tipo_ensayo` = tipo_ensayo.`TIP_ENS_ID`]]>
+	</queryString>
+	<field name="aspecto_ASP_NOMBRE" class="java.lang.String"/>
+	<field name="aspecto_ASP_DESCRIPCION" class="java.lang.String"/>
+	<field name="procedimiento_PRO_NOMBRE" class="java.lang.String"/>
+	<field name="tipo_ensayo_TIP_ENS_NOMBRE" class="java.lang.String"/>
+	<field name="aspecto_ASP_ESTADO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="51" y="4" width="137" height="109" uuid="81ceb785-0027-44df-8dc5-dd3b6f50df28"/>
+				<imageExpression><![CDATA["TERRE3.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="225" y="0" width="361" height="62" uuid="577accbf-65b5-4c04-b0f2-f84fc95f01d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Aspectos Terre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="77" width="383" height="42" uuid="3f052422-47af-49c8-a1c6-b565238ab5b3"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="f492deba-71a3-4153-a67b-840973da82c2"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="0c162309-1ec9-4990-b97c-25c15a388900"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="160" height="15" forecolor="#736343" uuid="e7d3cc5b-391f-4730-b6b7-cb0f6a879815"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="160" y="0" width="233" height="15" forecolor="#736343" uuid="bfa9f1bf-67c0-4d8f-9a80-3b2b947afc33"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="393" y="0" width="114" height="15" forecolor="#736343" uuid="024a367c-edce-47de-ad4b-b1939f0f71b4"/>
+				<text><![CDATA[Procedimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="526" y="0" width="114" height="15" forecolor="#736343" uuid="42d23570-5ae5-4ccf-bcf8-ea01bd0bb83f"/>
+				<text><![CDATA[Tipo Ensayo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="640" y="0" width="160" height="15" forecolor="#736343" uuid="6f934e57-d0f2-46ec-a1eb-c841dcf78178"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="de2714b3-4df1-43e3-afc7-99b2edd7c2c7"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="160" height="15" uuid="72cd5d51-67c1-4072-9ba1-ce892d083e76"/>
+					<textFieldExpression><![CDATA[$F{aspecto_ASP_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="160" y="0" width="233" height="15" uuid="c82cd926-bbcf-4e02-b168-4a28eec02d0f"/>
+					<textFieldExpression><![CDATA[$F{aspecto_ASP_DESCRIPCION}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="393" y="0" width="133" height="15" uuid="7ccd941b-16a3-4670-b6ac-d35af362e6bf"/>
+					<textFieldExpression><![CDATA[$F{procedimiento_PRO_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="526" y="0" width="114" height="15" uuid="f82f9396-9c59-4fe8-8bf1-7cc8362cc2e9"/>
+					<textFieldExpression><![CDATA[$F{tipo_ensayo_TIP_ENS_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="640" y="0" width="160" height="15" uuid="9f29e875-1e7c-4a1f-bb96-1ff26316674b"/>
+					<textFieldExpression><![CDATA[$F{aspecto_ASP_ESTADO}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="ebdadb32-9ed5-43ce-a33c-0046314143ce"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="c1d70cb3-09b4-4b75-a573-f7012613b63e"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="82b6f93e-3de4-402e-9c2c-b9b12c1fddc8"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="84682011-d54a-41b3-9b3c-9f829e35a2c4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="d5352a34-7fac-4987-bcc4-cf188be95e36"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

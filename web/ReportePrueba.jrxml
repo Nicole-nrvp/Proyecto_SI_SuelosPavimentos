@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="04d57651-3f7b-4645-815f-fd03a67329b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     prueba.`PRU_FECHA_INICIO` AS prueba_PRU_FECHA_INICIO,
+     prueba.`PRU_FECHA_FIN` AS prueba_PRU_FECHA_FIN,
+     prueba.`PRU_NOMBRE` AS prueba_PRU_NOMBRE,
+     prueba.`PRU_ESTADO` AS prueba_PRU_ESTADO,
+     usuario.`USU_NOMBRE` AS usuario_USU_NOMBRE,
+     muestra.`MUE_NOMBRE` AS muestra_MUE_NOMBRE,
+     solicitud.`SOL_NOMBRE` AS solicitud_SOL_NOMBRE
+FROM
+     `usuario` usuario INNER JOIN `prueba` prueba ON usuario.`USU_ID` = prueba.`FK_Usuario`
+     INNER JOIN `muestra` muestra ON prueba.`FK_Muestra` = muestra.`MUE_ID`
+     INNER JOIN `solicitud` solicitud ON prueba.`FK_Solicitud` = solicitud.`SOL_ID`]]>
+	</queryString>
+	<field name="prueba_PRU_NOMBRE" class="java.lang.String"/>
+	<field name="prueba_PRU_FECHA_INICIO" class="java.sql.Date"/>
+	<field name="prueba_PRU_FECHA_FIN" class="java.sql.Date"/>
+	<field name="usuario_USU_NOMBRE" class="java.lang.String"/>
+	<field name="solicitud_SOL_NOMBRE" class="java.lang.String"/>
+	<field name="muestra_MUE_NOMBRE" class="java.lang.String"/>
+	<field name="prueba_PRU_ESTADO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="35" y="7" width="141" height="108" uuid="75a2f1be-47ec-49c8-86a0-8f86d261f922"/>
+				<imageExpression><![CDATA["TERRE3.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="209" y="0" width="346" height="62" uuid="d8921597-2ca7-425b-87a5-cf7f7413df1d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Pruebas Terre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="68" width="383" height="42" uuid="d257b800-011d-4f33-b619-5104a81f5750"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="fc7c50d2-da30-4139-89b8-f4368b238a70"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="38c56f26-5697-4534-9438-60923944a4a9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="114" height="15" forecolor="#736343" uuid="abbc88bf-7c29-4a60-a0d7-412d0d4e38cc"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="114" y="0" width="114" height="15" forecolor="#736343" uuid="81c67f16-3ef9-4d2d-ad56-a0bef79ab37d"/>
+				<text><![CDATA[Fecha Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="228" y="0" width="114" height="15" forecolor="#736343" uuid="087e0037-c1fe-40ff-ae6c-3b5540650678"/>
+				<text><![CDATA[Fecha Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="342" y="0" width="67" height="15" forecolor="#736343" uuid="feffcec9-8aa4-4c7e-aae8-9af61263a526"/>
+				<text><![CDATA[ Usuario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="422" y="0" width="121" height="15" forecolor="#736343" uuid="bc82ef1f-5baf-42a9-84d3-882612a469ab"/>
+				<text><![CDATA[Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="543" y="0" width="141" height="15" forecolor="#736343" uuid="6ad690c3-e7bf-4364-b71c-c8dd46e61e51"/>
+				<text><![CDATA[Muestra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="684" y="0" width="114" height="15" forecolor="#736343" uuid="d740c128-b720-49c7-89eb-cb3cd9ec12e5"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="9a3ab272-d953-4fe6-809e-b34df3d82c83"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="114" height="15" uuid="60d57069-9dc2-4264-84a6-97d7f939ffcc"/>
+					<textFieldExpression><![CDATA[$F{prueba_PRU_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="114" y="0" width="114" height="15" uuid="3b4bf319-4416-4ebb-a03b-02571d1e417b"/>
+					<textFieldExpression><![CDATA[$F{prueba_PRU_FECHA_INICIO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="228" y="0" width="114" height="15" uuid="47767d47-c393-4874-a1d9-20e643bb0a99"/>
+					<textFieldExpression><![CDATA[$F{prueba_PRU_FECHA_FIN}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="342" y="0" width="80" height="15" uuid="afe02bc5-65c7-4bfa-9f3f-8ea07f51450c"/>
+					<textFieldExpression><![CDATA[$F{usuario_USU_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="422" y="0" width="121" height="15" uuid="8fb51198-8810-47a9-a7ea-bf06101cd03e"/>
+					<textFieldExpression><![CDATA[$F{solicitud_SOL_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="543" y="0" width="141" height="15" uuid="45e83ffa-239c-4af1-8897-ffaa79bc28a9"/>
+					<textFieldExpression><![CDATA[$F{muestra_MUE_NOMBRE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="684" y="0" width="114" height="15" uuid="153f21ae-4315-40d7-a2a4-70730d94c1d9"/>
+					<textFieldExpression><![CDATA[$F{prueba_PRU_ESTADO}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="9f5ee458-aa55-4296-9771-4b759d73c7f2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="3efd3b17-a326-4831-9c98-82f30f46bec8"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="33695c9d-1a40-49a9-8729-db1388c84788"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="f45e8a6f-d417-4cd9-a964-903557babc39"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="7ef70dfc-335a-4c2f-b5cb-9bc6ab96970f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
