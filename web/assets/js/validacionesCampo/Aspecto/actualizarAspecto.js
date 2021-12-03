@@ -6,36 +6,48 @@
 jQuery.validator.addMethod("letterswithspace", function(value, element) {
     return this.optional(element) || /^[a-z\s]+$/i.test(value);
 }, "Solo letras");
- 
- 
+
 $(document).ready(function ($) {
-    $("#register-solicitud-form").validate({
+    $("#update-aspecto-form").validate({
         rules: {
-            textSolNombre: {
+            Nombre: {
                 required: true,
                 minlength: 5,
-                maxlength: 20
-            
+                maxlength: 20,
+                letterswithspace: true
             },
-            textSolFechaFin: {
+            Descripcion: {
+                required: true,
+                minlength: 5,
+                maxlength: 20,
+                 letterswithspace : true
+            },
+            Procedimiento:{
                 required: true
             },
-            textFkCliente:{
+            Tipo:{
                 required: true
             }
 
         },
         messages: {
-            textSolNombre: {
-                required: "Por favor ingrese nombre de la solicitud",
+            Nombre: {
+                required: "Por favor ingrese nombre del aspecto",
                 minlength: "Minimo 5 caracteres",
-                maxlength: "Maximo 20 caracteres"
+                maxlength: "Maximo 20 caracteres",
+                letterswithspace: "Solo se permiten letras"
             },
-            textSolFechaFin:{
-                required: "Por favor seleccione una fecha"
+            Descripcion: {
+                required: "Por favor ingrese la descri´ción",
+                minlength: "Minimo 5 caracteres",
+                maxlength: "Maximo 20 caracteres",
+                letterswithspace: "Solo se permiten letras"
             },
-            textFkCliente:{
-                required: "Por favor seleccione un cliente"
+            Procedimiento:{
+                required: "Por favor seleccione un Procedimiento"
+            },
+            Tipo:{
+                required: "Por favor seleccione un Tipo"
             }
             
             

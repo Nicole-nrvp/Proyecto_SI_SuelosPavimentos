@@ -10,11 +10,7 @@
 
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-     if (Rol.equals("") || Rol.equals("")) {
-        response.sendRedirect("index.jsp");
-    }
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -355,16 +351,13 @@
                                     <div class="modal-body">
                                     <p class="statusMsg"></p>
                                     
-                                    <form method="post" action="ClaseEnsayo">
-                                    <div class="form-group">
+                                    <form method="post" action="ClaseEnsayo" class="formulario"  id="register-ClaseEnsayo-form" novalidate="novalidate">
                                     
-                                    <label for="textId" class="">Id</label>
-                                    <input class="form-group" type="number" name="textId" class="form-control" id="inputid" value="" placeholder="Ingrese el id"/>
-                                    </div>
+                                    
                                     <div class="form-group">
                                     <label for="txtNombre">Nombre</label>
-                                    <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
-                                    </div>
+                                    <input type="text" name="txtNombre" class="form-control" value="" placeholder="Ingresa un nombre"/>
+                                    </div> 
                                     <div class="form-group">
                                     <label for="txtEstado">Estado</label>
                                     <select name="txtEstado" class="select">
@@ -404,8 +397,12 @@
                                     <th class="d-none">Id</th>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <%if (Rol.equals("GERENTE")) {
+
+                                                    %>
                                     <th>Editar</th>
                                     <th>Inactivar</th>
+                                    <%}%>
                                 </tr>
                                 </thead>
 
@@ -425,7 +422,9 @@
                                     <td class="d-none"><%=clasensVO.getClasEnsID()%></td>
                                     <td><%=clasensVO.getClasEnsNombre()%></td>
                                     <td><%=clasensVO.getClasEnsEstado()%></td>
-                                    
+                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                    %>
                                     <td>
 
                                <!-- Button to trigger modal -->
@@ -449,14 +448,14 @@
                                     <div class="modal-body">
                                     <p class="statusMsg"></p>
                                     
-                                    <form class="formulario" method="post" action="ClaseEnsayo">
+                                    <form class="formulario" method="post" action="ClaseEnsayo" class="formulario"  id="update-ClaseEnsayo-form" novalidate="novalidate">
                                     <div class="form-group">
                                     <label for="textId" class="d-none">ID:</label>
-                                    <input class="d-none" type="text" name="textId" class="form-control" id="inputName" value="<%=clasensVO.getClasEnsID()%>" placeholder="Ingrese el id"/>
+                                    <input class="d-none" type="text" name="textId" class="form-control" value="<%=clasensVO.getClasEnsID()%>" placeholder="Ingrese el id"/>
                                     </div>
                                     <div class="form-group">
                                     <label for="txtNombre">Nombre</label>
-                                    <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="<%=clasensVO.getClasEnsNombre()%>" placeholder="Ingresa un nombre"/>
+                                    <input type="text" name="txtNombre" class="form-control" value="<%=clasensVO.getClasEnsNombre()%>" placeholder="Ingresa un nombre"/>
                                     </div>
                                     <div class="form-group">
                                     <label for="txtEstado">Estado</label>
@@ -504,7 +503,7 @@
                                         </form>  
                                     </td>
                                     
-                                    <%}%>
+                                    <%}}%>
                                 </tr>
                             <script src="assets/js/validar.js" type="text/javascript"></script>
                                 
@@ -525,68 +524,67 @@
     <!-- End Footer -->
 
     <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/waves.min.js"></script>
+                <script src="assets/js/jquery.min.js"></script>
+                <script src="assets/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/jquery.slimscroll.js"></script>
+                <script src="assets/js/waves.min.js"></script>
 
-    <!-- Required datatable js -->
-    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Buttons examples -->
-    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
-    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-    <script src="../plugins/datatables/jszip.min.js"></script>
-    <script src="../plugins/datatables/pdfmake.min.js"></script>
-    <script src="../plugins/datatables/vfs_fonts.js"></script>
-    <script src="../plugins/datatables/buttons.html5.min.js"></script>
-    <script src="../plugins/datatables/buttons.print.min.js"></script>
-    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
-    <!-- Responsive examples -->
-    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
-    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
+                <!-- Required datatable js -->
+                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                <!-- Buttons examples -->
+                <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/jszip.min.js"></script>
+                <script src="../plugins/datatables/pdfmake.min.js"></script>
+                <script src="../plugins/datatables/vfs_fonts.js"></script>
+                <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                <script src="../plugins/datatables/buttons.print.min.js"></script>
+                <script src="../plugins/datatables/buttons.colVis.min.js"></script>
+                <!-- Responsive examples -->
+                <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
-    <!-- Datatable init js -->
-    <script src="assets/pages/datatables.init.js"></script>  
+                <!-- Datatable init js -->
+                <script src="assets/pages/datatables.init.js"></script>  
 
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-    
-    
-    
-    <!-- jQuery library MODAL-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<!-- Latest minified bootstrap js MODAL-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-        
-<!-- Bootstrap core JavaScript-->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
+                <!-- App js -->
+                <script src="assets/js/app.js"></script>
 
 
 
-<!-- Core plugin JavaScript-->
-<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- jQuery library MODAL-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="assets/js/sb-admin-2.min.js"></script>
+                <!-- Latest minified bootstrap js MODAL-->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="assets/js/demo/datatables-demo.js"></script>
 
-        <%
-            if (request.getAttribute("mensajeError") != null) {  %>           
-        ${mensajeError}
-        <%} else {%>
-        ${mensajeExito}
-        <% }%>
+                <!-- Bootstrap core JavaScript-->
+                <script src="assets/vendor/jquery/jquery.min.js"></script>
 
+
+
+                <!-- Core plugin JavaScript-->
+                <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                <!-- Custom scripts for all pages-->
+                <script src="assets/js/sb-admin-2.min.js"></script>
+
+                <!-- Page level plugins -->
+                <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                <!-- Page level custom scripts -->
+                <script src="assets/js/demo/datatables-demo.js"></script>
+
+   <!--Validaciones de Campos-->
+                
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                
+                <script src="assets/js/validacionesCampo/ClaseEnsayo/registrarClaseEnsayo.js" type="text/javascript"></script>
+                <script src="assets/js/validacionesCampo/ClaseEnsayo/actualizarClaseEnsayo.js" type="text/javascript"></script>
 
     </body>
 </html>

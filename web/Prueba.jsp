@@ -278,7 +278,7 @@
                                     </ul>
                                 </li>
 
-                                
+
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -370,80 +370,88 @@
                                             <div class="modal-body">
                                                 <p class="statusMsg"></p>
 
-                                                <form method="post" action="PruebaControlador" id="frm-usuario">
-
-                                                    Fecha de Fin
-                                                    <br>
-
-                                                    <input type="date" name="FechaFin" placeholder="Fecha Fin" required><br><br>
-                                                    Nombre
-                                                    <br>
-
-                                                    <input type="text" name="Nombre" placeholder="Nombre de usuario" required><br><br>
-                                                    Usuario
-                                                    <br>
-                                                    <select name="Usuario" class="estilo-selector">
-                                                        <option selected>Usuario</option>
-                                                        <%
-                                                            UsuarioVO usuVO = new UsuarioVO();
-                                                            UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
-                                                            ArrayList<UsuarioVO> ListaUsuario = usuDAO.listar();
-                                                            for (int i = 0; i < ListaUsuario.size(); i++) {
-
-                                                                usuVO = ListaUsuario.get(i);
-                                                        %>
+                                                <form method="post" action="PruebaControlador"  class="formulario"  id="register-prueba-form" novalidate="novalidate">
 
 
 
-                                                        <option value="<%=usuVO.getUsuId()%>"><%=usuVO.getUsuNombre()%></option>
+                                                    <div class="form-group">
+                                                        <label for="" >Fechas</label>
+                                                    <input type="date" name="FechaFin" placeholder="Fecha Fin" class="form-control" required>
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="" >Nombre</label>
+                                                        <input type="text" name="Nombre" class="form-control" placeholder="Nombre de usuario"/>
+                                                    </div>
 
-                                                        <%
-                                                            }
-                                                        %>
-                                                    </select>
-                                                    <br>
-                                                    <br>
-                                                    Muestra
-                                                    <br>
+                                                    <div class="form-group">                                                    
+                                                        <label for="" >Usuario</label>
+                                                        <select name="Usuario" class="form-control">
+                                                            <option selected>Usuario</option>
+                                                            <%
+                                                                UsuarioVO usuVO = new UsuarioVO();
+                                                                UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
+                                                                ArrayList<UsuarioVO> ListaUsuario = usuDAO.listar();
+                                                                for (int i = 0; i < ListaUsuario.size(); i++) {
 
-                                                    <select name="Muestra" class="estilo-selector">
-                                                        <option selected>Muestra</option>
-                                                        <%
-                                                            MuestraVO mueVO = new MuestraVO();
-                                                            MuestraDAO mueDAO = new MuestraDAO(mueVO);
-                                                            ArrayList<MuestraVO> listaMuestras = mueDAO.listar();
-                                                            for (int i = 0; i < listaMuestras.size(); i++) {
-
-                                                                mueVO = listaMuestras.get(i);
-                                                        %>
+                                                                    usuVO = ListaUsuario.get(i);
+                                                            %>
 
 
 
-                                                        <option value="<%=mueVO.getMueId()%>"><%=mueVO.getMueNombre()%></option>
+                                                            <option value="<%=usuVO.getUsuId()%>"><%=usuVO.getUsuNombre()%></option>
 
-                                                        <%
-                                                            }
-                                                        %>
-                                                    </select>
-                                                    <br><br>
-                                                    Solicitud
-                                                    <br>
-                                                    <select name="Solicitud" class="estilo-selector">
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </select>                                                  
+                                                    </div>
+                                                    <div class="form-group">                                                    
+                                                        <label for="" >Muestra</label>
 
-                                                        <option selected>Solicitud</option>
-                                                        <%
-                                                            SolicitudVO solVO = new SolicitudVO();
-                                                            SolicitudDAO solDAO = new SolicitudDAO(solVO);
-                                                            ArrayList<SolicitudVO> listaSolicitudes = solDAO.lista();
-                                                            for (int i = 0; i < listaSolicitudes.size(); i++) {
 
-                                                                solVO = listaSolicitudes.get(i);
-                                                        %>
-                                                        <option value="<%=solVO.getSolId()%>"><%=solVO.getSolNombre()%></option>
-                                                        <%
-                                                            }
-                                                        %>    
-                                                    </select>
+
+                                                        <select name="Muestra" class="form-control">
+                                                            <option selected>Muestra</option>
+                                                            <%
+                                                                MuestraVO mueVO = new MuestraVO();
+                                                                MuestraDAO mueDAO = new MuestraDAO(mueVO);
+                                                                ArrayList<MuestraVO> listaMuestras = mueDAO.listar();
+                                                                for (int i = 0; i < listaMuestras.size(); i++) {
+
+                                                                    mueVO = listaMuestras.get(i);
+                                                            %>
+
+
+
+                                                            <option value="<%=mueVO.getMueId()%>"><%=mueVO.getMueNombre()%></option>
+
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">                                                    
+                                                        <label for="" >Solicitud</label>
+
+
+                                                        <select name="Solicitud" class="form-control">
+
+                                                            <option selected>Solicitud</option>
+                                                            <%
+                                                                SolicitudVO solVO = new SolicitudVO();
+                                                                SolicitudDAO solDAO = new SolicitudDAO(solVO);
+                                                                ArrayList<SolicitudVO> listaSolicitudes = solDAO.lista();
+                                                                for (int i = 0; i < listaSolicitudes.size(); i++) {
+
+                                                                    solVO = listaSolicitudes.get(i);
+                                                            %>
+                                                            <option value="<%=solVO.getSolId()%>"><%=solVO.getSolNombre()%></option>
+                                                            <%
+                                                                }
+                                                            %>    
+                                                        </select>
+                                                    </div>
 
                                                     <input type="hidden" name="Estado" value="ACTIVO">
 
@@ -484,16 +492,16 @@
                                             <th>Muestra</th>
                                             <th>Solicitud</th>
                                             <th>Estado</th>
-                                            <%
+                                                <%
                                                     if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
                                                 %>
                                             <th>Editar</th>
-                                            <%}%>
-                                            <%
-                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")|| Rol.equals("TECNICO")) {
+                                                <%}%>
+                                                <%
+                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
                                                 %>
                                             <th>Inactivar</th>
-                                            <%}%>
+                                                <%}%>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -519,13 +527,13 @@
                                             <td><%=pruVO.getFK_Solicitud()%></td>
                                             <td><%=pruVO.getPRU_ESTADO()%></td>
                                             <%
-                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
-                                                %>
+                                                if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+                                            %>
                                             <td>
 
 
                                                 <!-- Button to trigger modal -->
-                                                
+
                                                 <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=a%>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -546,23 +554,24 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
-                                                                <form method="post" action="PruebaControlador">
+                                                                <form method="post" action="PruebaControlador" class="formulario"  id="update-prueba-form" novalidate="novalidate">
+
                                                                     <div class="form-group">
-                                                                        <label for="Id" class="d-none">Numero de Prueba</label>
-                                                                        <input type="number" name="Id" class="form-control" readonly value="<%=pruVO.getPru_id()%>"/>
+                                                                        <label for="" class="d-none">Numero de Prueba</label>
+                                                                        <input type="hidden" name="Id" class="form-control" readonly value="<%=pruVO.getPru_id()%>"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="Nombre">Nombre</label>
+                                                                        <label for="">Nombre</label>
                                                                         <input type="text" name="Nombre" class="form-control" id="inputEmail" value="<%=pruVO.getPru_nombre()%>"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="FechaFin">Fecha Fin</label>
+                                                                        <label for="">Fecha Fin</label>
                                                                         <input type="date" name="FechaFin" class="form-control" id="inputEmail" value="<%=pruVO.getPru_fecha_fin()%>"/>
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="Muestra">Muestra</label><br>
-                                                                        <select name="Muestra" class="estilo-selector">
+                                                                        <label for="">Muestra</label><br>
+                                                                        <select name="Muestra" class="form-control">
                                                                             <%
                                                                                 MuestraVO mueVO = new MuestraVO();
                                                                                 MuestraDAO mueDAO = new MuestraDAO(mueVO);
@@ -576,8 +585,8 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="Solicitud">Solicitud</label><br>
-                                                                        <select name="Solicitud" class="estilo-selector">
+                                                                        <label for="">Solicitud</label><br>
+                                                                        <select name="Solicitud" class="form-control">
                                                                             <%
                                                                                 SolicitudVO solVO = new SolicitudVO();
                                                                                 SolicitudDAO solDAO = new SolicitudDAO(solVO);
@@ -606,12 +615,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                        
+
                                             </td>
                                             <%}%>
-                                             <%
-                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
-                                                %>
+                                            <%
+                                                if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+                                            %>
                                             <td>
 
 
@@ -641,18 +650,17 @@
 
                                                                     <div class="form-group">
                                                                         Prueba<br>
-                                                                        <select name="Prueba" class="estilo-selector">
+                                                                        <select name="Prueba" class="form-control">
                                                                             <%
                                                                                 pruVO = listaPrueba.get(a);
                                                                             %>
                                                                             <option value="<%=pruVO.getPru_id()%>"><%=pruVO.getPru_nombre()%></option>
                                                                         </select>
                                                                     </div>
-                                                                    Aspecto
-                                                                    </br>
-                                                                    <select name="Aspecto" class="estilo-selector">
+                                                                       Aspecto
+                                                                    <select name="Aspecto" class="form-control">
 
-                                                                        <option selected>Aspecto</option>
+                                                                        <option selected>Seleccione Aspecto...</option>
                                                                         <%
                                                                             AspectoVO aspVO = new AspectoVO();
                                                                             AspectoDAO aspDAO = new AspectoDAO(aspVO);
@@ -667,12 +675,9 @@
                                                                         %>    
                                                                     </select>
                                                                     </br>
-                                                                    </br>
                                                                     Resultado
                                                                     </br>
-                                                                    <select name="Resultado" class="estilo-selector">
-
-                                                                        <option selected>Resultado</option>
+                                                                    <select name="Resultado" class="form-control">
                                                                         <option value="100/100">100/100</option> 
                                                                         <option value="90/100">90/100</option> 
                                                                         <option value="80/100">80/100</option>   
@@ -704,15 +709,15 @@
                                                         </div>   
                                                     </div>
                                                 </div>
-                                                                   
+
                                             </td> 
-                                             
+
 
 
                                         </tr>
                                         <%}%>
-                                        
-                                            <%}%>
+
+                                        <%}%>
                                     <script src="assets/js/validarPrueba.js" type="text/javascript"></script>
 
                                     </tbody>
@@ -795,5 +800,8 @@
                 <% }%>
 
 
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                <script src="assets/js/validacionesCampo/Prueba/actualizarPrueba.js" type="text/javascript"></script>
+                <script src="assets/js/validacionesCampo/Prueba/registrarPrueba.js" type="text/javascript"></script>
                 </body>
                 </html>

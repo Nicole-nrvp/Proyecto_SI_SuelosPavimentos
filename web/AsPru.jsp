@@ -271,7 +271,7 @@
                                     </ul>
                                 </li>
 
-                                
+
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -326,6 +326,15 @@
                             <div class="card-body">
                                 <!-- modal agregar registro-->
 
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                    <form method="post" action="GenerarPDF.jsp" target="_black">
+                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
+                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
+                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
+                                        <input type="hidden" value="ReporteAspPru.jasper" name="nombreReporte">
+                                    </form>
+                                </button>
+                                
 
                                 <!-- end modal-->
                                 <h4 class="mt-0 header-title">Aspecto-Prueba</h4>
@@ -372,14 +381,14 @@
                                             <td><%=asprVO.getFK_Aspecto()%></td>
                                             <td><%=asprVO.getPRU_ASP_RESULTADO()%></td>
                                             <td><%=asprVO.getPRU_ASP_ESTADO()%></td>
-                                            
 
-                                                <!-- Button to trigger modal -->
 
-                                                <%
-                                                   if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
-                                                %>
-                                                <td>
+                                            <!-- Button to trigger modal -->
+
+                                            <%
+                                                if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+                                            %>
+                                            <td>
                                                 <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=i%>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
@@ -400,14 +409,11 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
-                                                                <form class="formulario" method="post" action="Aspe_Pru">
-                                                                    <div class="form-group">
-                                                                        <label>Id</label>
-                                                                        <input type="text" name="Id" class="form-control" id="inputName" readonly value="<%=asprVO.getPRU_ASP_ID()%>" />
-                                                                    </div>
+                                                                <form class="formulario" method="post" action="Aspe_Pru" id="update-AsPru-form">
+                                                                    
                                                                     <div class="form-group">
                                                                         <label for="Prueba">Prueba</label><br>
-                                                                        <select name="Prueba" class="estilo-selector">
+                                                                        <select name="Prueba" class="form-control">
                                                                             <%
 
                                                                                 PruebaVO pruVO = new PruebaVO();
@@ -418,13 +424,13 @@
 
                                                                                     pruVO = listaPrueba.get(a);
                                                                             %>
-                                                                            <option class="d-none" value="<%=pruVO.getPru_id()%>" <%=asprVO.getFK_Prueba().equals(pruVO.getPru_nombre()) ? "selected" : ""%> ><%=pruVO.getPru_nombre()%></option>
+                                                                            <option value="<%=pruVO.getPru_id()%>" <%=asprVO.getFK_Prueba().equals(pruVO.getPru_nombre()) ? "selected" : ""%> ><%=pruVO.getPru_nombre()%></option>
                                                                             <%}%>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="Aspecto">Aspecto</label><br>
-                                                                        <select name="Aspecto" class="estilo-selector">
+                                                                        <label for="">Aspecto</label><br>
+                                                                        <select name="Aspecto" class="form-control">
                                                                             <%
 
                                                                                 AspectoVO aspVO = new AspectoVO();
@@ -435,17 +441,18 @@
 
                                                                                     aspVO = listaAspecto.get(a);
                                                                             %>
-                                                                            <option class="d-none" value="<%=aspVO.getASP_ID()%>" <%=asprVO.getFK_Aspecto().equals(aspVO.getASP_NOMBRE()) ? "selected" : ""%> ><%=aspVO.getASP_NOMBRE()%></option>
+                                                                            <option  value="<%=aspVO.getASP_ID()%>" <%=asprVO.getFK_Aspecto().equals(aspVO.getASP_NOMBRE()) ? "selected" : ""%> ><%=aspVO.getASP_NOMBRE()%></option>
                                                                             <%}%>
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label>Resultado</label>
-                                                                        <input type="text" name="Resultado" class="form-control" id="inputName" value="<%=asprVO.getPRU_ASP_RESULTADO()%>" placeholder="Ingrese el id"/>Resultado
+                                                                        <input type="text" name="Resultado" class="form-control" id="inputName" value="<%=asprVO.getPRU_ASP_RESULTADO()%>" placeholder="Ingrese el id"/>
                                                                         </br>
                                                                     </div>
 
                                                                     <div class="modal-footer">
+                                                                        <input type="hidden" name="Id"  readonly value="<%=asprVO.getPRU_ASP_ID()%>" />
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                                                         <input type="hidden" id="opcion" name="opcion" value="2">
                                                                         <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
@@ -470,9 +477,9 @@
 
                                             </td>
 
-                                           <%}%> <%}%>
+                                            <%}%> <%}%>
                                         </tr>
-                                        
+
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
 
                                     </tbody>
@@ -527,7 +534,9 @@
                 <!-- Latest minified bootstrap js MODAL-->
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                <script src="assets/js/validacionesCampo/AsPru/actualizarClaseEnsayo.js" type="text/javascript"></script>
+                
 
                 <!-- Bootstrap core JavaScript-->
                 <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -548,7 +557,7 @@
                 <script src="assets/js/demo/datatables-demo.js"></script>
 
                 <%
-            if (request.getAttribute("mensajeError") != null) {  %>           
+                    if (request.getAttribute("mensajeError") != null) {  %>           
                 ${mensajeError}
                 <%} else {%>
                 ${mensajeExito}

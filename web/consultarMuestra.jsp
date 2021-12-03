@@ -441,7 +441,6 @@
 
                                             <th>Editar</th>
                                             <th>Inactivar</th>
-                                            <th>Reporte</th>
                                         </tr>
                                     </thead>
 
@@ -546,15 +545,7 @@
                                                 </form>  
                                             </td>
 
-                                              <td>
-
-                                            
-                                            
-
-                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i></button> 
-                                                    </div>
-                                                </form>  
-                                            </td>
+                                             
 
 
                                             <%}%>

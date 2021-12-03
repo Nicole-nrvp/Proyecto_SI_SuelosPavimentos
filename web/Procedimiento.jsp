@@ -341,9 +341,10 @@
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
                                          <a href="assets/reportes/GenerarPDF.jsp"></a>-->
                                         <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
-                                        <input type="hidden" value="ReporteProcedmiento.jasper" name="nombreReporte">
+                                        <input type="hidden" value="ReporteProcedimiento.jasper" name="nombreReporte">
                                     </form>
                                 </button>
+
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
@@ -362,19 +363,17 @@
                                             <div class="modal-body">
                                                 <p class="statusMsg"></p>
 
-                                                <form method="post" action="ProcedimientoControlador" id="frm-usuario">
+                                                <form method="post" action="ProcedimientoControlador" id="register-procedimiento-form">
 
-
-                                                    Nombre
-                                                    <br>
-                                                    <br>
-
-                                                    <input type="text" name="Nombre" size="30" placeholder="Nombre del procedimiento" required><br><br>
-
-                                                    <input type="hidden" name="Estado" value="ACTIVO">
+                                                    <div class="form-group">
+                                                    <label for="" >Nombre</label>
+                                                    <input type="text" name="Nombre" size="30" class="form-control" placeholder="Nombre del procedimiento" required><br><br>
+                                                    </div>
+                                                    
 
 
                                                     <div class="modal-footer">
+                                                        <input type="hidden" name="Estado" value="ACTIVO">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                                         <input type="hidden"  value="1" name="opciones">
                                                         <button type="submit" class="btn btn-success submitBtn">Registrar</button>
@@ -492,7 +491,9 @@
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                
+                <script src="assets/js/validacionesCampo/Procedimiento/registrarProcedimiento.js" type="text/javascript"></script>
                 <!-- Bootstrap core JavaScript-->
                 <script src="assets/vendor/jquery/jquery.min.js"></script>
 

@@ -13,7 +13,7 @@ jQuery.validator.addMethod("letterswithspace1", function(value, element) {
 */
 
 $(document).ready(function ($) {
-    $("#update-muestra-form").validate({
+    $("#update-procedimiento-form").validate({
         rules: {
             textMueNombre: {
                 required: true,

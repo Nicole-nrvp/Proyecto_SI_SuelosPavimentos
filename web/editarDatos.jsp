@@ -318,21 +318,21 @@
                                     <p class="sub-title">Aqui podemos editar los datos personales</p>
 
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">Nombre</label>
+                                        <label for="" class="col-sm-2 col-form-label">Nombre</label>
                                         <div class="col-sm-10">
                                             <input class="form-control" type="text" name="txtFunNombre" value="<%=funVO.getFunNombre()%>"  >
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">Apellido</label>
+                                        <label for="" class="col-sm-2 col-form-label">Apellido</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" name="txtApellido" value="<%=funVO.getFunApellido()%>"  id="example-text-input">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">Celular</label>
+                                        <label for="" class="col-sm-2 col-form-label">Celular</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control"  name="txtCelular" value="<%=funVO.getFunCelular()%>" >
                                         </div>
@@ -351,14 +351,14 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">N° documento</label>
+                                        <label for="" class="col-sm-2 col-form-label">N° documento</label>
                                         <div class="col-sm-10">
                                             <input class="form-control" type="text" name="txtDoc" value="<%=funVO.getFunDoc()%>" >
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">Correo</label>
+                                        <label for="" class="col-sm-2 col-form-label">Correo</label>
                                         <div class="col-sm-10">
                                             <input class="form-control" type="text" name="txtCorreo" value="<%=funVO.getFunCorreo()%>" >
                                         </div>
@@ -387,14 +387,14 @@
                                     </div>                     
 
                                     <div class="form-group row">
-                                        <label for="example-date-input" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
+                                        <label for="" class="col-sm-2 col-form-label">Fecha de Nacimiento</label>
                                         <div class="col-sm-10">
                                             <input class="form-control" type="date" name="txtFechaNacimiento" value="<%=funVO.getFechaNacimiento()%>" id="example-date-input">
                                         </div>
                                     </div>                          
 
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-sm-2 col-form-label">Dirección</label>
+                                        <label for="" class="col-sm-2 col-form-label">Dirección</label>
                                         <div class="col-sm-10">
                                             <input class="form-control" type="text" name="txtDireccion" value="<%=funVO.getFunDireccion()%>" id="example-text-input">
                                         </div>
@@ -437,6 +437,10 @@
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+                     <!--Validaciones de Campos-->
+                    
+                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                    <script src="assets/js/validacionesCampo/Usuario/editarDatosV.js"></script>
 
                     <!-- Bootstrap core JavaScript-->
                     <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -450,11 +454,7 @@
                     <script src="assets/js/sb-admin-2.min.js"></script>
 
                     
-                    <!--Validaciones de Campos-->
-                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                    <script src="assets/js/validacionesCampo/Usuario/editarDatosV.js"></script>
-
+                   
 
                     </body>
                     </html>

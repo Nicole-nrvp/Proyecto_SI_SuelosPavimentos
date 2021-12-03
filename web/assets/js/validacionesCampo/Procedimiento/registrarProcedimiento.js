@@ -6,36 +6,24 @@
 jQuery.validator.addMethod("letterswithspace", function(value, element) {
     return this.optional(element) || /^[a-z\s]+$/i.test(value);
 }, "Solo letras");
- 
- 
+
 $(document).ready(function ($) {
-    $("#register-solicitud-form").validate({
+    $("#register-procedimiento-form").validate({
         rules: {
-            textSolNombre: {
+            Nombre: {
                 required: true,
                 minlength: 5,
-                maxlength: 20
-            
-            },
-            textSolFechaFin: {
-                required: true
-            },
-            textFkCliente:{
-                required: true
+                maxlength: 20,
+                letterswithspace: true
             }
 
         },
         messages: {
-            textSolNombre: {
-                required: "Por favor ingrese nombre de la solicitud",
+            Nombre: {
+                required: "Por favor ingrese nombre de la muestra",
                 minlength: "Minimo 5 caracteres",
-                maxlength: "Maximo 20 caracteres"
-            },
-            textSolFechaFin:{
-                required: "Por favor seleccione una fecha"
-            },
-            textFkCliente:{
-                required: "Por favor seleccione un cliente"
+                maxlength: "Maximo 20 caracteres",
+                letterswithspace: "Solo permite letras"
             }
             
             

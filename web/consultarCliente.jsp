@@ -10,8 +10,7 @@
 <%@page import="ModeloVO.ClienteVO"%>
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
+<%    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
         response.sendRedirect("index.jsp");
     }
 %>
@@ -81,7 +80,7 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
-                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <%=Rol%> 
 
@@ -195,7 +194,7 @@
                                         %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
-                                            
+
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
@@ -208,7 +207,7 @@
                                         %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
-                                            
+
                                         </li>
                                         <%}%>
                                         <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
@@ -218,7 +217,7 @@
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
                                         <%}%>
-                                        
+
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
@@ -226,27 +225,27 @@
 
                                                 %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="Prueba.jsp">Prueba</a></li> 
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
 
                                                 %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
 
                                                 %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <%}%>
-                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+                                                    <%}%>
+                                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
 
-                                                %>
+                                                    %>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <%}%>
-                                                
+                                                    <%}%>
+
                                             </ul>
                                         </li>
 
@@ -271,7 +270,7 @@
                                     </ul>
                                 </li>
 
-                                
+
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -348,13 +347,13 @@
 
                                                 <h4 class="modal-title" id="myModalLabel">Registrar Cliente</h4>
 
-                                             
+
 
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                                
-                                                                                     </div>
+
+                                            </div>
 
                                             <!-- Modal Body -->
                                             <div class="modal-body">
@@ -401,7 +400,6 @@
 
                                             <th>Editar</th>
                                             <th>Inactivar</th>
-                                            <th>Reporte</th>
                                         </tr>
                                     </thead>
 
@@ -487,7 +485,7 @@
                                                                         <input type="hidden" value="2" name="opcion">
                                                                     </div>
                                                                 </form>
-                                                            
+
                                                             </div>
 
 
@@ -510,16 +508,6 @@
 
                                             </td>
 
-                                            <td>
-
-
-                                                <form method="post" action="GenerarPDF.jsp" target="_black">    
-                                                    <div class="frm-g-input">
-                                                        <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
-                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i></button> 
-                                                    </div>
-                                                </form>  
-                                            </td>
 
                                         </tr>
                                         <%}%>
@@ -530,10 +518,7 @@
                                     </tbody>
                                 </table>
 
-                              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                                                                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                                                                <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
- 
+
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row -->
@@ -582,7 +567,9 @@
                     <!-- Latest minified bootstrap js MODAL-->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+                    
+                    <script src=' https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                    <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
 
                     <!-- Bootstrap core JavaScript-->
                     <script src="assets/vendor/jquery/jquery.min.js"></script>

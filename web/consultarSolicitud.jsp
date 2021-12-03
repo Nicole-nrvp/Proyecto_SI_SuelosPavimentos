@@ -603,10 +603,8 @@
 
                    
                     <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-
                     <script src="assets/js/validacionesCampo/Solicitud/actualizarSolicitud.js" type="text/javascript"></script>
                     <script src="assets/js/validacionesCampo/Solicitud/registrarSolicitud.js" type="text/javascript"></script>
-
                     <!-- Latest minified bootstrap js MODAL-->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

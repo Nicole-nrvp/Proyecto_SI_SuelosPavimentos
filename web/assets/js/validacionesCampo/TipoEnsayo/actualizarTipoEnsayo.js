@@ -10,6 +10,9 @@ jQuery.validator.addMethod("letterswithspace", function(value, element) {
 $(document).ready(function ($) {
     $("#update-tipoensayo-form").validate({
         rules: {
+            textId: {
+                required: true
+            },
             txtNombre: {
                 required: true,
                 minlength: 5,
@@ -22,6 +25,10 @@ $(document).ready(function ($) {
 
         },
         messages: {
+            textId: {
+                required: "no cuenta con id :v"
+            
+            },
             txtNombre: {
                 required: "Por favor ingrese nombre ",
                 minlength: "Minimo 5 caracteres",
@@ -29,7 +36,7 @@ $(document).ready(function ($) {
                  letterswithspace : "Solo se admiten letras"
             },
             txtClaseEnsayo: {
-                required: "Por favor seleccione clase de ensayo",
+                required: "Por favor seleccione clase de ensayo"
             
             }
         },

@@ -421,19 +421,19 @@
                                                                 <form method="post" action="Usuario" class="formulario"  id="update-funcionario-form" novalidate="novalidate" >
 
                                                                     <div class="form-group">
-                                                                        <label for="txtFunNombre">Nombre:</label>
+                                                                        <label for="">Nombre:</label>
                                                                         <input type="text" class="form-control"  name="txtFunNombre" value="<%=funVO.getFunNombre()%>"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtApellido">Apellido:</label>
+                                                                        <label for="">Apellido:</label>
                                                                         <input type="text" class="form-control" name="txtApellido" value="<%=funVO.getFunApellido()%>" />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtDireccion">Direccion: </label>
+                                                                        <label for="">Direccion: </label>
                                                                         <input type="text" class="form-control" name="txtDireccion" value="<%=funVO.getFunDireccion()%>"/>
                                                                     </div>                                                                    
                                                                     <div class="form-group">
-                                                                        <label for="txtSexo">Sexo: </label>
+                                                                        <label for="">Sexo: </label>
                                                                         <select class="form-control" id="" name="txtSexo">
                                                                             <%if (funVO.getFunSexo().equals("1")) {%>
                                                                             <option value="1" selected>Hombre</option>
@@ -445,27 +445,27 @@
                                                                         </select>
                                                                     </div>  
                                                                     <div class="form-group">
-                                                                        <label for="txtTipoDoc">Tipo de Documento: </label>
+                                                                        <label for="">Tipo de Documento: </label>
                                                                         <input type="text" class="form-control" name="txtTipoDoc" value="<%=funVO.getFunTipoDoc()%>" readonly/>
                                                                     </div>  
                                                                     <div class="form-group">
-                                                                        <label for="txtDoc">Documento: </label>
+                                                                        <label for="">Documento: </label>
                                                                         <input type="text" class="form-control" name="txtDoc" value="<%=funVO.getFunDoc()%>" readonly/>
                                                                     </div>   
                                                                     <div class="form-group">
-                                                                        <label for="txtFechaNacimiento">Fecha de nacimiento: </label>
+                                                                        <label for="">Fecha de nacimiento: </label>
                                                                         <input type="date" class="form-control" name="txtFechaNacimiento" value="<%=funVO.getFechaNacimiento()%>"/>
                                                                     </div> 
                                                                     <div class="form-group">
-                                                                        <label for="txtFechaNacimiento">Celular: </label>
+                                                                        <label for="">Celular: </label>
                                                                         <input type="text" class="form-control" name="txtCelular" value="<%=funVO.getFunCelular()%>"/>
                                                                     </div> 
                                                                     <div class="form-group">
-                                                                        <label for="txtCorreo">Correo Secundario: </label>
+                                                                        <label for="">Correo Secundario: </label>
                                                                         <input type="text" class="form-control" name="txtCorreo" value="<%=funVO.getFunCorreo()%>" />
                                                                     </div>  
                                                                     <div class="form-group">
-                                                                        <label for="txtPuesto">Puesto:</label>
+                                                                        <label for="">Puesto:</label>
                                                                         <select name="txtPuesto" class="form-control">
                                                                             <option value="<%=funVO.getFunFkPuesto()%>" selected><%=funVO.getFunPuesto()%></option>
                                                                             <%

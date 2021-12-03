@@ -14,8 +14,7 @@
 <%@page import="ModeloDAO.AspectoDAO"%>
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-     if (Rol.equals("SECRETARIA")) {
+<%    if (Rol.equals("SECRETARIA")) {
         response.sendRedirect("index.jsp");
     }
 %>
@@ -85,7 +84,7 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
-                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <%=Rol%> 
 
@@ -199,7 +198,7 @@
                                         %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
-                                            
+
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
@@ -212,7 +211,7 @@
                                         %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
-                                            
+
                                         </li>
                                         <%}%>
                                         <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
@@ -222,7 +221,7 @@
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
                                         <%}%>
-                                        
+
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
@@ -230,27 +229,27 @@
 
                                                 %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="Prueba.jsp">Prueba</a></li> 
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
 
                                                 %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
 
                                                 %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <%}%>
-                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+                                                    <%}%>
+                                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
 
-                                                %>
+                                                    %>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <%}%>
-                                                
+                                                    <%}%>
+
                                             </ul>
                                         </li>
 
@@ -275,7 +274,7 @@
                                     </ul>
                                 </li>
 
-                                
+
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -305,36 +304,36 @@
         <!-- header-bg -->
 
 
-    <div class="wrapper">
-        <div class="container-fluid">
-            <!-- Page-Title -->
-            <div class="page-title-box">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <h4 class="page-title"></h4>
+        <div class="wrapper">
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <h4 class="page-title"></h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-right">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
+                                <li class="breadcrumb-item active">Aspecto</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
-                            <li class="breadcrumb-item active">Aspecto</li>
-                        </ol>
-                    </div>
+                    <!-- end row -->
                 </div>
-                <!-- end row -->
-            </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <!-- modal agregar registro-->
-                            
-                    <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <!-- modal agregar registro-->
+
+                                <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
-                                    </button>
-                            
-                            <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                </button>
+
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
                                          <a href="assets/reportes/GenerarPDF.jsp"></a>-->
@@ -343,368 +342,317 @@
                                     </form>
                                 </button>
 
-                    <!-- Modal -->
-                                    <div class="modal fade" id="modal" role="dialog">
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
-                                    <div class="modal-content">
-                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                    
-                                    <h4 class="modal-title" id="myModalLabel">Registrar Aspecto</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+
+                                                <h4 class="modal-title" id="myModalLabel">Registrar Aspecto</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal Body -->
+                                            <div class="modal-body">
+                                                <p class="statusMsg"></p>
+
+                                                <form method="post" action="AspectoControlador" class="formulario"  id="register-aspecto-form" novalidate="novalidate">
+                                                    <div class="form-group">
+                                                        <label for="">Nombre</label> 
+                                                        <input type="text" name="Nombre" class="form-control" placeholder="Nombre" required>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label for="" >Descripcion</label>
+                                                        <textarea type="text" name="Descripcion" class="form-control" placeholder="Descripcion" required></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="" >Procedimiento</label>
+                                                        <select name="Procedimiento" class="form-control" >
+                                                            <option selected>Procedimiento</option>
+                                                            <%
+
+                                                                ProcedimientoVO proVO = new ProcedimientoVO();
+                                                                ProcedimientoDAO proDAO = new ProcedimientoDAO(proVO);
+                                                                ArrayList<ProcedimientoVO> listaProcedimiento = proDAO.Listar1();
+                                                                for (int i = 0; i < listaProcedimiento.size(); i++) {
+                                                                    proVO = listaProcedimiento.get(i);
+
+
+                                                            %>
+
+
+                                                            <option value="<%=proVO.getPRO_ID()%>"><%=proVO.getPRO_NOMBRE()%></option>
+
+                                                            <% } %>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="" >Tipo de Ensayo</label>
+                                                        
+
+
+                                                        <select name="Tipo" class="form-control">
+                                                            <option selected>Tipo De Ensayo</option>
+                                                            <%
+                                                                TipoEnsayoVO tipensVO = new TipoEnsayoVO();
+                                                                TipoEnsayoDAO tipensDAO = new TipoEnsayoDAO();
+                                                                ArrayList<TipoEnsayoVO> listaTipoEnsayo = tipensDAO.listar();
+                                                                for (int i = 0; i < listaTipoEnsayo.size(); i++) {
+                                                                    tipensVO = listaTipoEnsayo.get(i);
+
+                                                            %>
+                                                            <option value="<%=tipensVO.getTip_Ens_ID()%>"><%=tipensVO.getTip_Ens_Nombre()%></option>
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </select>
+                                                    </div>
+                                                        <input type="hidden" name="Estado" value="ACTIVO">
+
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                            <input type="hidden"  value="1" name="opcion">
+                                                            <button type="submit" class="btn btn-success submitBtn">Registrar</button>
+
+                                                        </div>
+                                                </form>
+                                            </div> 
+                                            <!-- Modal Footer -->
+
+                                        </div>
                                     </div>
-            
-                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                    <p class="statusMsg"></p>
-                                    
-                                    <form method="post" action="AspectoControlador" id="frm-usuario">
-
-                            Nombre
-                            <br>
-                            <input type="text" name="Nombre" placeholder="Nombre" required><br><br>
-                            Descripcion
-                            <br>
-                            <textarea type="text" name="Descripcion" placeholder="Descripcion" required></textarea><br><br>
-
-
-                            Procedimiento
-                            <br>
-
-                            <select name="Procedimiento" class="estilo-selector" >
-                            <option selected>Procedimiento</option>
-                            <%
-
-                            ProcedimientoVO proVO = new ProcedimientoVO(); 
-                            ProcedimientoDAO proDAO = new ProcedimientoDAO(proVO);
-                            ArrayList<ProcedimientoVO> listaProcedimiento = proDAO.Listar1();
-                                        for (int i = 0; i < listaProcedimiento.size(); i++) {
-                                            proVO = listaProcedimiento.get(i);
-
-
-                                 %>
-
-
-
-                            <option value="<%=proVO.getPRO_ID()%>"><%=proVO.getPRO_NOMBRE()%></option>
-
-
-                            <% } %>
-                          </select>
-<br><br>
-
-                            Tipo de Ensayo
-                            <br>
-
-                            <select name="Tipo" class="estilo-selector">
-                            <option selected>Tipo De Ensayo</option>
-                            <%
-                            TipoEnsayoVO tipensVO = new TipoEnsayoVO(); 
-                            TipoEnsayoDAO tipensDAO = new TipoEnsayoDAO();
-                            ArrayList<TipoEnsayoVO> listaTipoEnsayo = tipensDAO.listar();
-                                        for (int i = 0; i < listaTipoEnsayo.size(); i++) {
-                                            tipensVO = listaTipoEnsayo.get(i);
-
-                                %>
-                            <option value="<%=tipensVO.getTip_Ens_ID()%>"><%=tipensVO.getTip_Ens_Nombre() %></option>
-                               <%
-                                    }
-                                  %>
-                                    </select>
-                            
-                                <input type="hidden" name="Estado" value="ACTIVO">
-
-           
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden"  value="1" name="opcion">
-                                    <button type="submit" class="btn btn-success submitBtn">Registrar</button>
-                                    
-                                    </div>
-                                 </form>
-                                    </div> 
-                    <!-- Modal Footer -->
-                                    
                                 </div>
-                            </div>
-                        </div>
-                    <!-- end modal-->
-                            <h4 class="mt-0 header-title">Aspecto</h4>
-                            
-                           <!-- <p class="sub-title">
-                                la clase de ensayo es aquella que dice si se trata de un ensayo especial o general 
-                            </p>-->
-                            
-                            
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                <tr>
+                                <!-- end modal-->
+                                <h4 class="mt-0 header-title">Aspecto</h4>
 
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Info</th>
-                                <th>Procedimiento</th>
-                                <th>TipoEnsayo</th>
-                                <th>Editar</th>
-                                <th>Inactivar</th>
+                                <!-- <p class="sub-title">
+                                     la clase de ensayo es aquella que dice si se trata de un ensayo especial o general 
+                                 </p>-->
 
-                            </tr> 
-                                </thead>
-                                <tbody>
-                                
-                                 <%
-                                AspectoVO aspVO = new AspectoVO();
-                                AspectoDAO aspDAO = new AspectoDAO(aspVO);
 
-                                ArrayList<AspectoVO> listaAspecto = aspDAO.Listar();
-                                for (int a = 0; a < listaAspecto.size(); a++) {
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
 
-                                    aspVO = listaAspecto.get(a);
+                                            <th>Id</th>
+                                            <th>Nombre</th>
+                                            <th>Info</th>
+                                            <th>Procedimiento</th>
+                                            <th>TipoEnsayo</th>
+                                            <th>Editar</th>
+                                            <th>Inactivar</th>
 
-                                 %>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
 
-                                 <tr>
-                                        <td><%=aspVO.getASP_ID()%></td>
-                                        <td><%=aspVO.getASP_NOMBRE()%></td>
-                                        <td><%=aspVO.getASP_DESCRIPCION()%></td>
-                                        <td><%=aspVO.getFK_procedimiento()%></td>
-                                        <td><%=aspVO.getFK_Tipo_ensayo()%></td>
-                                        <td>
+                                        <%
+                                            AspectoVO aspVO = new AspectoVO();
+                                            AspectoDAO aspDAO = new AspectoDAO(aspVO);
 
-                               <!-- Button to trigger modal -->
-                                    <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=a%>">
-                                    <i class="fas fa-edit"></i>
-                                    </button>
+                                            ArrayList<AspectoVO> listaAspecto = aspDAO.Listar();
+                                            for (int a = 0; a < listaAspecto.size(); a++) {
 
-                    <!-- Modal -->
-                                    <div class="modal fade" id="modal<%=a%>" role="dialog">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Actualizar Prueba</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                    <!-- Modal Body -->
-                    
-                                        <div class="modal-body">
-                                    <p class="statusMsg"></p>
-                                    
-                                    <form class="formulario" method="post" action="AspectoControlador">
-                                    <div class="form-group">
-                                    <label for="Id" class="d-none">Numero de Prueba</label>
-                                    <input type="number" name="Id" class="form-control" readonly value="<%=aspVO.getASP_ID()%>"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input type="text" name="Nombre" class="form-control" id="inputName" value="<%=aspVO.getASP_NOMBRE()%>" placeholder="Ingrese el id"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="txtNombre">Descripción</label><br>
-                                    <input type="text" name="Descripcion" value="<%=aspVO.getASP_DESCRIPCION()%>" placeholder="Ingresa un nombre"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="Procedimiento">Procedimiento</label><br>
-                                    <select name="Procedimiento" class="estilo-selector">
-                                    <%
-                            
-                                        for (int i = 0; i < listaProcedimiento.size(); i++) {
-                                            
-                                            proVO = listaProcedimiento.get(i);
-                                    %>
-                                    <option value="<%=proVO.getPRO_ID()%>" <%=aspVO.getFK_procedimiento().equals(proVO.getPRO_NOMBRE()) ? "selected" : ""%> ><%=proVO.getPRO_NOMBRE()%></option>
-                                    <%}%>
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="Tipo">Tipo de Ensayo</label><br>
-                                    <select name="Tipo" class="estilo-selector">
+                                                aspVO = listaAspecto.get(a);
+
+                                        %>
+
+                                        <tr>
+                                            <td><%=aspVO.getASP_ID()%></td>
+                                            <td><%=aspVO.getASP_NOMBRE()%></td>
+                                            <td><%=aspVO.getASP_DESCRIPCION()%></td>
+                                            <td><%=aspVO.getFK_procedimiento()%></td>
+                                            <td><%=aspVO.getFK_Tipo_ensayo()%></td>
+                                            <td>
+
+                                                <!-- Button to trigger modal -->
+                                                <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=a%>">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modal<%=a%>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">Actualizar Prueba</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <!-- Modal Body -->
+
+                                                            <div class="modal-body">
+                                                                <p class="statusMsg"></p>
+
+                                                                <form class="formulario" method="post" action="AspectoControlador" class="formulario"  id="update-aspecto-form" novalidate="novalidate">
+
+                                                                    <div class="form-group">
+                                                                        <label for="" class="d-none">Numero de Prueba</label>
+                                                                        <input type="number" name="Id" class="form-control"  value="<%=aspVO.getASP_ID()%>" readonly/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Nombre</label>
+                                                                        <input type="text" name="Nombre" class="form-control" value="<%=aspVO.getASP_NOMBRE()%>" placeholder="Ingrese el id"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Descripción</label><br>
+                                                                        <input type="text" name="Descripcion" class="form-control"  value="<%=aspVO.getASP_DESCRIPCION()%>" placeholder="Ingresa un nombre"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Procedimiento</label><br>
+                                                                        <select name="Procedimiento" class="form-control">
                                                                             <%
-                            
-                                        for (int i = 0; i < listaTipoEnsayo.size(); i++) {
-                                            tipensVO = listaTipoEnsayo.get(i);
-                                    %>
-                                    <option value="<%=tipensVO.getTip_Ens_ID()%>" <%=aspVO.getFK_Tipo_ensayo().equals(tipensVO.getTip_Ens_Nombre()) ? "selected" : ""%> ><%=tipensVO.getTip_Ens_Nombre()%></option>
-                                    <%}%>
-                                    </select>
-                                    </div>
-                        <input type="hidden" name="Estado" value="ACTIVO">
-                                    
-                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" id="opcion" name="opcion" value="2">
-                                    <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
-                                    
-                                    </div>
-                                    </form>
-                                    </div> 
-                    <!-- Modal Footer -->
-                                    
-                                </div>
+
+                                                                                for (int i = 0; i < listaProcedimiento.size(); i++) {
+
+                                                                                    proVO = listaProcedimiento.get(i);
+                                                                            %>
+                                                                            <option value="<%=proVO.getPRO_ID()%>" <%=aspVO.getFK_procedimiento().equals(proVO.getPRO_NOMBRE()) ? "selected" : ""%> ><%=proVO.getPRO_NOMBRE()%></option>
+                                                                            <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="">Tipo de Ensayo</label><br>
+                                                                        <select name="Tipo" class="form-control">
+                                                                            <%
+
+                                                                                for (int i = 0; i < listaTipoEnsayo.size(); i++) {
+                                                                                    tipensVO = listaTipoEnsayo.get(i);
+                                                                            %>
+                                                                            <option value="<%=tipensVO.getTip_Ens_ID()%>" <%=aspVO.getFK_Tipo_ensayo().equals(tipensVO.getTip_Ens_Nombre()) ? "selected" : ""%> ><%=tipensVO.getTip_Ens_Nombre()%></option>
+                                                                            <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                    <input type="hidden" name="Estado" value="ACTIVO">
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                        <input type="hidden" id="opcion" name="opcion" value="2">
+                                                                        <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
+
+                                                                    </div>
+                                                                </form>
+                                                            </div> 
+                                                            <!-- Modal Footer -->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                                <form method="post" action="AspectoControlador" id="delete">  
+                                                    <div class="frm-g-input">
+                                                        <input type="hidden" placeholder="Nombre"  name="Nombre" value="<%=aspVO.getASP_NOMBRE()%>">
+                                                        <input type="hidden" placeholder="estado"  name="Estado" value="INACTIVO">
+                                                        <input type="hidden" id="opcion" name="opcion" value="4">
+                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
+                                                    </div>
+                                                </form>
+
+                                            </td>
+
+                                            <%}%>
+                                        </tr>
+                                    <script src="assets/js/validar.js" type="text/javascript"></script>
+
+                                    </tbody>
+                                </table>
+
                             </div>
                         </div>
-                                        </td>
-                                    <td>
-                                    
-                                        <form method="post" action="AspectoControlador" id="delete">  
-                                                <div class="frm-g-input">
-                                                    <input type="hidden" placeholder="Nombre"  name="Nombre" value="<%=aspVO.getASP_NOMBRE()%>">
-                                                    <input type="hidden" placeholder="estado"  name="Estado" value="INACTIVO">
-                                                    <input type="hidden" id="opcion" name="opcion" value="4">
-                                                    <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
-                                                </div>
-                                        </form>
- 
-                                    </td>
-                                    
-                                    <%}%>
-                                    </tr>
-                            <script src="assets/js/validar.js" type="text/javascript"></script>
-                                
-                                </tbody>
-                            </table>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+                <!-- end wrapper -->
 
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
-    <!-- end wrapper -->
+                <!-- Footer -->
+                <footer class="footer">
+                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
+                </footer>
 
-    <!-- Footer -->
-    <footer class="footer">
-        © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-    </footer>
+                <!-- End Footer -->
 
-    <!-- End Footer -->
+                <!-- jQuery  -->
+                <script src="assets/js/jquery.min.js"></script>
+                <script src="assets/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/jquery.slimscroll.js"></script>
+                <script src="assets/js/waves.min.js"></script>
 
-    <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/waves.min.js"></script>
+                <!-- Required datatable js -->
+                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                <!-- Buttons examples -->
+                <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/jszip.min.js"></script>
+                <script src="../plugins/datatables/pdfmake.min.js"></script>
+                <script src="../plugins/datatables/vfs_fonts.js"></script>
+                <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                <script src="../plugins/datatables/buttons.print.min.js"></script>
+                <script src="../plugins/datatables/buttons.colVis.min.js"></script>
+                <!-- Responsive examples -->
+                <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
-    <!-- Required datatable js -->
-    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Buttons examples -->
-    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
-    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-    <script src="../plugins/datatables/jszip.min.js"></script>
-    <script src="../plugins/datatables/pdfmake.min.js"></script>
-    <script src="../plugins/datatables/vfs_fonts.js"></script>
-    <script src="../plugins/datatables/buttons.html5.min.js"></script>
-    <script src="../plugins/datatables/buttons.print.min.js"></script>
-    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
-    <!-- Responsive examples -->
-    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
-    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
+                <!-- Datatable init js -->
+                <script src="assets/pages/datatables.init.js"></script>  
 
-    <!-- Datatable init js -->
-    <script src="assets/pages/datatables.init.js"></script>  
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-    
-    
-    
-    <!-- jQuery library MODAL-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<!-- Latest minified bootstrap js MODAL-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-        
-<!-- Bootstrap core JavaScript-->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
+                <!-- App js -->
+                <script src="assets/js/app.js"></script>
 
 
 
-<!-- Core plugin JavaScript-->
-<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- jQuery library MODAL-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="assets/js/sb-admin-2.min.js"></script>
+                <!-- Latest minified bootstrap js MODAL-->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="assets/js/demo/datatables-demo.js"></script>
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                <script src="assets/js/validacionesCampo/Aspecto/actualizarAspecto.js" type="text/javascript"></script>
+                <script src="assets/js/validacionesCampo/Aspecto/registrarAspecto.js" type="text/javascript"></script>
 
-        <%
-            if (request.getAttribute("mensajeError") != null) {  %>           
-        ${mensajeError}
-        <%} else {%>
-        ${mensajeExito}
-        <% }%>
+                <!-- Bootstrap core JavaScript-->
+                <script src="assets/vendor/jquery/jquery.min.js"></script>
 
-        
-    </body>
-</html>
+
+
+                <!-- Core plugin JavaScript-->
+                <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                <!-- Custom scripts for all pages-->
+                <script src="assets/js/sb-admin-2.min.js"></script>
+
+                <!-- Page level plugins -->
+                <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                <!-- Page level custom scripts -->
+                <script src="assets/js/demo/datatables-demo.js"></script>
 
 
 
 
+                <%
+                    if (request.getAttribute("mensajeError") != null) {  %>           
+                ${mensajeError}
+                <%} else {%>
+                ${mensajeExito}
+                <% }%>
 
 
-<!--
+                </body>
+                </html>
 
 
-    </script>
-     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script>
-       function ConfirmDisable(id){
-            Swal.fire({
-             title: 'Esta seguro?',
-             text: "No podrá revertir está acción!",
-             icon: 'warning',
-             showCancelButton: true,
-             reverseButtons: true,
-             confirmButtonColor: '#3085d6',
-             confirmButtonText: 'Si, Inactivar!',
-             cancelButtonColor: '#d33',
-             cancelButtonText: 'Cancelar',
-           }).then((result) => {
-             if (result.isConfirmed) {
-                 window.location.href = "AspectoControlador?Id="+id+"&opcion=4";
-             }
-           })
-      }
-      <%-- if(request.getParameter("result")!=null){%>
-      
-          if(<%=request.getParameter("result")%>==1){
-          Swal.fire(
-            'Borrado!',
-            'El registro No. '+<%=request.getParameter("id")%>+' fue inactivado.',
-            'success'
-                )
-            }else{
-                Swal.fire(
-                  'Error!',
-            'El registro No. '+<%=request.getParameter("id")%>+'No se pudo inactivar.',
-            'success'
-                )
-            }
-       
-       <%}%>
-      
-     
-    </script> 
-            <div style="color: red;">
-            <%
-                if (request.getAttribute("mensajeError") != null) {  %>           
-            ${mensajeError}
-            <%} else {%>
-            ${mensajeExito}
-            <% }--%>
-            </div>-->
-    
-</body>
-</HTML>
 

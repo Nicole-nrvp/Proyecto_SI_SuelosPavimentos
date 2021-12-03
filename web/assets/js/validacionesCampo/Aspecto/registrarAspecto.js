@@ -6,61 +6,48 @@
 jQuery.validator.addMethod("letterswithspace", function(value, element) {
     return this.optional(element) || /^[a-z\s]+$/i.test(value);
 }, "Solo letras");
-/*
-jQuery.validator.addMethod("letterswithspace1", function(value, element) {
-    return this.optional(element) || /[^0-9]/g, ''.test(value);
-}, "Solo Numeros");
-*/
 
 $(document).ready(function ($) {
-    $("#update-muestra-form").validate({
+    $("#register-aspecto-form").validate({
         rules: {
-            textMueNombre: {
+            Nombre: {
                 required: true,
                 minlength: 5,
-                maxlength: 20
+                maxlength: 20,
+                letterswithspace: true
             },
-            textMueObservacion: {
+            Descripcion: {
                 required: true,
-                minlength: 4,
-                maxlength: 25,
-                letterswithspace : true
+                minlength: 5,
+                maxlength: 20,
+                 letterswithspace : true
             },
-            textMueDescripcion: {
-                required: true,
-                minlength: 4,
-                maxlength: 50
-            },
-            textfkTipoMuestra:{
+            Procedimiento:{
                 required: true
             },
-            textMueEstado:{
+            Tipo:{
                 required: true
             }
 
         },
         messages: {
-            textMueNombre: {
+            Nombre: {
                 required: "Por favor ingrese nombre de la muestra",
                 minlength: "Minimo 5 caracteres",
-                maxlength: "Maximo 20 caracteres"
-            },
-            textMueObservacion: {
-                required: "Por favor ingrese la observación",
-                minlength: "Minimo 4 caracteres",
-                maxlength: "Maximo 25 caracteres",
+                maxlength: "Maximo 20 caracteres",
                 letterswithspace: "Solo se permiten letras"
             },
-            textMueDescripcion: {
-                required: "Por favor ingrese la descripcion",
-                minlength: "Minimo 4 caracteres",
-                maxlength: "Maximo 50 caracteres" 
+            Descripcion: {
+                required: "Por favor ingrese la observación",
+                minlength: "Minimo 5 caracteres",
+                maxlength: "Maximo 20 caracteres",
+                letterswithspace: "Solo se permiten letras"
             },
-            textfkTipoMuestra:{
-                required: "Por favor seleccione un Tipo de muestra"
+            Procedimiento:{
+                required: "Por favor seleccione un Procedimiento"
             },
-            textMueEstado:{
-                required: "Por favor seleccione un estado"
+            Tipo:{
+                required: "Por favor seleccione un Tipo"
             }
             
             

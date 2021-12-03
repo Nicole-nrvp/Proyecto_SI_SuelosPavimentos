@@ -13,8 +13,7 @@ $(document).ready(function ($) {
             textSolNombre: {
                 required: true,
                 minlength: 5,
-                maxlength: 15,
-                 letterswithspace : true
+                maxlength: 20
             }
 
         },
@@ -22,8 +21,7 @@ $(document).ready(function ($) {
             textSolNombre: {
                 required: "Por favor ingrese nombre de la solicitud",
                 minlength: "Minimo 5 caracteres",
-                maxlength: "Maximo 15 caracteres",
-                 letterswithspace : "Solo se permiten letras"
+                maxlength: "Maximo 20 caracteres"
             }
             
             

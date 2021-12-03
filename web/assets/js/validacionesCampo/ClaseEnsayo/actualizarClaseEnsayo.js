@@ -8,57 +8,27 @@ jQuery.validator.addMethod("letterswithspace", function(value, element) {
 }, "Solo letras");
 
 $(document).ready(function ($) {
-    $("#update-muestra-form").validate({
+    $("#update-ClaseEnsayo-form").validate({
         rules: {
-            textMueNombre: {
+            txtNombre: {
                 required: true,
                 minlength: 5,
                 maxlength: 15,
                 letterswithspace : true
             },
-            textMueObservacion: {
-                required: true,
-                minlength: 4,
-                maxlength: 20,
-                letterswithspace : true
-            },
-            textMueDescripcion: {
-                required: true,
-                minlength: 4,
-                maxlength: 50,
-                letterswithspace : true
-            },
-            textfkTipoMuestra:{
-                required: true
-            },
-            textMueEstado:{
+            txtEstado:{
                 required: true
             }
 
         },
         messages: {
-            textMueNombre: {
+            txtNombre: {
                 required: "Por favor ingrese nombre de la muestra",
                 minlength: "Minimo 5 caracteres",
                 maxlength: "Maximo 15 caracteres",
                 letterswithspace: "Solo se permiten letras"
             },
-            textMueObservacion: {
-                required: "Por favor ingrese la observación",
-                minlength: "Minimo 4 caracteres",
-                maxlength: "Maximo 20 caracteres",
-                letterswithspace: "Solo se permiten letras"
-            },
-            textMueDescripcion: {
-                required: "Por favor ingrese la descripcion",
-                minlength: "Minimo 4 caracteres",
-                maxlength: "Maximo 50 caracteres" ,
-                letterswithspace: "Solo se permiten letras"
-            },
-            textfkTipoMuestra:{
-                required: "Por favor seleccione un Tipo de muestra"
-            },
-            textMueEstado:{
+            txtEstado:{
                 required: "Por favor seleccione un estado"
             }
             

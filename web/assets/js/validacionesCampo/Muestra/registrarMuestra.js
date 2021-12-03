@@ -13,7 +13,7 @@ $(document).ready(function ($) {
             textMueNombre: {
                 required: true,
                 minlength: 5,
-                maxlength: 15
+                maxlength: 20
             },
             textMueObservacion: {
                 required: true,
@@ -38,7 +38,7 @@ $(document).ready(function ($) {
             textMueNombre: {
                 required: "Por favor ingrese nombre de la muestra",
                 minlength: "Minimo 5 caracteres",
-                maxlength: "Maximo 15 caracteres"
+                maxlength: "Maximo 20 caracteres"
             },
             textMueObservacion: {
                 required: "Por favor ingrese la observación",

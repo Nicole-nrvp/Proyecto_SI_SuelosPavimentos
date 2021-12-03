@@ -10,11 +10,7 @@
 
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-     if (Rol.equals("") || Rol.equals("")) {
-        response.sendRedirect("index.jsp");
-    }
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +77,7 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
-                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <%=Rol%> 
 
@@ -131,7 +127,7 @@
                                         <a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                             <img src="assets/img/users/user-4.jpg" alt="user" class="rounded-circle">
                                         </a>
-                                       <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                             <!-- item-->
                                             <a class="dropdown-item" href="editarDatos.jsp"><i class="mdi mdi-account-circle"></i> Perfil</a>
                                             <%if (Rol.equals("GERENTE")) {%>
@@ -195,7 +191,7 @@
                                         %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
-                                            
+
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
@@ -208,7 +204,7 @@
                                         %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
-                                            
+
                                         </li>
                                         <%}%>
                                         <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
@@ -218,7 +214,7 @@
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
                                         <%}%>
-                                        
+
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
@@ -226,27 +222,27 @@
 
                                                 %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="Prueba.jsp">Prueba</a></li> 
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
 
                                                 %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
 
                                                 %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <%}%>
-                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+                                                    <%}%>
+                                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
 
-                                                %>
+                                                    %>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <%}%>
-                                                
+                                                    <%}%>
+
                                             </ul>
                                         </li>
 
@@ -271,7 +267,7 @@
                                     </ul>
                                 </li>
 
-                               
+
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -325,9 +321,7 @@
                             <div class="card-body">
                                 <!-- modal agregar registro-->
 
-                                <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
+                                
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
@@ -336,14 +330,19 @@
                                         <input type="hidden" value="ReporteTipoEnsayo.jasper" name="nombreReporte">
                                     </form>
                                 </button>
+                                <%if (Rol.equals("GERENTE")) {
 
+                                                    %>
                                 <!-- Modal -->
+                                <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
                                 <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <!-- Modal Header -->
                                             <div class="modal-header">
-
+                                                
                                                 <h4 class="modal-title" id="myModalLabel">Registrar Tipo de Ensayo</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -357,11 +356,7 @@
                                                 <form method="post" action="TipoEnsayo" class="formulario"  id="register-tipoensayo-form" novalidate="novalidate">
 
 
-                                                    <div class="form-group">
 
-                                                        <label for="textId" class="">Id</label>
-                                                        <input class="form-group" type="number" name="textId" class="form-control" id="inputid" value="" placeholder="Ingrese el id"/>
-                                                    </div>
                                                     <div class="form-group">
                                                         <label for="txtNombre">Nombre</label>
                                                         <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
@@ -378,7 +373,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="hidden" name="txtEstado" value="ACTIVO">
-                                                      
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -395,6 +390,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <%}%>
+                                
                                 <!-- end modal-->
                                 <h4 class="mt-0 header-title">Tipo de Ensayo</h4>
 
@@ -410,9 +407,12 @@
                                             <th>Nombre</th>
                                             <th>Clase Ensayo</th>
                                             <th>Estado</th>
+                                                <%if (Rol.equals("GERENTE")) {
+
+                                                %>
                                             <th>Editar</th>
                                             <th>Inactivar</th>
-
+                                                <%}%>
                                         </tr>
                                     </thead>
 
@@ -438,7 +438,9 @@
                                             <td><%=tipensVO.getTip_Ens_Nombre()%></td>
                                             <td><%=fk%></td>
                                             <td><%=tipensVO.getTip_Ens_Estado()%></td>
+                                            <%if (Rol.equals("GERENTE")) {
 
+                                            %>
                                             <td>
 
                                                 <!-- Button to trigger modal -->
@@ -465,15 +467,15 @@
                                                                 <form method="post" action="TipoEnsayo" class="formulario"  id="update-tipoensayo-form" novalidate="novalidate">
 
                                                                     <div class="form-group">
-                                                                        <label for="textId" class="d-none">ID:</label>
-                                                                        <input class="d-none" type="text" name="textId"  value="<%=tipensVO.getTip_Ens_ID()%>" placeholder="Ingrese el id"/>
+                                                                        <label for="" class="d-none">ID:</label>
+                                                                        <input class="form-control" type="hidden" name="textId"  value="<%=tipensVO.getTip_Ens_ID()%>" placeholder="Ingrese el id"/>
                                                                     </div>
                                                                     <div class="form-group" >
-                                                                        <label for="txtNombre">Nombre</label>
+                                                                        <label for="">Nombre</label>
                                                                         <input type="text" name="txtNombre" class="form-control"  value="<%=tipensVO.getTip_Ens_Nombre()%>" placeholder="Ingresa un nombre"/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtClaseEnsayo">Clase de Ensayo</label>
+                                                                        <label for="">Clase de Ensayo</label>
                                                                         <select name="txtClaseEnsayo" class="select">
                                                                             <option selected value="<%=fk%> "><%=fk%> </option>
                                                                             <option value="3">Especial</option>
@@ -483,7 +485,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <input type="hidden" name="txtEstado" value="ACTIVO">
-                       
+
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -501,6 +503,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+
                                             <td>
 
                                                 <form method="POST" action="TipoEnsayo" id="delete">    
@@ -513,7 +516,8 @@
                                                 </form>  
                                             </td>
 
-                                            <%}%>
+                                            <%}
+                                                }%>
                                         </tr>
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
 
@@ -589,10 +593,11 @@
                 <!-- Page level custom scripts -->
                 <script src="assets/js/demo/datatables-demo.js"></script>
 
-   <!--Validaciones de Campos-->
-                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                <!--Validaciones de Campos-->
+
                 <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
                 <script src="assets/js/validacionesCampo/TipoEnsayo/registrarTipoEnsayo.js" type="text/javascript"></script>
-            </body>
+                <script src="assets/js/validacionesCampo/TipoEnsayo/actualizarTipoEnsayo.js" type="text/javascript"></script>
+                </body>
                 </html>
 

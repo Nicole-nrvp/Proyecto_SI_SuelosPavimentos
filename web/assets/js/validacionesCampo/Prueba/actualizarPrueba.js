@@ -8,54 +8,42 @@ jQuery.validator.addMethod("letterswithspace", function(value, element) {
 }, "Solo letras");
 
 $(document).ready(function ($) {
-    $("#register-muestra-form").validate({
+    $("#update-prueba-form").validate({
         rules: {
-            textMueNombre: {
-                required: true,
-                minlength: 5,
-                maxlength: 15
-            },
-            textMueObservacion: {
+            Nombre: {
                 required: true,
                 minlength: 5,
                 maxlength: 20,
                  letterswithspace : true
             },
-            textMueDescripcion: {
-                required: true,
-                minlength: 10,
-                maxlength: 50
-            },
-            textfkTipoMuestra:{
+            FechaFin: {
                 required: true
             },
-            textMueEstado:{
+           
+            Muestra:{
+                required: true
+            },
+            Solicitud:{
                 required: true
             }
 
         },
         messages: {
-            textMueNombre: {
+            Nombre: {
                 required: "Por favor ingrese nombre de la muestra",
                 minlength: "Minimo 5 caracteres",
-                maxlength: "Maximo 15 caracteres"
-            },
-            textMueObservacion: {
-                required: "Por favor ingrese la observación",
-                minlength: "Minimo 5 caracteres",
                 maxlength: "Maximo 20 caracteres",
-                letterswithspace: "Solo se permiten letras"
+                letterswithspace: "Solo se admiten letras"
             },
-            textMueDescripcion: {
-                required: "Por favor ingrese la descripcion",
-                minlength: "Minimo 10 caracteres",
-                maxlength: "Maximo 50 caracteres" 
+            FechaFin: {
+                required: "Por favor seleccione una fecha"
             },
-            textfkTipoMuestra:{
-                required: "Por favor seleccione un Tipo de muestra"
+            
+            Muestra: {
+                required: "Este campos es obligatorio"
             },
-            textMueEstado:{
-                required: "Por favor seleccione un estado"
+            Solicitud:{
+                required: "Este campos es obligatorio"
             }
             
             

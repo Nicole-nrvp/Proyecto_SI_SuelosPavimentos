@@ -375,17 +375,17 @@
                                                 <form class="formulario" method="post" action="Usuario" id="register-user-form" novalidate="novalidate">
 
                                                     <div class="form-group">
-                                                        <label for="txtNombre">Nombre: </label>
+                                                        <label for="">Nombre: </label>
                                                         <input type="text" class="form-control" name="txtNombre"/>
                                                     </div>                                                   
 
                                                     <div class="form-group">
-                                                        <label for="txtCorreo">Correo:</label>
+                                                        <label for="">Correo:</label>
                                                         <input type="text" class="form-control" name="txtCorreo"/>
                                                     </div>  
 
                                                     <div class="form-group">
-                                                        <label for="txtRolId">Rol:</label>
+                                                        <label for="">Rol:</label>
                                                         <select name="txtRolId" class="form-control">
                                                             <option value="">Seleccione...</option>
                                                             <%                                                                for (RolVO rolVO : rolDAO.listar()) {
@@ -483,18 +483,18 @@
                                                                 <form class="formulario" method="post" action="Usuario" id="update-user-form" novalidate="novalidate">
 
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Nombre:</label>
+                                                                        <label for="">Nombre:</label>
                                                                         <input type="hidden" name="textId" value="<%=usuVO.getUsuId()%>">
                                                                         <input type="text" class="form-control" name="txtNombre"  value="<%=usuVO.getUsuNombre()%>" />
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="txtCorreo">Correo:</label>
+                                                                        <label for="">Correo:</label>
                                                                         <input type="text" class="form-control" name="txtCorreo"  value="<%=usuVO.getUsuCorreo()%>" />
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="txtRolId">Rol:</label>
+                                                                        <label for="">Rol:</label>
                                                                         <select name="txtRolId" class="form-control">
                                                                             <option value="<%=usuVO.getUsuPassword()%>" selected><%=usuVO.getUsuRol()%></option>
                                                                             <%

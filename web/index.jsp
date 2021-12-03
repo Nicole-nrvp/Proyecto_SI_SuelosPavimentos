@@ -234,7 +234,7 @@
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
                                                     <%}%>
                                                 <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
-
+                                                
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
 
                                                 %>
@@ -250,6 +250,7 @@
                                         </li>
 
                                         <li class="has-submenu">
+                                            
                                             <a href="#">Clases</a>
                                             <ul class="submenu">
                                                 <li><a href="ConsultarClaseEnsayo.jsp">Clase de ensayo</a></li>
