@@ -18,6 +18,10 @@ public class RolVO {
         this.RolNombre = RolNombre;
     }
 
+    public RolVO(String RolId) {
+        this.RolId = RolId;
+    }
+
     public RolVO() {
         
     }

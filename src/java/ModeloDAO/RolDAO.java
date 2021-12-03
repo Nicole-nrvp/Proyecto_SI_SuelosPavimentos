@@ -169,4 +169,52 @@ public class RolDAO extends Conexion {
         }
         return operacion;
     }
+    //clientes en la vista
+    public RolVO CantidadDeClientes() {
+        RolVO rolVO = null;
+
+        try {
+
+            conexion = this.obtenerConexión();
+            sql = "SELECT * from cantidaddeclientes";
+            puente = conexion.prepareStatement(sql);            
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+
+                rolVO = new RolVO(
+                        mensajero.getString(1));
+
+            }
+
+        } catch (SQLException e) {
+
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return rolVO;
+
+    }
+    //Solicitudes en la vista
+    public RolVO Solicitud() {
+        RolVO rolVO = null;
+
+        try {
+
+            conexion = this.obtenerConexión();
+            sql = "SELECT * FROM `vistasolicitudindex`";
+            puente = conexion.prepareStatement(sql);            
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+
+                rolVO = new RolVO(
+                        mensajero.getString(1));
+
+            }
+
+        } catch (SQLException e) {
+
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return rolVO;
+
+    }
 }

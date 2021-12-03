@@ -346,15 +346,17 @@ public class UsuarioControlador extends HttpServlet {
                         } finally {
 
                         }
+                        request.setAttribute("mensaje2", "Se le ha enviado una contraseña temporal");
                         request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
 
                     } else {
                         request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
                     }
                 } else {
+                    request.setAttribute("mensaje", "El correo no existe");
                     request.setAttribute("mensajeError", "<script src=\"assets/js/Olvido.js\"></script>");
                 }
-                request.getRequestDispatcher("olvidoClave.jsp").forward(request, response);
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
                 break;
 
             case 13:

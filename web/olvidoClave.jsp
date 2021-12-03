@@ -57,28 +57,38 @@
                         </div>
                         <br>
                     </span>
-                    
-                        <div  id="g-txtCorreo" class="i">
-                            
-                            <label for="txtCorreo"> 
-                                <i class="fas fa-user"></i>
-                                <span >Correo</span> 
-                            </label>
-                            
-                            <div class="frm-g-input">
-                                <label>
+
+                    <div  id="g-txtCorreo" class="i">
+
+                        <label for="txtCorreo"> 
+                            <i class="fas fa-user"></i>
+                            <span >Correo</span> 
+                        </label>
+
+                        <div class="frm-g-input">
+                            <label>
                                 <input type="text" name="txtCorreo" id="txtCorreo" class="input" placeholder="Ingrese su Correo"/><br>
-                                </label>
-                            </div>
-                            <div style=" padding-left: 130px;">
-                                <h6>Se enviara una nueva contraseña al correo. </h6>
-                                <h6 style="color: #00FF00;">Con la que podra ingresar y cambiar su contraseña.</h6>
-                                <button style="padding-left: 10px; font-weight: bold" type="submit" class="submit" value="Enviar">Enviar</button>
-                                <input type="hidden" name="opcion" value="12"/>            
-                            </div>
-                            
+                            </label>
                         </div>
-                 
+                        <div style=" padding-left: 130px;">
+                            <h6>Se enviara una nueva contraseña al correo. </h6>
+                            <%
+                                    if (request.getAttribute("mensaje") != null) {  %>           
+                                    <h6 style="color: red">${mensaje}</h6>
+                            <%}%>
+                            <%
+                                    if (request.getAttribute("mensaje2") != null) {  %>           
+                                    <h6 style="color: #00FF00">${mensaje}</h6>
+                            <%}%>
+
+
+                            <h6 style="color: #00FF00;">Con la que podra ingresar y cambiar su contraseña.</h6>
+                            <button style="padding-left: 10px; font-weight: bold" type="submit" class="submit" value="Enviar">Enviar</button>
+                            <input type="hidden" name="opcion" value="12"/>            
+                        </div>
+
+                    </div>
+
                     <input type="hidden" id="opcion" name="opcion" value="1">
                     <script type="text/javascript" src="assets/js/main.js"></script>
                     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

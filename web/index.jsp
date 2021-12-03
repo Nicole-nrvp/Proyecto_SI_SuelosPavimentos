@@ -4,6 +4,8 @@
     Author     : Valentina
 --%>
 
+<%@page import="ModeloDAO.RolDAO"%>
+<%@page import="ModeloVO.RolVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -330,7 +332,7 @@
                                     UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
                                 %>
 
-                                <h3 class="mt-4"><!--<//%= usuDAO.sesionesActivas()%>-->10</h3>
+                                <h3 class="mt-4">10</h3>
                                 <div class="progress mt-4" style="height: 5px;">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -348,7 +350,11 @@
                                 <div>
                                     <h5 class="font-16">Solicitudes Totales</h5>
                                 </div>
-                                <h3 class="mt-4">6</h3>
+                                 <%
+                                    RolVO rolVO2 = new RolVO();
+                                    RolDAO rolDAO = new RolDAO(rolVO2);
+                                    rolVO2 = rolDAO.Solicitud();%>
+                                <h3 class="mt-4"><%=rolVO2.getRolId()%></h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -366,7 +372,9 @@
                                 <div>
                                     <h5 class="font-16">Clientes Terre</h5>
                                 </div>
-                                <h3 class="mt-4">7</h3>
+                                <%
+                                    rolVO2 = rolDAO.CantidadDeClientes();%>
+                                <h3 class="mt-4"><%=rolVO2.getRolId()%></h3>
                                 <div class="progress mt-4" style="height: 4px;">
                                     <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
