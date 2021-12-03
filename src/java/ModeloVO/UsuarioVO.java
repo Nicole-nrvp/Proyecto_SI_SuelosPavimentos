@@ -11,11 +11,7 @@ package ModeloVO;
  */
 public class UsuarioVO {
 
-    
-
-    
-
-    
+       
     private String usuId, UsuNombre, UsuPassword, UsuRol,UsuCorreo,UsuEstado,UsuVerificacion;
 
     

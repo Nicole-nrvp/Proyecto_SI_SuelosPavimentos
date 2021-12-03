@@ -101,7 +101,7 @@
                 <div class="img">
                     <div class="img__text m--up">
                         <h2>¿Nuevo aquí?</h2>
-                        <p>¡Regístrate y descubre una gran cantidad de nuevas oportunidades!</p>
+                        <p>¡Contactanos, descubre una gran cantidad de nuevas oportunidades!</p>
                     </div>
                     <div class="img__text m--in">
                         <h2>¿Eres uno de nosotros?</h2>
@@ -122,9 +122,10 @@
                         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
                     </div>
                     <label>
+                        <form action="Usuario" method="POST">
                         <i class="fas fa-user"></i>
-                        <span>Nombre</span>
-                        <input type="text" />
+                        <span>Nombre Completo</span>
+                        <input type="text" name="txtNombre"/>
                     </label>
                     <label>
                         <div class="input-div pass">
@@ -139,14 +140,16 @@
                         <div class="input-div pass">
                             <div class="i">
                                 <i class="fas fa-lock"></i>
-                                <span>Contraseña</span>
+                                <span>Numero Telefonico</span>
                             </div>
-                            <input name="txtClave" type="password" class="input" required>
+                            <input name="txtCelular" type="text" class="input" required>
                         </div>
                     </label>
-                    <a style="position: absolute; padding-left: 251px;" class="forgot-pass" href="PaginaPrincipal.jsp">Volver al <span>inicio</span></a>
+                    
                     <br>
-                    <button type="submit" class="submit" value="Iniciar Sesion">Registrarme</button>
+                    <input type="hidden" name="opcion" value="17">
+                    <button type="submit" class="submit" value="Iniciar Sesion">Contactanos</button>
+                    </form>
                 </div>
             </div>
         </div>

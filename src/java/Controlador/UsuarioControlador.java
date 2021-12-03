@@ -405,6 +405,21 @@ public class UsuarioControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("configuracion.jsp").forward(request, response);
                 break;
+            case 17:
+                try {
+                            
+                            String asunto = "Un usuario esta tratando de contactarnos";
+                            String contenido = "Correo: " + UsuCorreo + " Nombre: " + UsuNombre + " Telefono: " + FunCelular;
+                            forget.enviarConGMail("terrenmvc@gmail.com", asunto, contenido, usuario, clave);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                        } finally {
+
+                }
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                break;
 
         }
 
