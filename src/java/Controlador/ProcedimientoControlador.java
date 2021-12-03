@@ -89,16 +89,18 @@ public class ProcedimientoControlador extends HttpServlet {
                 
 
                 }
+                break;
                 
                 case 4:
+                 if  (proDAO.InactivarProce()){
+                    request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                            
+                        } else {
+                            request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                        }
                     
-                  if  (proDAO.InactivarProce()){
-                    response.sendRedirect("Procedimiento.jsp?result=1&id="+PRO_ID);  
-                } else {
-                    response.sendRedirect("Procedimiento.jsp?result=0&id="+PRO_ID);  
-                  }
-                break;
-               
+                    request.getRequestDispatcher("Procedimiento.jsp").forward(request, response);   
+                    break;
                
      }
      

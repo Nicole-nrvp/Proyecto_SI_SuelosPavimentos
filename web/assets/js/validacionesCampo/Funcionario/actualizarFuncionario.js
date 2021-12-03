@@ -4,44 +4,67 @@
  * and open the template in the editor.
  */
 $(document).ready(function ($) {
-    $("#update-user-form").validate({
+    $("#update-funcionario-form").validate({
         rules: {
-            txtNombre: {
+            txtFunNombre: {
                 required: true,
-                minlength: 3
+                minlength: 3,
+                maxlength: 20
+            },
+            txtApellido: {
+                required: true,
+                minlength: 3,
+                maxlength: 20
+            },
+            txtDireccion: {
+                required: true,
+                minlength: 3,
+                maxlength: 30
             },
             txtCorreo: {
                 required: true,
                 minlength: 3,
+                maxlength: 30,
                 email: true
             },
-            txtRolId: {
-                required: true
-                
+            txtPuesto: {
+               required: true
                 
             },
-            txtRolId: {
-                required: true
+            txtFechaNacimiento: {
+               required: true
                 
-                
-            }
+            },
 
         },
         messages: {
-            txtNombre: {
+            txtFunNombre: {
                 required: "Por favor ingrese su nombre",
-                minlength: "Minimo 3 caracteres"
+                minlength: "Minimo 3 caracteres",
+                maxlength: "Maximo 20 caracteres"
+            },
+            txtApellido: {
+                required: "Por favor ingrese su apellido",
+                minlength: "Minimo 3 caracteres",
+                maxlength: "Maximo 20 caracteres"
+            },
+            txtDireccion: {
+                required: "Por favor ingrese su direccion",
+                minlength: "Minimo 3 caracteres",
+                maxlength: "Maximo 30 caracteres"
             },
             txtCorreo: {
-                required: "Por favor ingrese su correo",
+                required: "Por favor ingrese su direccion",
                 minlength: "Minimo 3 caracteres",
+                maxlength: "Maximo 30 caracteres",
                 email: "Tiene que ser de tipo email empl: ejemplo@gmail.com"
             },
-            txtRolId: {
-                required: "Por favor seleccione un rol"
-                
-                
+            txtCelular: {
+                required: "Por favor ingrese su telefono",
+                minlength: "Minimo 3 caracteres",
+                maxlength: "Maximo 20 caracteres"
             }
+            
             
         },
         highlight: function (element) {

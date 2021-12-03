@@ -1,19 +1,24 @@
 <%-- 
-    Document   : ConsultarClaseEnsayo
-    Created on : 23/06/2021, 09:22:47 AM
-    Author     : as
+    Document   : Prueba
+    Created on : 22/06/2021, 11:06:08 PM
+    Author     : Jorgito Oooome
 --%>
 
+<%@page import="ModeloDAO.UsuarioDAO"%>
+<%@page import="ModeloVO.UsuarioVO"%>
+<%@page import="ModeloDAO.AspectoDAO"%>
+<%@page import="ModeloVO.AspectoVO"%>
+<%@page import="ModeloDAO.SolicitudDAO"%>
+<%@page import="ModeloVO.SolicitudVO"%>
 <%@page import="ModeloDAO.MuestraDAO"%>
 <%@page import="ModeloVO.MuestraVO"%>
-<%@page import="ModeloVO.TipoMuestraVO"%>
-<%@page import="ModeloDAO.TipoMuestraDAO"%>
-<%@page import="ModeloVO.ClaseEnsayoVO"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="ModeloDAO.PruebaDAO"%>
+<%@page import="ModeloVO.PruebaVO"%>
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% 
-    if ( Rol.equals("SECRETARIA")) {
+<%    if (Rol.equals("")) {
         response.sendRedirect("index.jsp");
     }
 %>
@@ -83,7 +88,7 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
-                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <%=Rol%> 
 
@@ -189,7 +194,7 @@
                                         %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
-                                            
+
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
@@ -202,7 +207,7 @@
                                         %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
-                                            
+
                                         </li>
                                         <%}%>
                                         <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
@@ -212,7 +217,7 @@
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
                                         <%}%>
-                                        
+
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
@@ -220,27 +225,27 @@
 
                                                 %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="Prueba.jsp">Prueba</a></li> 
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
 
                                                 %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
 
                                                 %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <%}%>
-                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+                                                    <%}%>
+                                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
 
-                                                %>
+                                                    %>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <%}%>
-                                                
+                                                    <%}%>
+
                                             </ul>
                                         </li>
 
@@ -311,6 +316,7 @@
         </div>
         <!-- header-bg -->
 
+
         <div class="wrapper">
             <div class="container-fluid">
                 <!-- Page-Title -->
@@ -323,7 +329,7 @@
                             <ol class="breadcrumb float-right">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
-                                <li class="breadcrumb-item active">Muestra</li>
+                                <li class="breadcrumb-item active">Pruebas</li>
                             </ol>
                         </div>
                     </div>
@@ -335,40 +341,35 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <!-- modal agregar registro-->
-
+                                <%
+                                    if (Rol.equals("INGENIERO") || Rol.equals("GERENTE")) {
+                                %>
                                 <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
+                                <%}%>
 
-                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
-                                    <form method="post" action="GenerarPDFParametrizado.jsp" target="_black">
-                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
-                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
-                                        <select name="textEstado">
-                                            <option value="ACTIVO">ACTIVO</option>
-                                            <option value="INACTIVO">INACTIVO</option>
-                                        </select>
-                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
-                                        <input type="hidden" value="ReporteParametrizado_1.jasper" name="nombreReporte">
-                                    </form>
-                                </button>
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
                                          <a href="assets/reportes/GenerarPDF.jsp"></a>-->
                                         <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
-                                        <input type="hidden" value="ReporteMuestra.jasper" name="nombreReporte">
+                                        <input type="hidden" value="ReportePrueba.jasper" name="nombreReporte">
                                     </form>
                                 </button>
 
                                 <!-- Modal -->
+                                <%
+                                    if (Rol.equals("INGENIERO") || Rol.equals("GERENTE")) {
+                                %>
+
                                 <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <!-- Modal Header -->
                                             <div class="modal-header">
 
-                                                <h4 class="modal-title" id="myModalLabel">Registrar Muestra</h4>
+                                                <h4 class="modal-title" id="myModalLabel">Registrar Prueba</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -378,45 +379,87 @@
                                             <div class="modal-body">
                                                 <p class="statusMsg"></p>
 
+                                                <form method="post" action="PruebaControlador" id="frm-usuario">
 
-                                                <form method="post" action="Muestra" class="formulario"  id="register-muestra-form" novalidate="novalidate">
+                                                    Fecha de Fin
+                                                    <br>
+
+                                                    <input type="date" name="FechaFin" placeholder="Fecha Fin" required><br><br>
+                                                    Nombre
+                                                    <br>
+
+                                                    <input type="text" name="Nombre" placeholder="Nombre de usuario" required><br><br>
+                                                    Usuario
+                                                    <br>
+                                                    <select name="Usuario" class="estilo-selector">
+                                                        <option selected>Usuario</option>
+                                                        <%
+                                                            UsuarioVO usuVO = new UsuarioVO();
+                                                            UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
+                                                            ArrayList<UsuarioVO> ListaUsuario = usuDAO.listar();
+                                                            for (int i = 0; i < ListaUsuario.size(); i++) {
+
+                                                                usuVO = ListaUsuario.get(i);
+                                                        %>
 
 
-                                                    <div class="form-group">
-                                                        <label for="textMueNombre">Nombre:</label>
-                                                        <input type="text" name="textMueNombre" class="form-control" placeholder="Ingresa un nombre"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="textMueObservacion">Observación:</label>
-                                                        <input type="text" name="textMueObservacion" class="form-control"  placeholder="Ingresa observación"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="textMueDescripcion">Descripción:</label>
-                                                        <textarea type="text" name="textMueDescripcion" class="form-control"  placeholder="Ingresa descripción"></textarea>
-                                                    </div>
 
-                                                    <div class="form-group">
-                                                        <label for="textfkTipoMuestra">Tipo Muestra:</label>
-                                                        <select name="textfkTipoMuestra" class="form-control">
-                                                            <option>Seleccione...</option>
-                                                            <%
-                                                                TipoMuestraDAO tipmueDAO = new TipoMuestraDAO();
-                                                                for (TipoMuestraVO tipmueVO : tipmueDAO.listar()) {
-                                                            %>
-                                                            <option value="<%=tipmueVO.getTipMueId()%>"> <%=tipmueVO.getTipMueNombre()%></option>
-                                                            <%} %>
-                                                        </select>
-                                                    </div>
+                                                        <option value="<%=usuVO.getUsuId()%>"><%=usuVO.getUsuNombre()%></option>
 
-                                                    <div class="form-group">
-                                                        <input type="hidden" name="textMueEstado" value="ACTIVO">
-                                                            
-                                                    </div>
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </select>
+                                                    <br>
+                                                    <br>
+                                                    Muestra
+                                                    <br>
+
+                                                    <select name="Muestra" class="estilo-selector">
+                                                        <option selected>Muestra</option>
+                                                        <%
+                                                            MuestraVO mueVO = new MuestraVO();
+                                                            MuestraDAO mueDAO = new MuestraDAO(mueVO);
+                                                            ArrayList<MuestraVO> listaMuestras = mueDAO.listar();
+                                                            for (int i = 0; i < listaMuestras.size(); i++) {
+
+                                                                mueVO = listaMuestras.get(i);
+                                                        %>
+
+
+
+                                                        <option value="<%=mueVO.getMueId()%>"><%=mueVO.getMueNombre()%></option>
+
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </select>
+                                                    <br><br>
+                                                    Solicitud
+                                                    <br>
+                                                    <select name="Solicitud" class="estilo-selector">
+
+                                                        <option selected>Solicitud</option>
+                                                        <%
+                                                            SolicitudVO solVO = new SolicitudVO();
+                                                            SolicitudDAO solDAO = new SolicitudDAO(solVO);
+                                                            ArrayList<SolicitudVO> listaSolicitudes = solDAO.lista();
+                                                            for (int i = 0; i < listaSolicitudes.size(); i++) {
+
+                                                                solVO = listaSolicitudes.get(i);
+                                                        %>
+                                                        <option value="<%=solVO.getSolId()%>"><%=solVO.getSolNombre()%></option>
+                                                        <%
+                                                            }
+                                                        %>    
+                                                    </select>
+
+                                                    <input type="hidden" name="Estado" value="ACTIVO">
+
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-
-                                                        <input type="hidden" value="3" name="opcion">
+                                                        <input type="hidden"  value="1" name="opcion">
                                                         <button type="submit" class="btn btn-success submitBtn">Registrar</button>
 
                                                     </div>
@@ -429,70 +472,172 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end modal-->
-                                <h4 class="mt-0 header-title">Muestra</h4>
+                                <%}%>
 
-                                <p class="sub-title">
-                                    las muestras nos ayudan a validar los resultados
-                                </p>
+                                <!-- end modal-->
+                                <h4 class="mt-0 header-title">Prueba</h4>
+
+                                <!-- <p class="sub-title">
+                                     la clase de ensayo es aquella que dice si se trata de un ensayo especial o general 
+                                 </p>-->
 
 
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
-
+                                            <th>Id</th>
                                             <th>Nombre</th>
-                                            <th>Observación</th>
-                                            <th>Descripción</th>
-                                            <th>Tipo Muestra</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th>Usuario</th>
+                                            <th>Muestra</th>
+                                            <th>Solicitud</th>
                                             <th>Estado</th>
-
-
+                                            <%
+                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+                                                %>
                                             <th>Editar</th>
+                                            <%}%>
+                                            <%
+                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")|| Rol.equals("TECNICO")) {
+                                                %>
                                             <th>Inactivar</th>
-                                            <th>Reporte</th>
+                                            <%}%>
                                         </tr>
                                     </thead>
-
-
                                     <tbody>
-                                        <%
-                                            MuestraVO mueVO = new MuestraVO();
-                                            MuestraDAO mueDAO = new MuestraDAO(mueVO);
-                                            ArrayList<MuestraVO> listaMuestras1 = mueDAO.lista();
-                                            for (int i = 0; i < listaMuestras1.size(); i++) {
 
-                                                mueVO = listaMuestras1.get(i);
+                                        <%
+                                            PruebaVO pruVO = new PruebaVO();
+                                            PruebaDAO pruDAO = new PruebaDAO();
+
+                                            ArrayList<PruebaVO> listaPrueba = pruDAO.Listar1();
+                                            for (int a = 0; a < listaPrueba.size(); a++) {
+
+                                                pruVO = listaPrueba.get(a);
                                         %>
 
 
                                         <tr>
-
-
-                                            <td><%=mueVO.getMueNombre()%></td>
-                                            <td><%=mueVO.getMueObservacion()%></td>
-                                            <td><%=mueVO.getMueDescripcion()%></td>
-                                            <td><%=mueVO.getFkTipoMuestra()%></td>
-                                            <td><%=mueVO.getMueEstado()%></td>
-
-
-
-
+                                            <td><%=pruVO.getPru_id()%></td>
+                                            <td><%=pruVO.getPru_nombre()%></td>
+                                            <td><%=pruVO.getPru_fecha_inicio()%></td>
+                                            <td><%=pruVO.getPru_fecha_fin()%></td>
+                                            <td><%=pruVO.getFK_Usuario()%></td>
+                                            <td><%=pruVO.getFK_Muestra()%></td>
+                                            <td><%=pruVO.getFK_Solicitud()%></td>
+                                            <td><%=pruVO.getPRU_ESTADO()%></td>
+                                            <%
+                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+                                                %>
                                             <td>
 
+
                                                 <!-- Button to trigger modal -->
-                                                <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=i%>">
+                                                
+                                                <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=a%>">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="modal<%=i%>" role="dialog">
+                                                <div class="modal fade" id="modal<%=a%>" role="dialog">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <!-- Modal Header -->
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">Actualizar Muestra</h4>
+                                                                <h4 class="modal-title" id="myModalLabel">Actualizar Prueba</h4>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <!-- Modal Body -->
+
+                                                            <div class="modal-body">
+                                                                <p class="statusMsg"></p>
+
+                                                                <form method="post" action="PruebaControlador">
+                                                                    <div class="form-group">
+                                                                        <label for="Id" class="d-none">Numero de Prueba</label>
+                                                                        <input type="number" name="Id" class="form-control" readonly value="<%=pruVO.getPru_id()%>"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="Nombre">Nombre</label>
+                                                                        <input type="text" name="Nombre" class="form-control" id="inputEmail" value="<%=pruVO.getPru_nombre()%>"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="FechaFin">Fecha Fin</label>
+                                                                        <input type="date" name="FechaFin" class="form-control" id="inputEmail" value="<%=pruVO.getPru_fecha_fin()%>"/>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="Muestra">Muestra</label><br>
+                                                                        <select name="Muestra" class="estilo-selector">
+                                                                            <%
+                                                                                MuestraVO mueVO = new MuestraVO();
+                                                                                MuestraDAO mueDAO = new MuestraDAO(mueVO);
+                                                                                ArrayList<MuestraVO> listaMuestras1 = mueDAO.lista();
+                                                                                for (int i = 0; i < listaMuestras1.size(); i++) {
+
+                                                                                    mueVO = listaMuestras1.get(i);
+                                                                            %>
+                                                                            <option  value="<%=mueVO.getMueId()%>" <%=pruVO.getFK_Muestra().equals(mueVO.getMueNombre()) ? "selected" : ""%> ><%=mueVO.getMueNombre()%></option>
+                                                                            <%}%>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="Solicitud">Solicitud</label><br>
+                                                                        <select name="Solicitud" class="estilo-selector">
+                                                                            <%
+                                                                                SolicitudVO solVO = new SolicitudVO();
+                                                                                SolicitudDAO solDAO = new SolicitudDAO(solVO);
+                                                                                ArrayList<SolicitudVO> listaSolicitudes1 = solDAO.listar();
+                                                                                for (int i = 0; i < listaSolicitudes1.size(); i++) {
+
+                                                                                    solVO = listaSolicitudes1.get(i);
+                                                                            %>
+                                                                            <option  class="d-none" value="<%=solVO.getSolId()%>" <%=pruVO.getFK_Solicitud().equals(solVO.getSolNombre()) ? "selected" : ""%> ><%=solVO.getSolNombre()%></option>
+                                                                            <%
+                                                                                }
+                                                                            %>  
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                        <input type="hidden" id="opcion" name="opcion" value="2">
+                                                                        <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
+
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>  
+                                                            <!-- Modal Footer -->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                        
+                                            </td>
+                                            <%}%>
+                                             <%
+                                                    if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+                                                %>
+                                            <td>
+
+
+                                                <!-- Button to trigger modal -->
+                                                <button style="margin: 3px; float: right;" id="formulario" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modalAP<%=a%>">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modalAP<%=a%>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+
+                                                                <h4 class="modal-title" id="myModalLabel1">Registrar Prueba-Aspecto</h4>
+                                                                <button type="button" class="close" data-dismiss="modalAP" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -501,74 +646,83 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
-                                                                <form class="formulario" method="post" action="Muestra" class="formulario"  id="update-muestra-form" novalidate="novalidate" >
+                                                                <form method="post" action="Aspe_Pru" id="frm-usuario">
+
                                                                     <div class="form-group">
-                                                                        <label for="textMueId" class="d-none">Id:</label>
-                                                                        <input class="d-none" type="text" name="textMueId" class="form-control" value="<%=mueVO.getMueId()%>" placeholder="Ingrese el id" readonly/>
+                                                                        Prueba<br>
+                                                                        <select name="Prueba" class="estilo-selector">
+                                                                            <%
+                                                                                pruVO = listaPrueba.get(a);
+                                                                            %>
+                                                                            <option value="<%=pruVO.getPru_id()%>"><%=pruVO.getPru_nombre()%></option>
+                                                                        </select>
                                                                     </div>
-                                                                    <div class="form-group">
-                                                                        <label for="textMueNombre">Nombre:</label>
-                                                                        <input type="text" name="textMueNombre" class="form-control"  value="<%=mueVO.getMueNombre()%>" placeholder="Ingresa un nombre"/>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="textMueObservacion">Observación:</label>
-                                                                        <input type="text" name="textMueObservacion" class="form-control" value="<%=mueVO.getMueObservacion()%>" placeholder="Ingresa observación de la muestra"/>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="textMueDescripcion">Descripción:</label>
-                                                                        <input type="text" name="textMueDescripcion" class="form-control"  value="<%=mueVO.getMueDescripcion()%>" placeholder="Ingresa descripción de la muestra">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="textfkTipoMuestra">Tipo Muestra Nombre: </label>
-                                                                        <input type="text" name="textfkTipoMuestra" class="form-control" value="<%=mueVO.getFkTipoMuestra()%>"<%= mueVO.getFkTipoMuestra()%> readonly/>
-                                                                    </div>
+                                                                    Aspecto
+                                                                    </br>
+                                                                    <select name="Aspecto" class="estilo-selector">
+
+                                                                        <option selected>Aspecto</option>
+                                                                        <%
+                                                                            AspectoVO aspVO = new AspectoVO();
+                                                                            AspectoDAO aspDAO = new AspectoDAO(aspVO);
+                                                                            ArrayList<AspectoVO> listaAspecto = aspDAO.Listar1();
+                                                                            for (int i = 0; i < listaAspecto.size(); i++) {
+
+                                                                                aspVO = listaAspecto.get(i);
+                                                                        %>
+                                                                        <option value="<%=aspVO.getASP_ID()%>"><%=aspVO.getASP_NOMBRE()%></option>
+                                                                        <%
+                                                                            }
+                                                                        %>    
+                                                                    </select>
+                                                                    </br>
+                                                                    </br>
+                                                                    Resultado
+                                                                    </br>
+                                                                    <select name="Resultado" class="estilo-selector">
+
+                                                                        <option selected>Resultado</option>
+                                                                        <option value="100/100">100/100</option> 
+                                                                        <option value="90/100">90/100</option> 
+                                                                        <option value="80/100">80/100</option>   
+                                                                        <option value="70/100">70/100</option>   
+                                                                        <option value="60/100">60/100</option>   
+                                                                        <option value="50/100">50/100</option>   
+                                                                        <option value="40/100">40/100</option>   
+                                                                        <option value="30/100">30/100</option> 
+                                                                        <option value="20/100">20/100</option>   
+                                                                        <option value="10/100">10/100</option>   
+                                                                        <option value="0/100">0/100</option>       
+
+                                                                    </select>
+                                                                    <br>
+
+
+                                                                    <input type="hidden" name="Estado" value="ACTIVO">
+
 
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                                        <input type="hidden" value="2" name="opcion"  id="opcion">
-                                                                        <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
+                                                                        <input type="hidden"  value="1" name="opcion">
+                                                                        <button type="submit" class="btn btn-success submitBtn">Registrar</button>
 
                                                                     </div>
                                                                 </form>
-                                                            </div>
-
-
+                                                            </div> 
                                                             <!-- Modal Footer -->
-
-                                                        </div>
+                                                        </div>   
                                                     </div>
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <form method="POST" action="Muestra" id="delete">        
-                                                    <!--<div class="inputs">-->
-
-                                                </form>
-
-                                                <form method="POST" action="Muestra" id="delete">    
-                                                    <div class="frm-g-input">
-                                                        <input type="hidden" placeholder="Nombre"  name="textMueId" value="<%=mueVO.getMueId()%>">
-                                                        <input type="hidden" placeholder="estado"  name="textMueEstado" value="INACTIVO">
-                                                        <input type="hidden" id="opcion" name="opcion" value="4">
-                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
-                                                    </div>
-                                                </form>  
-                                            </td>
-
-                                              <td>
-
-                                            
-                                            
-
-                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-secondary btn-lg" value="Generar Reporte"><i class="fas fa-file-pdf"></i></button> 
-                                                    </div>
-                                                </form>  
-                                            </td>
+                                                                   
+                                            </td> 
+                                             
 
 
-                                            <%}%>
                                         </tr>
-                                    <script src="assets/js/validar.js" type="text/javascript"></script>
+                                        <%}%>
+                                        
+                                            <%}%>
+                                    <script src="assets/js/validarPrueba.js" type="text/javascript"></script>
 
                                     </tbody>
                                 </table>
@@ -593,20 +747,20 @@
                 <script src="assets/js/waves.min.js"></script>
 
                 <!-- Required datatable js -->
-                <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-                <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
                 <!-- Buttons examples -->
-                <script src="plugins/datatables/dataTables.buttons.min.js"></script>
-                <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
-                <script src="plugins/datatables/jszip.min.js"></script>
-                <script src="plugins/datatables/pdfmake.min.js"></script>
-                <script src="plugins/datatables/vfs_fonts.js"></script>
-                <script src="plugins/datatables/buttons.html5.min.js"></script>
-                <script src="plugins/datatables/buttons.print.min.js"></script>
-                <script src="plugins/datatables/buttons.colVis.min.js"></script>
+                <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/jszip.min.js"></script>
+                <script src="../plugins/datatables/pdfmake.min.js"></script>
+                <script src="../plugins/datatables/vfs_fonts.js"></script>
+                <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                <script src="../plugins/datatables/buttons.print.min.js"></script>
+                <script src="../plugins/datatables/buttons.colVis.min.js"></script>
                 <!-- Responsive examples -->
-                <script src="plugins/datatables/dataTables.responsive.min.js"></script>
-                <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
                 <!-- Datatable init js -->
                 <script src="assets/pages/datatables.init.js"></script>  
@@ -648,10 +802,7 @@
                 <%} else {%>
                 ${mensajeExito}
                 <% }%>
-                <!--Validaciones de Campos-->
-                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                <script src="assets/js/validacionesCampo/Muestra/actualizarMuestra.js" type="text/javascript"></script>
-                <script src="assets/js/validacionesCampo/Muestra/registrarMuestra.js" type="text/javascript"></script>
+
+
                 </body>
                 </html>

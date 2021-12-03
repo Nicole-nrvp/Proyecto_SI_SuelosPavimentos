@@ -60,6 +60,19 @@ public class Aspe_PruControlador extends HttpServlet {
 
                 request.getRequestDispatcher("AsPru.jsp").forward(request, response);
                 break;
+                case 2:
+                    if (asprDAO.ActualizarRegistro()) {
+                        //request.setAttribute("mensajeExito", "La Solicitud se registro correctamente");
+                        request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+
+                        //Si el registro SE LOGRO EL LA VISTA MUESTRA ERROR 
+                    } else {
+                        request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                        //request.setAttribute("mensajeError", "La Solicitud NO se registro correctamente");
+                    }
+
+                request.getRequestDispatcher("AsPru.jsp").forward(request, response);
+                break;
                 
       case 5:
                     

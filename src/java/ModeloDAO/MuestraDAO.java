@@ -143,8 +143,8 @@ public class MuestraDAO extends Conexion implements Crud {
         return operaciones;
     }
 
-    public ArrayList<MuestraVO> listar() {
-        ArrayList<MuestraVO> listaMuestras = new ArrayList<>();
+    public ArrayList<MuestraVO> lista() {
+        ArrayList<MuestraVO> listaMuestras1 = new ArrayList<>();
         try {
             conexion = this.obtenerConexión();
             //SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, muestra.MUE_ESTADO, TIP_MUE_NOMBRE FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra
@@ -153,7 +153,7 @@ public class MuestraDAO extends Conexion implements Crud {
 //                    + "FROM tipo_muestra INNER JOIN muestra "
 //                    + "ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra WHERE MUE_ESTADO='ACTIVO'";
             
-            sql = "SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, tipo_muestra.TIP_MUE_NOMBRE, muestra.MUE_ESTADO FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra WHERE MUE_ESTADO='ACTIVO' ";
+            sql = "SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, tipo_muestra.TIP_MUE_NOMBRE, muestra.MUE_ESTADO FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra WHERE MUE_ESTADO !='INACTIVO' ";
 
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
@@ -162,7 +162,7 @@ public class MuestraDAO extends Conexion implements Crud {
                 MuestraVO mueVO = new MuestraVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3),
                         mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
 
-                listaMuestras.add(mueVO);
+                listaMuestras1.add(mueVO);
             }
         } catch (Exception e) {
             Logger.getLogger(MuestraDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -175,7 +175,41 @@ public class MuestraDAO extends Conexion implements Crud {
 //             Logger.getLogger(VehiculoDAO.class.getName()).log(Level.SEVERE, null,e);
 //            }
 //        }
-        return listaMuestras;
+        return listaMuestras1;
+    }
+        public ArrayList<MuestraVO> listar() {
+        ArrayList<MuestraVO> listaMuestras1 = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexión();
+            //SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, muestra.MUE_ESTADO, TIP_MUE_NOMBRE FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra
+//            sql = "SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, "
+//                    + "muestra.MUE_DESCRIPCION, muestra.MUE_ESTADO, tipo_muestra.TIP_MUE_NOMBRE "
+//                    + "FROM tipo_muestra INNER JOIN muestra "
+//                    + "ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra WHERE MUE_ESTADO='ACTIVO'";
+            
+            sql = "SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, tipo_muestra.TIP_MUE_NOMBRE, muestra.MUE_ESTADO FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra WHERE MUE_ESTADO ='ACTIVO' ";
+
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                MuestraVO mueVO = new MuestraVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3),
+                        mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
+
+                listaMuestras1.add(mueVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(MuestraDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+//        }finally{
+//            try {
+//                this.cerrarConexión();
+//                
+//            } catch (SQLException e) {
+//             Logger.getLogger(VehiculoDAO.class.getName()).log(Level.SEVERE, null,e);
+//            }
+//        }
+        return listaMuestras1;
     }
     //consultar solicitud por nombre en especifico(cargarlas todas)-----------------------------------------------------------------------------------------------
 

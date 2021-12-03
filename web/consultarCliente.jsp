@@ -8,22 +8,27 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.ClienteDAO"%>
 <%@page import="ModeloVO.ClienteVO"%>
-
+<%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
 
         <!--plantilla nueva-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Terre | Clientes </title>
+        <title>Terre | Funcionario </title>
 
         <link rel="shortcut icon" href="assets/img/icon/icono.png">
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
@@ -76,20 +81,18 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
+                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
-
-                                <!-- full screen -->
-                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                    </a>
-                                </li>
-
                                 <!-- notification -->
                                 <li class="dropdown notification-list list-inline-item">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -179,33 +182,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
+
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -219,7 +252,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -230,7 +262,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -268,7 +299,7 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>
+                    </div> 
                     <!-- end container -->
                 </div>
                 <!-- end navbar-custom -->
@@ -428,7 +459,9 @@
                                                                 <p class="statusMsg"></p>
 
                                                                 <form method="post" action="Cliente" class="formulario"  id="update-cliente-form" novalidate="novalidate" >
-
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" name="textCliId" class="form-control"  value="<%=cliVO.getCliId()%>"  />
+                                                                    </div>
                                                                     <div class="form-group">
                                                                         <label for="textCliNombre">Nombre:</label>
                                                                         <input type="text" name="textCliNombre" class="form-control"  value="<%=cliVO.getCliNombre()%>" placeholder="Ingrese nombre del cliente" />
@@ -439,17 +472,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="textCliDocumento">Documento:</label>
-                                                                        <input type="text" name="textCliDocumento" class="form-control"  value="<%=cliVO.getCliDocumento()%>" placeholder="Ingrese número de documento" />
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="textCliTipoDocumento">Tipo Documento:</label>
-
-                                                                        <select name="textCliTipoDocumento" class="form-control">
-                                                                            <option> CC </option>
-                                                                            <option> TI </option>
-                                                                            <option> CE </option>
-
-                                                                        </select><br>
+                                                                        <input type="text" name="textCliDocumento" class="form-control"  value="<%=cliVO.getCliDocumento()%>" readonly />
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="textCliCorreo">Correo:</label>
@@ -461,24 +484,11 @@
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="textCliEstado">Estado</label>
-                                                                        <select name="textCliEstado" class="form-control">
-                                                                            <option selected><%=cliVO.getCliEstado()%></option>
-                                                                            <%
-                                                                                if (cliVO.getCliEstado().equals("ACTIVO")) {
+                                                                        <input type="hidden" name="textCliEstado" value="ACTIVO">
 
-
-                                                                            %>
-
-                                                                            <option value="INACTIVO" >INACTIVO</option>
-                                                                            <%                            } else {
-
-                                                                            %>
-                                                                            <option value="ACTIVO">ACTIVO</option>
-                                                                            <%}%>
-                                                                        </select>
 
                                                                     </div>
+
 
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -486,11 +496,7 @@
                                                                         <input type="hidden" value="2" name="opcion">
                                                                     </div>
                                                                 </form>
-                                                                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                                                                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                                                                <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
-                                                                <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
-
+                                                            
                                                             </div>
 
 
@@ -533,7 +539,10 @@
                                     </tbody>
                                 </table>
 
-
+                              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                                                                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                                                                <script src="assets/js/validacionesCampo/Cliente/actualizarCliente.js" type="text/javascript"></script>
+ 
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row -->

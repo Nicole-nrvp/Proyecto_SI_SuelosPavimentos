@@ -7,7 +7,7 @@
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@include file="sesiones.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,11 +66,16 @@
                                 <!-- language-->
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Rol%> 
 
                                     </a>
                                 </li>
+                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Nombre%> 
 
+                                    </a>
+                                </li>
                                 <!-- full screen -->
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
@@ -110,7 +115,7 @@
                                         </a>
                                     </div>
                                 </li>
-
+                                
 
                                 <li class="dropdown notification-list list-inline-item">
                                     <div class="dropdown notification-list nav-pro-img">
@@ -127,7 +132,7 @@
                                             <a class="dropdown-item text-danger" href="Login.jsp"><i class="mdi mdi-power text-danger"></i> Cerra Sesión</a>
                                         </div>
                                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                           
+
                                         </div>
 
                                     </div>
@@ -174,34 +179,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -215,7 +249,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -226,7 +259,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -309,7 +341,7 @@
                                 %>
 
                                 <h3 class="mt-4"><!--<//%= usuDAO.sesionesActivas()%>-->10</h3>
-                                <div class="progress mt-4" style="height: 4px;">
+                                <div class="progress mt-4" style="height: 5px;">
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <p class="text-muted mt-2 mb-0">Periodo<span class="float-right">80%</span></p>

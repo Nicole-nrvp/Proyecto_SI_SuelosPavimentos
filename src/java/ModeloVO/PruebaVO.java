@@ -14,13 +14,13 @@ import java.util.List;
  */
 public class PruebaVO {
 
-    private String pru_id, pru_fecha_inicio,  pru_fecha_fin,  pru_nombre, FK_Usuario, FK_Muestra,FK_Solicitud, PRU_ESTADO;
+    private String pru_id,pru_nombre, pru_fecha_inicio,  pru_fecha_fin,   FK_Usuario, FK_Muestra,FK_Solicitud, PRU_ESTADO;
 
-    public PruebaVO(String pru_id, String pru_fecha_inicio, String pru_fecha_fin,  String pru_nombre, String FK_Usuario, String FK_Muestra, String FK_Solicitud, String PRU_ESTADO) {
+    public PruebaVO(String pru_id, String pru_nombre, String pru_fecha_inicio, String pru_fecha_fin,   String FK_Usuario, String FK_Muestra, String FK_Solicitud, String PRU_ESTADO) {
         this.pru_id = pru_id;
+        this.pru_nombre = pru_nombre;
         this.pru_fecha_inicio = pru_fecha_inicio;
         this.pru_fecha_fin = pru_fecha_fin;
-        this.pru_nombre = pru_nombre;
         this.FK_Usuario = FK_Usuario;
         this.FK_Muestra = FK_Muestra;
         this.FK_Solicitud = FK_Solicitud;

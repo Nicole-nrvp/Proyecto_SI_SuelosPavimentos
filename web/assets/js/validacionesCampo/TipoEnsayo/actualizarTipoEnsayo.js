@@ -8,31 +8,30 @@ jQuery.validator.addMethod("letterswithspace", function(value, element) {
 }, "Solo letras");
 
 $(document).ready(function ($) {
-    $("#update-tipomuestra-form").validate({
+    $("#update-tipoensayo-form").validate({
         rules: {
-            textMueNombre: {
+            txtNombre: {
                 required: true,
                 minlength: 5,
                 maxlength: 15,
                 letterswithspace : true
             },
-            textMueEstado:{
+            txtClaseEnsayo: {
                 required: true
             }
 
         },
         messages: {
-            textMueNombre: {
-                required: "Por favor ingrese nombre del tipo de muestra",
+            txtNombre: {
+                required: "Por favor ingrese nombre ",
                 minlength: "Minimo 5 caracteres",
                 maxlength: "Maximo 15 caracteres",
-                letterswithspace: "Solo se permiten letras"
+                 letterswithspace : "Solo se admiten letras"
             },
-            textMueEstado:{
-                required: "Por favor seleccione un estado"
+            txtClaseEnsayo: {
+                required: "Por favor seleccione clase de ensayo",
+            
             }
-            
-            
         },
         highlight: function (element) {
             $(element).closest('.form-control').addClass('is-invalid');

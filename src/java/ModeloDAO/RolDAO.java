@@ -11,6 +11,7 @@ import Util.Crud;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,5 +53,35 @@ public class RolDAO extends Conexion{
         }
 
         return listaRoles;
+    }
+    public ArrayList<RolVO> ListarPuestos() {
+
+        ArrayList<RolVO> ListarPuestos = new ArrayList<>();
+
+        try {
+
+            conexion = this.obtenerConexión();
+            sql = "SELECT * FROM ListarPuestos";
+            puente = conexion.prepareStatement(sql);            
+            mensajero = puente.executeQuery();
+             while (mensajero.next()) {
+
+                RolVO rolVO = new RolVO(mensajero.getString(2),mensajero.getString(1));                
+                ListarPuestos.add(rolVO);
+
+            }
+             
+
+        } catch (Exception e) {
+            Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
+        }finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        
+        return ListarPuestos;
     }
 }

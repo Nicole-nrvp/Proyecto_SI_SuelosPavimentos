@@ -10,15 +10,21 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.RolVO"%>
-
+<%@page import="ModeloDAO.RolDAO"%>
+<%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
@@ -78,20 +84,18 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
+                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
-
-                                <!-- full screen -->
-                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                    </a>
-                                </li>
-
                                 <!-- notification -->
                                 <li class="dropdown notification-list list-inline-item">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -181,34 +185,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
-                                       <li class="has-submenu">
+                                        %>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -222,7 +255,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -233,7 +265,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -271,10 +302,9 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>
-                    <!-- end container -->
+                    </div>                    <!-- end container -->
                 </div>
-                <!-- end navbar-custom -->
+                    <!-- end container -->
             </header>
             <!-- End Navigation Bar-->
 
@@ -333,9 +363,13 @@
                                             <th>Documento</th>
                                             <th>Celular</th>
                                             <th>Sexo</th>
-                                            <th>Puesto</th>                                    
+                                            <th>Puesto</th> 
+                                             <%if (Rol.equals("GERENTE")) {
+
+                                                %>
                                             <th>Editar</th>
                                             <th>Inactivar</th>
+                                            <%}%>
 
                                         </tr>
                                     </thead>
@@ -344,6 +378,9 @@
                                     <tbody>
                                         <%
                                             String sexo = "";
+                                            RolDAO rolDAO = new RolDAO();
+                                            RolVO Puestos = new RolVO();
+                                            ArrayList<RolVO> ListarPuestos = rolDAO.ListarPuestos();
                                             FuncionarioVO funVO = new FuncionarioVO();
                                             FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
                                             ArrayList<FuncionarioVO> ListarUsuario = funDAO.listar();
@@ -355,7 +392,7 @@
                                                     sexo = "Mujer";
                                                 }
                                         %>
-
+                                        
                                         <tr>
 
                                             <td><%=funVO.getFunUsuNombre()%></td>
@@ -365,7 +402,9 @@
                                             <td><%=funVO.getFunCelular()%></td>
                                             <td><%=sexo%></td>
                                             <td><%=funVO.getFunPuesto()%></td>
+                                            <%if (Rol.equals("GERENTE")) {
 
+                                                %>
                                             <td>
 
                                                 <!-- Button to trigger modal -->
@@ -389,7 +428,7 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
-                                                                <form method="post" action="Usuario" class="formulario"  id="" novalidate="novalidate" >
+                                                                <form method="post" action="Usuario" class="formulario"  id="update-funcionario-form" novalidate="novalidate" >
 
                                                                     <div class="form-group">
                                                                         <label for="txtFunNombre">Nombre:</label>
@@ -400,12 +439,12 @@
                                                                         <input type="text" class="form-control" name="txtApellido" value="<%=funVO.getFunApellido()%>" />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtDireccion">Direccion </label>
+                                                                        <label for="txtDireccion">Direccion: </label>
                                                                         <input type="text" class="form-control" name="txtDireccion" value="<%=funVO.getFunDireccion()%>"/>
                                                                     </div>                                                                    
                                                                     <div class="form-group">
-                                                                        <label for="textCliDocumento">Sexo </label>
-                                                                        <select class="form-control" id="" name="txtTipoDoc">
+                                                                        <label for="txtSexo">Sexo: </label>
+                                                                        <select class="form-control" id="" name="txtSexo">
                                                                             <%if (funVO.getFunSexo().equals("1")) {%>
                                                                             <option value="1" selected>Hombre</option>
                                                                             <option value="2">Mujer</option>
@@ -414,22 +453,42 @@
                                                                             <option value="2" selected>Mujer</option>
                                                                             <%}%>
                                                                         </select>
+                                                                    </div>  
+                                                                    <div class="form-group">
+                                                                        <label for="txtTipoDoc">Tipo de Documento: </label>
+                                                                        <input type="text" class="form-control" name="txtTipoDoc" value="<%=funVO.getFunTipoDoc()%>" readonly/>
+                                                                    </div>  
+                                                                    <div class="form-group">
+                                                                        <label for="txtDoc">Documento: </label>
+                                                                        <input type="text" class="form-control" name="txtDoc" value="<%=funVO.getFunDoc()%>" readonly/>
                                                                     </div>   
                                                                     <div class="form-group">
-                                                                        <label for="textCliDocumento">Fecha de nacimiento </label>
-                                                                        <input type="date" class="form-control" name="txtCelular" value="<%=funVO.getFechaNacimiento()%>"/>
-                                                                    </div>                                                                      
+                                                                        <label for="txtFechaNacimiento">Fecha de nacimiento: </label>
+                                                                        <input type="date" class="form-control" name="txtFechaNacimiento" value="<%=funVO.getFechaNacimiento()%>"/>
+                                                                    </div> 
+                                                                    <div class="form-group">
+                                                                        <label for="txtFechaNacimiento">Celular: </label>
+                                                                        <input type="text" class="form-control" name="txtCelular" value="<%=funVO.getFunCelular()%>"/>
+                                                                    </div> 
+                                                                    <div class="form-group">
+                                                                        <label for="txtCorreo">Correo Secundario: </label>
+                                                                        <input type="text" class="form-control" name="txtCorreo" value="<%=funVO.getFunCorreo()%>" />
+                                                                    </div>  
                                                                     <div class="form-group">
                                                                         <label for="txtPuesto">Puesto:</label>
                                                                         <select name="txtPuesto" class="form-control">
                                                                             <option value="<%=funVO.getFunFkPuesto()%>" selected><%=funVO.getFunPuesto()%></option>
                                                                             <%
 
-                                                                                for (FuncionarioVO PuestoVO : funDAO.ListarPuestos()) {
-                                                                                    
+                                                                                for (int y = 0; y < ListarPuestos.size(); y++) {
+                                                                                    Puestos = ListarPuestos.get(y);
+                                                                                    if (Puestos.getRolId().equals(funVO.getFunFkPuesto())) {
+
+                                                                                    } else {
+
                                                                             %> 
-                                                                            <option value="<%=PuestoVO.getFunPuesto()%>"><%=PuestoVO.getFunPuesto()%></option>
-                                                                            <%
+                                                                            <option value="<%=Puestos.getRolId()%>"><%=Puestos.getRolNombre()%></option>
+                                                                            <%}
                                                                                 }%>
                                                                         </select>
                                                                     </div>
@@ -473,12 +532,15 @@
 
 
                                         </tr>
-                                        <%}%>
+                                        <%}}%>
 
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
 
 
                                     </tbody>
+                                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                    <script src="assets/js/validacionesCampo/Funcionario/actualizarFuncionario.js"></script>
                                 </table>
 
 
@@ -549,7 +611,10 @@
 
                     <!-- Page level custom scripts -->
                     <script src="assets/js/demo/datatables-demo.js"></script>
-
+                    <!--Validaciones de campos de texto-->
+                    
+                    <!--Evitar R-->
+                    <script src="assets/js/reenvio.js"></script>
                     <% if (request.getAttribute("mensajeError") != null) {  %>           
                     ${mensajeError}
                     <%} else {%>

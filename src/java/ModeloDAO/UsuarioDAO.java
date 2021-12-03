@@ -157,9 +157,8 @@ public class UsuarioDAO extends Conexion implements Crud {
 
     }
 
-    public ArrayList<UsuarioVO> rol(String correo) {
-
-        ArrayList<UsuarioVO> listaRoles = new ArrayList<>();
+    public UsuarioVO rol(String correo) {
+        UsuarioVO usuVO = null;
 
         try {
 
@@ -169,15 +168,15 @@ public class UsuarioDAO extends Conexion implements Crud {
             puente.setString(1, correo);
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
-                UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2));
-                listaRoles.add(usuVO);
+                 usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2));
+
             }
 
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         }
 
-        return listaRoles;
+        return usuVO;
     }
 
     public UsuarioVO ConsultarUsuario(String Usuario) {
@@ -356,32 +355,6 @@ public class UsuarioDAO extends Conexion implements Crud {
         }
         return operacion;
     }
-    
-    /*
-    public boolean recuperarClave() {
-
-        try {
-            sql = "UPDATE usuario set USU_CLAVE=md5(?),USU_VERIFICATION_PASSWORD=1 WHERE USU_CORREO=?";
-            puente = conexion.prepareStatement(sql);
-            puente.setString(1, UsuPassword);
-            puente.setString(2, UsuCorreo);
-
-            puente.executeUpdate();
-
-            operacion = true;
-
-        } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                this.cerrarConexión();
-            } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-
-            }
-        }
-        return operacion;
-    }*/
 
     public UsuarioVO ConsultarUsuario3(String Usuario) {
         UsuarioVO usuVO = null;
@@ -409,7 +382,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
     }
 
-    public UsuarioVO VerificarFuncionario(String Tipo,String CC) {
+    public UsuarioVO VerificarFuncionario(String Tipo, String CC) {
         UsuarioVO usuVO = null;
 
         try {
@@ -427,8 +400,6 @@ public class UsuarioDAO extends Conexion implements Crud {
                         mensajero.getString(2));
 
             }
-
-            
 
         } catch (SQLException e) {
 

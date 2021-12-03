@@ -95,12 +95,8 @@ public class FuncionarioDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
         //UPDATE funcionario set FUN_NOMBRE=?, FUN_APELLIDO=?,FUN_TIPO_DOC=?,FUN_NUM_DOC=?,FUN_CELULAR=?,FUN_CORREO=?,FUN_DIRECCION=?,FK_puesto=?,FUN_SEXO=?,FUN_FECHA_NACIMIENTO=? WHERE FUN_ID=?
         try {
-            String Sexo = "";
-            if (FunSexo.equals("Mujer")) {
-                Sexo = "2";
-            } else {
-                Sexo = "1";
-            }
+            
+            
             sql = "CALL ps_actualizarFun(?,?,?,?,?,?,?,?,?,?,?)";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, FunNombre);
@@ -111,7 +107,7 @@ public class FuncionarioDAO extends Conexion implements Crud {
             puente.setString(6, FunCorreo);
             puente.setString(7, FunDireccion);
             puente.setString(8, FunPuesto);
-            puente.setString(9, Sexo);
+            puente.setString(9, FunSexo);
             puente.setString(10, FunFechaNacimiento);
             puente.setString(11, FunId);
             puente.executeUpdate();
@@ -320,34 +316,6 @@ public class FuncionarioDAO extends Conexion implements Crud {
 
         return ListaUsuario;
     }
-    public ArrayList<FuncionarioVO> ListarPuestos() {
-
-        ArrayList<FuncionarioVO> listaPuesto = new ArrayList<>();
-
-        try {
-
-            conexion = this.obtenerConexión();
-            sql = "SELECT * FROM ListarPuestos";
-            puente = conexion.prepareStatement(sql);            
-            mensajero = puente.executeQuery();
-            while (mensajero.next()) {
-                FuncionarioVO funVO = new FuncionarioVO(
-                        mensajero.getString(1), 
-                        mensajero.getString(2));
-                listaPuesto.add(funVO);
-            }
-
-        } catch (Exception e) {
-            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally {
-            try {
-                this.cerrarConexión();
-            } catch (SQLException e) {
-                Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-
-        return listaPuesto;
-    }
+    
 
 }

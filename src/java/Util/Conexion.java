@@ -29,7 +29,7 @@ public class Conexion {
 
         user = "root";
         password = "";
-        nombreBd = "dbestudiosuelos";
+        nombreBd = "bdestudiosuelos";
 
         
 

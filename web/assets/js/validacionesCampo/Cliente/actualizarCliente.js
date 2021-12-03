@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+jQuery.validator.addMethod("letterswithspace", function(value, element) {
+    return this.optional(element) || /^[a-z\s]+$/i.test(value);
+}, "Solo letras");
+
 $(document).ready(function ($) {
     $("#update-cliente-form").validate({
         rules: {
             textCliNombre: {
                 required: true,
                 minlength: 4,
-                maxlength: 15
+                maxlength: 15,
+                letterswithspace : true
             },
             textCliApellido: {
                 required: true,
                 minlength: 4,
-                maxlength: 15
-            },
-            textCliDocumento: {
-                required: true
-            },
-            textCliTipoDocumento: {
-                required: true  
+                maxlength: 15,
+                letterswithspace : true
             },
             textCliCorreo:{
                 required: true,
@@ -42,18 +42,14 @@ $(document).ready(function ($) {
             textCliNombre: {
                 required: "Por favor ingrese el nombre del cliente",
                 minlength: "Minimo 4 caracteres",
-                maxlength: "Maximo 15 caracteres"
+                maxlength: "Maximo 15 caracteres",
+                letterswithspace: "Solo se admiten letras"
             },
             textCliApellido: {
                 required: "Por favor ingrese el apellido del cliente",
                 minlength: "Minimo 4 caracteres",
-                maxlength: "Maximo 15 caracteres"
-            },
-            textCliDocumento: {
-                required: "Ingrese su número de documento"
-            },
-            textCliTipoDocumento: {
-                required: "Seleccione tipo de documento"
+                maxlength: "Maximo 15 caracteres",
+                letterswithspace: "Solo se admiten letras"
             },
             textCliCorreo: {
                 required: "Por favor ingrese correo electronico",

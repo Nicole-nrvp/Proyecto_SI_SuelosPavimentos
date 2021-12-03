@@ -56,17 +56,13 @@ public class AspectoControlador extends HttpServlet {
 
                 if (aspDAO.actualizarRegistro()) {
 
-                request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                        request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
 
-                } else {
-                    
-                request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
-                
-                }
-                       
-                request.getRequestDispatcher("Aspecto.jsp").forward(request, response);
-                       
-                break;
+                        } else {
+                            request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                        }
+                        request.getRequestDispatcher("Aspecto.jsp").forward(request, response);
+                        break;
 
                        
                
@@ -89,11 +85,14 @@ public class AspectoControlador extends HttpServlet {
                  case 4:
                     
                   if  (aspDAO.InactivarAspecto()){
-                    response.sendRedirect("Aspecto.jsp?result=1&id="+ASP_ID);  
-                } else {
-                    response.sendRedirect("Aspecto.jsp?result=0&id="+ASP_ID);  
-                  }
-                break;
+                    request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                            
+                        } else {
+                            request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                        }
+                    
+                    request.getRequestDispatcher("Aspecto.jsp").forward(request, response);   
+                    break;
                
     
      }

@@ -8,37 +8,49 @@
 <%@page import="ModeloDAO.TipoEnsayoDAO"%>
 <%@page import="ModeloVO.TipoEnsayoVO"%>
 
+<%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+     if (Rol.equals("") || Rol.equals("")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
-        
+
         <!--plantilla nueva-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>TERRE - TIPO DE ENSAYO </title>
-    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Terre | Funcionario </title>
+
+        <link rel="shortcut icon" href="assets/img/icon/icono.png">
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
         <!-- DataTables -->
-    <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Responsive datatable examples -->
-    <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
     </head>
-    <body>
-        
+
+    <body> 
+
         <div class="header-bg">
             <!-- Navigation Bar-->
             <header id="topnav">
@@ -69,20 +81,18 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
+                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
-
-                                <!-- full screen -->
-                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                    </a>
-                                </li>
-
                                 <!-- notification -->
                                 <li class="dropdown notification-list list-inline-item">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -172,33 +182,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
-                                          <li class="has-submenu">
+                                        %>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
+
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -212,7 +252,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -223,7 +262,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -261,7 +299,7 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>
+                    </div> 
                     <!-- end container -->
                 </div>
                 <!-- end navbar-custom -->
@@ -271,35 +309,35 @@
         </div>
         <!-- header-bg -->
 
-    <div class="wrapper">
-        <div class="container-fluid">
-            <!-- Page-Title -->
-            <div class="page-title-box">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <h4 class="page-title"></h4>
+        <div class="wrapper">
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <h4 class="page-title"></h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-right">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
+                                <li class="breadcrumb-item active">Tipo de ensayo</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-right">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
-                            <li class="breadcrumb-item active">Tipo de ensayo</li>
-                        </ol>
-                    </div>
+                    <!-- end row -->
                 </div>
-                <!-- end row -->
-            </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <!-- modal agregar registro-->
-                            
-                    <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <!-- modal agregar registro-->
+
+                                <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
-                                    </button>
-                            <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                </button>
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
                                          <a href="assets/reportes/GenerarPDF.jsp"></a>-->
@@ -308,276 +346,262 @@
                                     </form>
                                 </button>
 
-                    <!-- Modal -->
-                                    <div class="modal fade" id="modal" role="dialog">
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
-                                    <div class="modal-content">
-                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                    
-                                    <h4 class="modal-title" id="myModalLabel">Registrar Tipo de Ensayo</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+
+                                                <h4 class="modal-title" id="myModalLabel">Registrar Tipo de Ensayo</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal Body -->
+                                            <div class="modal-body">
+                                                <p class="statusMsg"></p>
+
+                                                <form method="post" action="TipoEnsayo" class="formulario"  id="register-tipoensayo-form" novalidate="novalidate">
+
+
+                                                    <div class="form-group">
+
+                                                        <label for="textId" class="">Id</label>
+                                                        <input class="form-group" type="number" name="textId" class="form-control" id="inputid" value="" placeholder="Ingrese el id"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="txtNombre">Nombre</label>
+                                                        <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="txtClaseEnsayo">Clase de Ensayo</label>
+                                                        <select name="txtClaseEnsayo" class="select">
+
+                                                            <option value="1" >ESPECIAL</option>
+
+                                                            <option value="2">GENERAL</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="txtEstado" value="ACTIVO">
+                                                      
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                        <input type="hidden" id="opcion" name="opcion" value="1">
+                                                        <button type="submit" class="btn btn-primary submitBtn">Registrar</button>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+
+
+                                            <!-- Modal Footer -->
+
+                                        </div>
                                     </div>
-            
-                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                    <p class="statusMsg"></p>
-                                    
-                                    <form method="post" action="TipoEnsayo">
-                                    <div class="form-group">
-                                    
-                                    <label for="textId" class="">Id</label>
-                                    <input class="form-group" type="number" name="textId" class="form-control" id="inputid" value="" placeholder="Ingrese el id"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtClaseEnsayo">Clase de Ensayo</label>
-                                    <select name="txtClaseEnsayo" class="select">
-                        
-                                        <option value="1" >ESPECIAL</option>
-                      
-                                        <option value="2">GENERAL</option>
-                        
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtEstado">Estado</label>
-                                    <select name="txtEstado" class="select">
-                        
-                                        <option value="INACTIVO" >INACTIVO</option>
-                      
-                                        <option value="ACTIVO">ACTIVO</option>
-                        
-                                    </select>
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" id="opcion" name="opcion" value="1">
-                                    <button type="submit" class="btn btn-primary submitBtn">Registrar</button>
-                                    
-                                    </div>
-                                    </form>
-                                    </div>
-                                    
-                                    
-                    <!-- Modal Footer -->
-                                    
                                 </div>
-                            </div>
-                        </div>
-                    <!-- end modal-->
-                            <h4 class="mt-0 header-title">Tipo de Ensayo</h4>
-                            
-                            <p class="sub-title">
-                                El tipo de ensayo es aquel con el que podemos diferenciar el tipo de material que se recibe y segun este aplicarle las pruebas correctas 
-                            </p>
-                            
-                            
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                <tr>
-                                    <th class="d-none">Id</th>
-                                    <th>Nombre</th>
-                                    <th>Clase Ensayo</th>
-                                    <th>Estado</th>
-                                    <th>Editar</th>
-                                    <th>Inactivar</th>
-                                    
-                                </tr>
-                                </thead>
+                                <!-- end modal-->
+                                <h4 class="mt-0 header-title">Tipo de Ensayo</h4>
+
+                                <p class="sub-title">
+                                    El tipo de ensayo es aquel con el que podemos diferenciar el tipo de material que se recibe y segun este aplicarle las pruebas correctas 
+                                </p>
 
 
-                                <tbody>
-                                <%
-                                    String fk = "";
-                    TipoEnsayoVO tipensVO = new TipoEnsayoVO(); 
-                    TipoEnsayoDAO tipensDAO = new TipoEnsayoDAO();
-                    ArrayList<TipoEnsayoVO> listaTipoEnsayo = tipensDAO.listar();
-                    for (int i = 0; i < listaTipoEnsayo.size(); i++) {
-                        tipensVO = listaTipoEnsayo.get(i);
-                        if (tipensVO.getFK_Clas_Ensayo().equals("1")) {
-                                            fk = "Especial";
-                                        } else {
-                                            fk = "General";
-                                        }
-                %>
-                                
-                                    <tr>
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="d-none">Id</th>
+                                            <th>Nombre</th>
+                                            <th>Clase Ensayo</th>
+                                            <th>Estado</th>
+                                            <th>Editar</th>
+                                            <th>Inactivar</th>
 
-                                    <td class="d-none"><%=tipensVO.getTip_Ens_ID()%></td>
-                                    <td><%=tipensVO.getTip_Ens_Nombre()%></td>
-                                    <td><%=fk %></td>
-                                    <td><%=tipensVO.getTip_Ens_Estado()%></td>
-                                    
-                                    <td>
-
-                               <!-- Button to trigger modal -->
-                                    <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=i%>">
-                                    <i class="fas fa-edit"></i>
-                                    </button>
-
-                    <!-- Modal -->
-                                    <div class="modal fade" id="modal<%=i%>" role="dialog">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Actualizar Tipo de Ensayo</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-            
-                    <!-- Modal Body -->
-                                    <div class="modal-body">
-                                    <p class="statusMsg"></p>
-                                    
-                                    <form method="post" action="TipoEnsayo" role="form">
-                                    <div class="form-group">
-                                    <label for="textId" class="d-none">ID:</label>
-                                    <input class="d-none" type="text" name="textId" class="form-control readonly" id="inputName" value="<%=tipensVO.getTip_Ens_ID()%>" placeholder="Ingrese el id"/>
-                                    </div>
-                                    <div class="form-group" >
-                                    <label for="txtNombre">Nombre</label>
-                                    <input type="text" name="txtNombre" class="form-control" id="inputEmail" value="<%=tipensVO.getTip_Ens_Nombre()%>" placeholder="Ingresa un nombre"/>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtNombre">Clase de Ensayo</label>
-                                    <select name="txtClaseEnsayo" class="select">
-                                    <option selected value="<%=fk%> "><%=fk%> </option>
-                                       <option value="3">Especial</option>
-                                       <option value="2">General</option>
-                        
-                                    </select>
-                                    </div>
-                                    <div class="form-group">
-                                    <label for="txtEstado">Estado</label>
-                                    <select name="txtEstado" class="select">
-                        <option selected value="<%=tipensVO.getTip_Ens_Estado()%> "><%=tipensVO.getTip_Ens_Estado()%></option>
-                        <%
-                            if (tipensVO.getTip_Ens_Estado().equals("ACTIVO")) {
+                                        </tr>
+                                    </thead>
 
 
-                        %>
+                                    <tbody>
+                                        <%
+                                            String fk = "";
+                                            TipoEnsayoVO tipensVO = new TipoEnsayoVO();
+                                            TipoEnsayoDAO tipensDAO = new TipoEnsayoDAO();
+                                            ArrayList<TipoEnsayoVO> listaTipoEnsayo = tipensDAO.listar();
+                                            for (int i = 0; i < listaTipoEnsayo.size(); i++) {
+                                                tipensVO = listaTipoEnsayo.get(i);
+                                                if (tipensVO.getFK_Clas_Ensayo().equals("1")) {
+                                                    fk = "Especial";
+                                                } else {
+                                                    fk = "General";
+                                                }
+                                        %>
 
-                        <option value="INACTIVO" >INACTIVO</option>
-                        <%                            } else {
+                                        <tr>
 
-                        %>
-                        <option value="ACTIVO">ACTIVO</option>
-                        <%}%>
-                    </select>
-                                    </div>
-                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" id="opcion" name="opcion" value="3">
-                                    <button type="submit" class="btn btn-primary submitBtn">Actualizar</button>
-                                    
-                                    </div>
-                                    </form>
-                                    </div>
-                                    
-                                    
-                    <!-- Modal Footer -->
-                                    
-                                </div>
-                            </div>
-                        </div>
-                                    </td>
-                                    <td>
-                                    
-                                        <form method="POST" action="TipoEnsayo" id="delete">    
-                                                <div class="frm-g-input">
-                                                    <input type="hidden" placeholder="Nombre"  name="textId" value="<%=tipensVO.getTip_Ens_ID()%>">
-                                                    <input type="hidden" placeholder="estado"  name="txtEstado" value="INACTIVO">
-                                                    <input type="hidden" id="opcion" name="opcion" value="7">
-                                                    <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
+                                            <td class="d-none"><%=tipensVO.getTip_Ens_ID()%></td>
+                                            <td><%=tipensVO.getTip_Ens_Nombre()%></td>
+                                            <td><%=fk%></td>
+                                            <td><%=tipensVO.getTip_Ens_Estado()%></td>
+
+                                            <td>
+
+                                                <!-- Button to trigger modal -->
+                                                <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=i%>">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modal<%=i%>" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel">Actualizar Tipo de Ensayo</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body">
+                                                                <p class="statusMsg"></p>
+
+                                                                <form method="post" action="TipoEnsayo" class="formulario"  id="update-tipoensayo-form" novalidate="novalidate">
+
+                                                                    <div class="form-group">
+                                                                        <label for="textId" class="d-none">ID:</label>
+                                                                        <input class="d-none" type="text" name="textId"  value="<%=tipensVO.getTip_Ens_ID()%>" placeholder="Ingrese el id"/>
+                                                                    </div>
+                                                                    <div class="form-group" >
+                                                                        <label for="txtNombre">Nombre</label>
+                                                                        <input type="text" name="txtNombre" class="form-control"  value="<%=tipensVO.getTip_Ens_Nombre()%>" placeholder="Ingresa un nombre"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="txtClaseEnsayo">Clase de Ensayo</label>
+                                                                        <select name="txtClaseEnsayo" class="select">
+                                                                            <option selected value="<%=fk%> "><%=fk%> </option>
+                                                                            <option value="3">Especial</option>
+                                                                            <option value="2">General</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" name="txtEstado" value="ACTIVO">
+                       
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                        <input type="hidden" id="opcion" name="opcion" value="3">
+                                                                        <button type="submit" class="btn btn-primary submitBtn">Actualizar</button>
+
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+
+
+                                                            <!-- Modal Footer -->
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                        </form>  
-                                    </td>
-                                    
-                                    <%}%>
-                                </tr>
-                            <script src="assets/js/validar.js" type="text/javascript"></script>
-                                
-                                </tbody>
-                            </table>
+                                            </td>
+                                            <td>
 
+                                                <form method="POST" action="TipoEnsayo" id="delete">    
+                                                    <div class="frm-g-input">
+                                                        <input type="hidden" placeholder="Nombre"  name="textId" value="<%=tipensVO.getTip_Ens_ID()%>">
+                                                        <input type="hidden" placeholder="estado"  name="txtEstado" value="INACTIVO">
+                                                        <input type="hidden" id="opcion" name="opcion" value="7">
+                                                        <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
+                                                    </div>
+                                                </form>  
+                                            </td>
+
+                                            <%}%>
+                                        </tr>
+                                    <script src="assets/js/validar.js" type="text/javascript"></script>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
-    <!-- end wrapper -->
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+                <!-- end wrapper -->
 
-    <!-- Footer -->
-    <footer class="footer">
-        © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-    </footer>
+                <!-- Footer -->
+                <footer class="footer">
+                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
+                </footer>
 
-    <!-- End Footer -->
+                <!-- End Footer -->
 
-    <!-- jQuery  -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.js"></script>
-    <script src="assets/js/waves.min.js"></script>
+                <!-- jQuery  -->
+                <script src="assets/js/jquery.min.js"></script>
+                <script src="assets/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/jquery.slimscroll.js"></script>
+                <script src="assets/js/waves.min.js"></script>
 
-    <!-- Required datatable js -->
-    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Buttons examples -->
-    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
-    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-    <script src="../plugins/datatables/jszip.min.js"></script>
-    <script src="../plugins/datatables/pdfmake.min.js"></script>
-    <script src="../plugins/datatables/vfs_fonts.js"></script>
-    <script src="../plugins/datatables/buttons.html5.min.js"></script>
-    <script src="../plugins/datatables/buttons.print.min.js"></script>
-    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
-    <!-- Responsive examples -->
-    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
-    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
+                <!-- Required datatable js -->
+                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                <!-- Buttons examples -->
+                <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/jszip.min.js"></script>
+                <script src="../plugins/datatables/pdfmake.min.js"></script>
+                <script src="../plugins/datatables/vfs_fonts.js"></script>
+                <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                <script src="../plugins/datatables/buttons.print.min.js"></script>
+                <script src="../plugins/datatables/buttons.colVis.min.js"></script>
+                <!-- Responsive examples -->
+                <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
-    <!-- Datatable init js -->
-    <script src="assets/pages/datatables.init.js"></script>  
+                <!-- Datatable init js -->
+                <script src="assets/pages/datatables.init.js"></script>  
 
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-    
-    
-    
-    <!-- jQuery library MODAL-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-<!-- Latest minified bootstrap js MODAL-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-        
-<!-- Bootstrap core JavaScript-->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
+                <!-- App js -->
+                <script src="assets/js/app.js"></script>
 
 
 
-<!-- Core plugin JavaScript-->
-<script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- jQuery library MODAL-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="assets/js/sb-admin-2.min.js"></script>
+                <!-- Latest minified bootstrap js MODAL-->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="assets/js/demo/datatables-demo.js"></script>
 
-        
-        </body>
-</html>
+                <!-- Bootstrap core JavaScript-->
+                <script src="assets/vendor/jquery/jquery.min.js"></script>
+
+
+
+                <!-- Core plugin JavaScript-->
+                <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                <!-- Custom scripts for all pages-->
+                <script src="assets/js/sb-admin-2.min.js"></script>
+
+                <!-- Page level plugins -->
+                <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                <!-- Page level custom scripts -->
+                <script src="assets/js/demo/datatables-demo.js"></script>
+
+   <!--Validaciones de Campos-->
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                <script src="assets/js/validacionesCampo/TipoEnsayo/registrarTipoEnsayo.js" type="text/javascript"></script>
+            </body>
+                </html>
 

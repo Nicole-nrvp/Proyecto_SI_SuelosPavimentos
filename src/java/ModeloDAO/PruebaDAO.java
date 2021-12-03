@@ -71,7 +71,7 @@ public class PruebaDAO extends Conexion implements Crud {
         try {
             conexion = this.obtenerConexión();
             //SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, muestra.MUE_ESTADO, TIP_MUE_NOMBRE FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra
-            sql = "select * from prueba where PRU_ESTADO='ACTIVO'";
+            sql = "SELECT * FROM `consultarrractivo`";
 
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
@@ -96,7 +96,7 @@ public class PruebaDAO extends Conexion implements Crud {
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
-                PruebaVO pruVO = new PruebaVO(mensajero.getString(1), mensajero.getString(2),mensajero.getString(3), mensajero.getString(4),mensajero.getString(5), mensajero.getString(6),mensajero.getString(7),mensajero.getString(8));
+                PruebaVO pruVO = new PruebaVO(mensajero.getString("pru_id"), mensajero.getString("pru_nombre"),mensajero.getString("pru_fecha_fin"), mensajero.getString("pru_fecha_inicio"),mensajero.getString("FK_Usuario"), mensajero.getString("FK_Muestra"),mensajero.getString("FK_Solicitud"),mensajero.getString("PRU_ESTADO"));
                 listaPrueba1.add(pruVO);
             }
         } catch (Exception e) {
@@ -105,8 +105,7 @@ public class PruebaDAO extends Conexion implements Crud {
         return listaPrueba1;
     }
         
-    
-      public List<PruebaVO> Listar() throws SQLException {
+          public List<PruebaVO> Listar() throws SQLException {
         List<PruebaVO> res = new ArrayList<PruebaVO>();
         PruebaVO  red= null;
         
@@ -143,9 +142,8 @@ public class PruebaDAO extends Conexion implements Crud {
    public boolean agregarRegistro() {
         
       try {
-            sql = "call RegistrarPrueba (?,?,?,?,?,?)";
+            sql = "call Insertar_Estado_Solici_Muestra (?,?,?,?,?,?)";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, pru_fecha_fin);
             puente.setString(1, pru_fecha_fin);
             puente.setString(2, pru_nombre);
             puente.setString(3, FK_Usuario);
@@ -170,17 +168,18 @@ public class PruebaDAO extends Conexion implements Crud {
         
         
        try {
-            sql = "update prueba set PRU_FECHA_FIN=?, PRU_NOMBRE=?,  FK_Muestra=? where PRU_ID= ?";
+            sql = "call ActualizarPrueba(?,?,?,?,?)";
             puente = conexion.prepareStatement(sql);
             
-            puente.setString(1, pru_fecha_fin);
-            puente.setString(2, pru_nombre);
-            puente.setString(3, FK_Muestra);
-            puente.setString(4, pru_id);
+            puente.setString(1, pru_id);
+            puente.setString(2, pru_fecha_fin);
+            puente.setString(3, pru_nombre);
+            puente.setString(4, FK_Muestra);
+            puente.setString(5, FK_Solicitud);
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(PruebaDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
            
         }
@@ -287,8 +286,3 @@ public class PruebaDAO extends Conexion implements Crud {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
-
-
-
-
-

@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -73,20 +73,24 @@ public class AspectoDAO extends  Conexion implements Crud  {
         
     }
     
-      public List<AspectoVO> Listar() throws SQLException {
-        List<AspectoVO> res = new ArrayList<AspectoVO>();
-        AspectoVO  red= null;
-        
+     public ArrayList<AspectoVO> Listar() {
+        ArrayList<AspectoVO> listaAspecto = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexión();
+            //SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, muestra.MUE_ESTADO, TIP_MUE_NOMBRE FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra
             sql = "select * from listaraspecto";
 
-            puente = conexion.prepareStatement( "select * from listaraspecto");
+            puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
+
             while (mensajero.next()) {
-                red = new AspectoVO(mensajero.getString("ASP_ID"), mensajero.getString("ASP_NOMBRE"),mensajero.getString("ASP_DESCRIPCION"),mensajero.getString("PRO_NOMBRE"),mensajero.getString("TIP_ENS_NOMBRE"),mensajero.getString("ASP_ESTADO"));
-                res.add(red);
+                AspectoVO aspVO = new AspectoVO(mensajero.getString(1), mensajero.getString(2),mensajero.getString(3),mensajero.getString(4),mensajero.getString(5),mensajero.getString(6));
+                listaAspecto.add(aspVO);
             }
- 
-        return res;
+        } catch (Exception e) {
+            Logger.getLogger(PruebaDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return listaAspecto;
     } 
       public ArrayList<AspectoVO> Listar1() {
         ArrayList<AspectoVO> listaAspecto = new ArrayList<>();
@@ -175,10 +179,10 @@ public class AspectoDAO extends  Conexion implements Crud  {
         
         try {
 
-            sql = "UPDATE aspecto SET ASP_ESTADO = 'INACTIVO' WHERE ASP_ID = ?;";
+            sql = "UPDATE aspecto SET ASP_ESTADO = 'INACTIVO' WHERE ASP_NOMBRE = ?;";
             puente = conexion.prepareStatement(sql);
             
-            puente.setString(1, ASP_ID);
+            puente.setString(1, ASP_NOMBRE);
             puente.executeUpdate();
             operacion = true;
 

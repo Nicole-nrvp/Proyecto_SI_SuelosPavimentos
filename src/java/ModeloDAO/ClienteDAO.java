@@ -137,19 +137,17 @@ public class ClienteDAO extends Conexion implements Crud {
 
     @Override
     public boolean actualizarRegistro() {
-        try {
+       try {
             //UPDATE `cliente` SET `CLI_APELLIDO` = 'ELITEEE' WHERE `cliente`.`CLI_ID` = 1;
-            sql = "update cliente set CLI_NOMBRE=?, CLI_APELLIDO=?, CLI_DOCUMENTO=?, CLI_TIPO_DOCUMENTO=?, CLI_CORREO=?, CLI_CELULAR=? WHERE CLI_ID=?";
+            sql = "update cliente set CLI_NOMBRE=?, CLI_APELLIDO=?,  CLI_CORREO=?, CLI_CELULAR=? WHERE CLI_ID=?";
             //crear un puente para la conexion y envia la setencia sql 
             puente = conexion.prepareStatement(sql);
             ///envia atributos por set 
             puente.setString(1, cliNombre);
             puente.setString(2, cliApellido);
-            puente.setString(3, cliDocumento);
-            puente.setString(4, cliTipoDoc);
-            puente.setString(5, cliCorreo);
-            puente.setString(6, cliCelular);
-            puente.setString(7, cliId);
+            puente.setString(3, cliCorreo);
+            puente.setString(4, cliCelular);
+            puente.setString(5, cliId);
 
             //YA EJECUTO ESTO
             puente.executeUpdate();

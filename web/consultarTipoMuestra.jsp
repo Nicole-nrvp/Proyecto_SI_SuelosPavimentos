@@ -10,9 +10,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.TipoMuestraDAO"%>
 <%@page import="ModeloVO.TipoMuestraVO"%>
-
+<%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+     if (Rol.equals("INGENIERO") || Rol.equals("SECRETARIA")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +30,7 @@
 
         <!--plantilla nueva-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Terre | Tipo Muestra </title>
+        <title>Terre | Funcionario </title>
 
         <link rel="shortcut icon" href="assets/img/icon/icono.png">
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
@@ -79,20 +83,18 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
+                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
-
-                                <!-- full screen -->
-                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                    </a>
-                                </li>
-
                                 <!-- notification -->
                                 <li class="dropdown notification-list list-inline-item">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -182,34 +184,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
-                                          <li class="has-submenu">
+                                        %>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -223,7 +254,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -234,7 +264,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -272,7 +301,7 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>
+                    </div> 
                     <!-- end container -->
                 </div>
                 <!-- end navbar-custom -->
@@ -310,15 +339,6 @@
                                 <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
-                                
-                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
-                                    <form method="post" action="GenerarPDF.jsp" target="_black">
-                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
-                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
-                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
-                                        <input type="hidden" value="Reporte1.jasper" name="nombreReporte">
-                                    </form>
-                                </button>
 
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
@@ -328,7 +348,7 @@
                                         <input type="hidden" value="ReporteTipoMuestra.jasper" name="nombreReporte">
                                     </form>
                                 </button>
-                                
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
                                     <div class="modal-dialog">
@@ -347,32 +367,28 @@
                                                 <p class="statusMsg"></p>
 
                                                 <form method="post" action="TipoMuestra"  class="formulario"  id="register-tipomuestra-form" novalidate="novalidate">
-                                            
 
-                                                        <div class="form-group">
-                                                            <label for="textMueNombre">Nombre</label>
-                                                            <input type="text"name="textMueNombre" class="form-control" placeholder="Ingresa un nombre"/>
-                                                        </div>
 
-                                                        <div class="form-group">
-                                                            <label for="textMueEstado">Estado</label>
-                                                            <select name="textMueEstado" class="form-control">
-                                                                <option> ACTIVO </option>
-                                                                <option> INACTIVO </option>
-                                                            </select> 
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                            <input type="hidden" id="opcion" name="opcion" value="3">
-                                                            <button type="submit" class="btn btn-success submitBtn">Registrar</button>
+                                                    <div class="form-group">
+                                                        <label for="textMueNombre">Nombre</label>
+                                                        <input type="text"name="textMueNombre" class="form-control" placeholder="Ingresa un nombre"/>
+                                                    </div>
 
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="textMueEstado" value="ACTIVO">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                        <input type="hidden" id="opcion" name="opcion" value="3">
+                                                        <button type="submit" class="btn btn-success submitBtn">Registrar</button>
+
+                                                    </div>
 
                                                 </form>
-</div>
-                                                <!-- Modal Footer -->
+                                            </div>
+                                            <!-- Modal Footer -->
 
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -447,22 +463,8 @@
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="textMueEstado">Estado</label>
-                                                                        <select name="textMueEstado" class="select">
-                                                                            <option selected><%=tipmueVO.getTipMueEstado()%></option>
-                                                                            <%
-                                                                                if (tipmueVO.getTipMueEstado().equals("ACTIVO")) {
+                                                                        <input type="hidden" name="textMueEstado" value="ACTIVO">
 
-
-                                                                            %>
-
-                                                                            <option value="INACTIVO" >INACTIVO</option>
-                                                                            <%                            } else {
-
-                                                                            %>
-                                                                            <option value="ACTIVO">ACTIVO</option>
-                                                                            <%}%>
-                                                                        </select>
 
                                                                     </div>
 
@@ -494,9 +496,9 @@
                                                 </form> 
 
                                             </td>
-                                            
+
                                             <td>
-                                              
+
 
                                                 <form method="post" action="GenerarPDF.jsp" target="_black">    
                                                     <div class="frm-g-input">
@@ -590,11 +592,9 @@
                     <% }%>
 
                     <!--Validacion de campos-->
-                      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                
-                    <script src="assets/js/validacionesCampo/TipoMuestra/registrarTipoMuestra.js" type="text/javascript"></script>
-
+                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
                     <script src="assets/js/validacionesCampo/TipoMuestra/actualizarTipoMuestra.js" type="text/javascript"></script>
+                    <script src="assets/js/validacionesCampo/TipoMuestra/registrarTipoMuestra.js" type="text/javascript"></script>
                     </body>
                     </html>

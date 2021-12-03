@@ -96,19 +96,15 @@ public class SolicitudDAO extends Conexion implements Crud {
 
     @Override
     public boolean actualizarRegistro() {
-        try {
+       try {
 
-//UPDATE vehiculo SET VEHMODELO=2030, VEHMARCA='TOYOTA', VEHESTADO='NUEVO', VEHPRECIO= 1000000 WHERE VEHPLACA='WWW123'
-            sql = "update solicitud set SOL_FECHA_INICIO=?, SOL_FECHA_FIN=?, SOL_NOMBRE=?, FK_CLIENTE=? where SOL_ID=?";
+//UPDATE `solicitud` SET `SOL_NOMBRE` = 'w' WHERE `solicitud`.`SOL_ID` = 1;
+sql = "update solicitud set  SOL_NOMBRE=? where SOL_ID=?";
             //crear un puente para la conexion y envia la setencia sql 
             puente = conexion.prepareStatement(sql);
             ///envia atributos por set 
-            puente.setString(1, solFechaInicio);
-            puente.setString(2, solFechaFin);
-            puente.setString(3, solNombre);
-            puente.setString(4, clienteId);
-
-            puente.setString(5, solId);
+            puente.setString(1, solNombre);
+            puente.setString(2, solId);
 
             //YA EJECUTO ESTO
             puente.executeUpdate();
@@ -186,11 +182,7 @@ public class SolicitudDAO extends Conexion implements Crud {
         try {
             conexion = this.obtenerConexión();
             //sql = "SELECT solicitud.SOL_NOMBRE, solicitud.SOL_FECHA_INICIO, solicitud.SOL_FECHA_FIN, solicitud.SOL_ESTADO,  CLIENTE.CLI_NOMBRE, CLIENTE.CLI_APELLIDO FROM cliente INNER JOIN solicitud ON cliente.CLI_ID=solicitud.FK_cliente WHERE SOL_ESTADO='ACTIVO'";
-            sql="SELECT solicitud.SOL_NOMBRE, solicitud.SOL_FECHA_INICIO, "
-                    + "solicitud.SOL_FECHA_FIN, solicitud.SOL_ESTADO,  CLIENTE.CLI_NOMBRE, "
-                    + "CLIENTE.CLI_APELLIDO "
-                    + "FROM cliente INNER JOIN solicitud "
-                    + "ON cliente.CLI_ID=solicitud.FK_cliente WHERE solicitud.SOL_ESTADO='ACTIVO'";
+            sql="select * from listarsolicitud";
             
 //        sql="select * from solicitud";
             puente = conexion.prepareStatement(sql);
@@ -216,7 +208,7 @@ public class SolicitudDAO extends Conexion implements Crud {
         return listaSolicitudes;
     }
       public ArrayList<SolicitudVO> lista() {
-        ArrayList<SolicitudVO> listaSolicitudes = new ArrayList<>();
+        ArrayList<SolicitudVO> listaSolicitudes1 = new ArrayList<>();
         try {
             conexion = this.obtenerConexión();
             //sql = "SELECT solicitud.SOL_NOMBRE, solicitud.SOL_FECHA_INICIO, solicitud.SOL_FECHA_FIN, solicitud.SOL_ESTADO,  CLIENTE.CLI_NOMBRE, CLIENTE.CLI_APELLIDO FROM cliente INNER JOIN solicitud ON cliente.CLI_ID=solicitud.FK_cliente WHERE SOL_ESTADO='ACTIVO'";
@@ -230,7 +222,7 @@ public class SolicitudDAO extends Conexion implements Crud {
                 SolicitudVO solVO = new SolicitudVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3),
                         mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
 
-                listaSolicitudes.add(solVO);
+                listaSolicitudes1.add(solVO);
             }
         } catch (Exception e) {
             Logger.getLogger(SolicitudDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -243,7 +235,7 @@ public class SolicitudDAO extends Conexion implements Crud {
 //             Logger.getLogger(VehiculoDAO.class.getName()).log(Level.SEVERE, null,e);
 //            }
 //        }
-        return listaSolicitudes;
+        return listaSolicitudes1;
     }
 }
 

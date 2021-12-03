@@ -12,38 +12,47 @@
 
 <%@page import="ModeloVO.AspectoVO"%>
 <%@page import="ModeloDAO.AspectoDAO"%>
+<%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+     if (Rol.equals("SECRETARIA")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
     <head>
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css" integrity="sha512-NZ19NrT58XPK5sXqXnnvtf9T5kLXSzGQlVZL9taZWeTBtXoN3xIfTdxbkQh6QSoJfJgpojRqMfhyqBAAEeiXcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://kit.fontawesome.com/3c31f4977d.js" crossorigin="anonymous"></script>
-        
+
         <!--plantilla nueva-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Terre | Aspecto </title>
-    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Terre | Funcionario </title>
+
         <link rel="shortcut icon" href="assets/img/icon/icono.png">
-    <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-        
+        <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
         <!-- DataTables -->
-    <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Responsive datatable examples -->
-    <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 
     </head>
+
     <body> 
 
         <div class="header-bg">
@@ -76,20 +85,18 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
+                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
-
-                                <!-- full screen -->
-                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                    </a>
-                                </li>
-
                                 <!-- notification -->
                                 <li class="dropdown notification-list list-inline-item">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -179,30 +186,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
-                                        <li>
+                                        %>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
+                                            <ul class="submenu">
+                                                <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
+
+                                            </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -216,7 +256,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -227,7 +266,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -265,7 +303,7 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>
+                    </div> 
                     <!-- end container -->
                 </div>
                 <!-- end navbar-custom -->
@@ -304,6 +342,15 @@
                     <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                     </button>
+                            
+                            <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+                                    <form method="post" action="GenerarPDF.jsp" target="_black">
+                                        <!--<a href="assets/reportes/Reporte1.jrxml"></a>
+                                         <a href="assets/reportes/GenerarPDF.jsp"></a>-->
+                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
+                                        <input type="hidden" value="ReporteAspecto.jasper" name="nombreReporte">
+                                    </form>
+                                </button>
 
                     <!-- Modal -->
                                     <div class="modal fade" id="modal" role="dialog">
@@ -326,10 +373,10 @@
 
                             Nombre
                             <br>
-                            <input type="text" name="Nombre" placeholder="Nombre" required>
+                            <input type="text" name="Nombre" placeholder="Nombre" required><br><br>
                             Descripcion
                             <br>
-                            <textarea type="text" name="Descripcion" placeholder="Descripcion" required></textarea>
+                            <textarea type="text" name="Descripcion" placeholder="Descripcion" required></textarea><br><br>
 
 
                             Procedimiento
@@ -339,22 +386,23 @@
                             <option selected>Procedimiento</option>
                             <%
 
-                            ProcedimientoDAO proDAO = new ProcedimientoDAO();
-
-
-                                for (ProcedimientoVO elem : proDAO.Listar()) {
+                            ProcedimientoVO proVO = new ProcedimientoVO(); 
+                            ProcedimientoDAO proDAO = new ProcedimientoDAO(proVO);
+                            ArrayList<ProcedimientoVO> listaProcedimiento = proDAO.Listar1();
+                                        for (int i = 0; i < listaProcedimiento.size(); i++) {
+                                            proVO = listaProcedimiento.get(i);
 
 
                                  %>
 
 
 
-                            <option value="<%=elem.getPRO_ID()%>"><%=elem.getPRO_NOMBRE()%></option>
+                            <option value="<%=proVO.getPRO_ID()%>"><%=proVO.getPRO_NOMBRE()%></option>
 
 
                             <% } %>
                           </select>
-
+<br><br>
 
                             Tipo de Ensayo
                             <br>
@@ -366,9 +414,7 @@
                             TipoEnsayoDAO tipensDAO = new TipoEnsayoDAO();
                             ArrayList<TipoEnsayoVO> listaTipoEnsayo = tipensDAO.listar();
                                         for (int i = 0; i < listaTipoEnsayo.size(); i++) {
-                                            tipensVO = listaTipoEnsayo.get(i); 
-
-                                    tipensVO = listaTipoEnsayo.get(i);
+                                            tipensVO = listaTipoEnsayo.get(i);
 
                                 %>
                             <option value="<%=tipensVO.getTip_Ens_ID()%>"><%=tipensVO.getTip_Ens_Nombre() %></option>
@@ -407,10 +453,9 @@
 
                                 <th>Id</th>
                                 <th>Nombre</th>
-                                <th>Descripcion</th>
+                                <th>Info</th>
                                 <th>Procedimiento</th>
-                                <th>Tipo de ensayo</th>
-                                <th>Estado</th>
+                                <th>TipoEnsayo</th>
                                 <th>Editar</th>
                                 <th>Inactivar</th>
 
@@ -419,28 +464,31 @@
                                 <tbody>
                                 
                                  <%
+                                AspectoVO aspVO = new AspectoVO();
+                                AspectoDAO aspDAO = new AspectoDAO(aspVO);
 
-                                AspectoDAO aspDAO = new AspectoDAO();
-                                         for (AspectoVO elem : aspDAO.Listar()) {
+                                ArrayList<AspectoVO> listaAspecto = aspDAO.Listar();
+                                for (int a = 0; a < listaAspecto.size(); a++) {
+
+                                    aspVO = listaAspecto.get(a);
 
                                  %>
 
                                  <tr>
-                                        <td><%=elem.getASP_ID()%></td>
-                                        <td><%=elem.getASP_NOMBRE()%></td>
-                                        <td><%=elem.getASP_DESCRIPCION()%></td>
-                                        <td><%=elem.getFK_procedimiento()%></td>
-                                        <td><%=elem.getFK_Tipo_ensayo()%></td>
-                                        <td><%=elem.getASP_ESTADO()%></td>
+                                        <td><%=aspVO.getASP_ID()%></td>
+                                        <td><%=aspVO.getASP_NOMBRE()%></td>
+                                        <td><%=aspVO.getASP_DESCRIPCION()%></td>
+                                        <td><%=aspVO.getFK_procedimiento()%></td>
+                                        <td><%=aspVO.getFK_Tipo_ensayo()%></td>
                                         <td>
 
                                <!-- Button to trigger modal -->
-                                    <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=elem%>">
+                                    <button style="margin: 3px" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal<%=a%>">
                                     <i class="fas fa-edit"></i>
                                     </button>
 
                     <!-- Modal -->
-                                    <div class="modal fade" id="modal<%=elem%>" role="dialog">
+                                    <div class="modal fade" id="modal<%=a%>" role="dialog">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
                     <!-- Modal Header -->
@@ -457,55 +505,47 @@
                                     
                                     <form class="formulario" method="post" action="AspectoControlador">
                                     <div class="form-group">
+                                    <label for="Id" class="d-none">Numero de Prueba</label>
+                                    <input type="number" name="Id" class="form-control" readonly value="<%=aspVO.getASP_ID()%>"/>
+                                    </div>
+                                    <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="Nombre" class="form-control" id="inputName" value="<%=elem.getASP_NOMBRE()%>" placeholder="Ingrese el id"/>
+                                    <input type="text" name="Nombre" class="form-control" id="inputName" value="<%=aspVO.getASP_NOMBRE()%>" placeholder="Ingrese el id"/>
                                     </div>
                                     <div class="form-group">
-                                    <label for="txtNombre">Descripción</label>
-                                    <input type="text" name="Descripcion" value="<%=elem.getASP_DESCRIPCION()%>" placeholder="Ingresa un nombre"/>
+                                        <label for="txtNombre">Descripción</label><br>
+                                    <input type="text" name="Descripcion" value="<%=aspVO.getASP_DESCRIPCION()%>" placeholder="Ingresa un nombre"/>
                                     </div>
                                     <div class="form-group">
-                                    <label for="Procedimientto">Procedimiento</label>
-                                    <select name="Procedimientto" class="select">
-                        <option selected value=""><%--=clasensVO.getClasEnsEstado()%> "><%=clasensVO.getClasEnsEstado()%> </option>
-                        <%
-                            if (clasensVO.getClasEnsEstado().equals("ACTIVO")) {
-
-
-                        %>
-
-                        <option value="INACTIVO" >INACTIVO</option>
-                        <%                            } else {
-
-                        %>
-                        <option value="ACTIVO">ACTIVO</option>
-                        <%}--%>
-                        </option>
-                    </select>
-                        </div><div class="form-group">
-                                    <label for="Tipo">Tipo_ensayo</label>
-                                    <select name="tipo" class="select">
-                        <option selected value=""><%--=clasensVO.getClasEnsEstado()%> "><%=clasensVO.getClasEnsEstado()%> </option>
-                        <%
-                            if (clasensVO.getClasEnsEstado().equals("ACTIVO")) {
-
-
-                        %>
-
-                        <option value="INACTIVO" >INACTIVO</option>
-                        <%                            } else {
-
-                        %>
-                        <option value="ACTIVO">ACTIVO</option>
-                        <%}--%>
-                        </option>
-                    </select>
-                        </div>
+                                    <label for="Procedimiento">Procedimiento</label><br>
+                                    <select name="Procedimiento" class="estilo-selector">
+                                    <%
+                            
+                                        for (int i = 0; i < listaProcedimiento.size(); i++) {
+                                            
+                                            proVO = listaProcedimiento.get(i);
+                                    %>
+                                    <option value="<%=proVO.getPRO_ID()%>" <%=aspVO.getFK_procedimiento().equals(proVO.getPRO_NOMBRE()) ? "selected" : ""%> ><%=proVO.getPRO_NOMBRE()%></option>
+                                    <%}%>
+                                    </select>
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="Tipo">Tipo de Ensayo</label><br>
+                                    <select name="Tipo" class="estilo-selector">
+                                                                            <%
+                            
+                                        for (int i = 0; i < listaTipoEnsayo.size(); i++) {
+                                            tipensVO = listaTipoEnsayo.get(i);
+                                    %>
+                                    <option value="<%=tipensVO.getTip_Ens_ID()%>" <%=aspVO.getFK_Tipo_ensayo().equals(tipensVO.getTip_Ens_Nombre()) ? "selected" : ""%> ><%=tipensVO.getTip_Ens_Nombre()%></option>
+                                    <%}%>
+                                    </select>
+                                    </div>
                         <input type="hidden" name="Estado" value="ACTIVO">
                                     
                     <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                    <input type="hidden" id="opcion" name="opcion" value="3">
+                                    <input type="hidden" id="opcion" name="opcion" value="2">
                                     <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
                                     
                                     </div>
@@ -519,11 +559,11 @@
                                         </td>
                                     <td>
                                     
-                                        <form method="post" action="AspectoControlador">  
+                                        <form method="post" action="AspectoControlador" id="delete">  
                                                 <div class="frm-g-input">
-                                                    <input type="hidden" placeholder="Nombre"  name="Nombre" value="<%=elem.getASP_NOMBRE()%>">
+                                                    <input type="hidden" placeholder="Nombre"  name="Nombre" value="<%=aspVO.getASP_NOMBRE()%>">
                                                     <input type="hidden" placeholder="estado"  name="Estado" value="INACTIVO">
-                                                    <input type="hidden" id="opcion" name="opcion" value="5">
+                                                    <input type="hidden" id="opcion" name="opcion" value="4">
                                                     <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
                                                 </div>
                                         </form>

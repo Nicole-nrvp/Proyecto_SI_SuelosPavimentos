@@ -37,15 +37,15 @@ public class PruebaControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         String pru_id = request.getParameter("Id");
+        String pru_nombre = request.getParameter("Nombre");
         String pru_fecha_inicio = request.getParameter("FechaInicio");
         String pru_fecha_fin = request.getParameter("FechaFin");
-        String pru_nombre = request.getParameter("Nombre");
         String FK_Usuario = request.getParameter("Usuario");
         String FK_Muestra = request.getParameter("Muestra");
         String FK_Solicitud = request.getParameter("Solicitud");
         String PRU_ESTADO = request.getParameter("Estado");
         
-        PruebaVO pruVO = new PruebaVO(pru_id, pru_fecha_inicio, pru_fecha_fin, pru_nombre, FK_Usuario, FK_Muestra,FK_Solicitud, PRU_ESTADO);
+        PruebaVO pruVO = new PruebaVO(pru_id, pru_nombre, pru_fecha_inicio, pru_fecha_fin,  FK_Usuario, FK_Muestra,FK_Solicitud, PRU_ESTADO);
         
         PruebaDAO pruDAO = new PruebaDAO(pruVO);
         
@@ -84,13 +84,13 @@ public class PruebaControlador extends HttpServlet {
                         break;
                        
                 
-                case 3:
+               /* case 3:
 
                     pruVO = pruDAO.consultarPrueba(pru_id);
                     if (pruVO != null) {
 
                     request.setAttribute("PruebaConsultada", pruVO);
-                    request.getRequestDispatcher("ActualizarPrueba.jsp").forward(request, response);
+                    request.getRequestDispatcher("Prueba.jsp").forward(request, response);
 
                     } else {
                     request.setAttribute("mensajeError", "La prueba NO Existe");
@@ -98,6 +98,17 @@ public class PruebaControlador extends HttpServlet {
                 
 
                     }
+                    break;*/
+                case 3:
+                    
+                    if (pruDAO.actualizarRegistro()) {
+                            request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                            
+                        } else {
+                            request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                        }
+                    
+                    request.getRequestDispatcher("ConsultarTipoEnsayo.jsp").forward(request, response);   
                     break;
                     
                 case 4:
@@ -116,7 +127,7 @@ public class PruebaControlador extends HttpServlet {
                 case 5:
                     
                     if (pruDAO.InactivarPrueba()) {
-                            request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                            request.setAttribute("mensajeExito", "<script src=\"assets/js/ModalAP.js\"></script>");
                             
                         } else {
                             request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");

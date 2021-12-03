@@ -11,28 +11,36 @@
 <!DOCTYPE html>
 <%
 
-    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Pragma", "no-cache");
     response.setHeader("Cache-control", "no-cache,no-store,must-revalidate");
     response.setDateHeader("Expires", 0);
 
 %>
 
 <%    
-    
-    HttpSession buscarSesion = (HttpSession) request.getSession();
-    UsuarioVO usuVO2 = (UsuarioVO) buscarSesion.getAttribute("UsuarioConsultado");
     String Nombre = "";
     String Id = "";
     String UsuId ="";
+    Object Rol = "";
+    HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO2 = (UsuarioVO) buscarSesion.getAttribute("UsuarioConsultado");
+    Rol =  buscarSesion.getAttribute("rol");
+    
+    if (Rol == null) {
+          Rol = "ROL NO ENCONTRADO";  
+        } 
+    
     if (buscarSesion.getAttribute("datosUsuario") == null) {
 
         request.getRequestDispatcher("Login.jsp").forward(request, response);
     } else {
 
         UsuarioVO usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+        
         FuncionarioVO funVO = new FuncionarioVO();
         funVO = (FuncionarioVO) buscarSesion.getAttribute("DatosCargados");
         UsuId = usuVO2.getUsuId();
+        Nombre = usuVO2.getUsuNombre();
         if (funVO == null) {
             
         } else {
@@ -46,4 +54,5 @@
 
 
 %>
+
 

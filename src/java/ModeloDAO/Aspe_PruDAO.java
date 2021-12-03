@@ -143,7 +143,7 @@ public class Aspe_PruDAO extends  Conexion implements Crud  {
     @Override
     public boolean agregarRegistro() {
       try {
-            sql = "insert into aspecto_prueba(FK_Prueba,FK_Aspecto,PRU_ASP_RESULTADO,PRU_ASP_ESTADO) values(?,?,?,?)";
+            sql = "call Insertar_Estado_Prueba (?,?,?,?);";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, FK_Prueba);
             puente.setString(2, FK_Aspecto);
@@ -159,6 +159,25 @@ public class Aspe_PruDAO extends  Conexion implements Crud  {
           }
         return operacion;
    }   
+        public boolean ActualizarRegistro() {
+      try {
+            sql = "update aspecto_prueba set FK_Prueba=?, FK_Aspecto=?, PRU_ASP_RESULTADO=? where PRU_ASP_ID= ?;";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, FK_Prueba);
+            puente.setString(2, FK_Aspecto);
+            puente.setString(3, PRU_ASP_RESULTADO);
+            puente.setString(4, PRU_ASP_ID);
+            
+
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(Aspe_PruDAO.class.getName()).log(Level.SEVERE, null, e);
+       
+          }
+        return operacion;
+   } 
     public boolean InactivarPrueba() {
         
         try {

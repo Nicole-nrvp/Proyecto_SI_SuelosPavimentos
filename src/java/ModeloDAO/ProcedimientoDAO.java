@@ -82,6 +82,25 @@ public class ProcedimientoDAO extends Conexion implements Crud {
  
         return res;
     }
+        public ArrayList<ProcedimientoVO> Listar1() {
+        ArrayList<ProcedimientoVO> listaProcedimiento = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexión();
+            //SELECT muestra.MUE_ID, muestra.MUE_NOMBRE, muestra.MUE_OBSERVARCION, muestra.MUE_DESCRIPCION, muestra.MUE_ESTADO, TIP_MUE_NOMBRE FROM tipo_muestra INNER JOIN muestra ON tipo_muestra.TIP_MUE_ID=muestra.FK_tipo_muestra
+            sql = "select * from traerporestadoproce";
+
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                ProcedimientoVO proVO = new ProcedimientoVO(mensajero.getString("PRO_Id"), mensajero.getString("PRO_Nombre"),mensajero.getString("PRO_Estado"));
+                listaProcedimiento.add(proVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(PruebaDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return listaProcedimiento;
+    }
       public ProcedimientoVO consultarProcedimiento(String PRO_ID){
 
         ProcedimientoVO proVO = null;

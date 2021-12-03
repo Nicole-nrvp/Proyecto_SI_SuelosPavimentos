@@ -10,9 +10,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.SolicitudDAO"%>
 <%@page import="ModeloVO.SolicitudVO"%>
-
+<%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +30,7 @@
 
         <!--plantilla nueva-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Terre | Solicitud </title>
+        <title>Terre | Funcionario </title>
 
         <link rel="shortcut icon" href="assets/img/icon/icono.png">
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
@@ -34,11 +38,11 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- DataTables -->
-        <link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Responsive datatable examples -->
-        <link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
@@ -79,20 +83,18 @@
 
                             <ul class="navbar-right ml-auto list-inline float-right mb-0">
                                 <!-- language-->
+                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
-
-                                <!-- full screen -->
-                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-arrow-expand-all noti-icon"></i>
-                                    </a>
-                                </li>
-
                                 <!-- notification -->
                                 <li class="dropdown notification-list list-inline-item">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -182,34 +184,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
-                                       <li class="has-submenu">
+                                        %>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+                                            
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
+                                            
                                         </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
-
+                                        <%}%>
+                                        
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="Prueba.jsp">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+                                                
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <li><a href="AsPru.jsp">ASP - PRU</a></li>
+                                                <%}%>
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
+                                                <%}%>
+                                                
                                             </ul>
                                         </li>
 
@@ -223,7 +254,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -234,7 +264,6 @@
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -272,9 +301,10 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>
+                    </div> 
                     <!-- end container -->
                 </div>
+                <!-- end container -->
                 <!-- end navbar-custom -->
             </header>
             <!-- End Navigation Bar-->
@@ -310,8 +340,8 @@
                                 <button style="margin: 3px; float: right; " class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
-                                
-                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
+
+                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDFParametrizado.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
                                          <a href="assets/reportes/GenerarPDF.jsp"></a>-->
@@ -323,9 +353,9 @@
                                         <input type="hidden" value="ReporteParametrizadoSol.jasper" name="nombreReporte">
                                     </form>
                                 </button>
-                                
-                     
-                                
+
+
+
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
@@ -354,16 +384,17 @@
                                             <div class="modal-body">
                                                 <p class="statusMsg"></p>
 
-                                                <form method="post" action="Solicitud"  id="frm-usuario">
+
+                                                <form method="post" action="Solicitud"  class="formulario"  id="register-solicitud-form" novalidate="novalidate">
                                                     <div class="form-group">
 
                                                         <div class="form-group">
                                                             <label for="txtNombre">Nombre</label>
-                                                            <input type="text" name="textSolNombre" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                            <input type="text" name="textSolNombre" class="form-control"  placeholder="Ingresa un nombre"/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="txtNombre">Fecha Fin</label>
-                                                            <input type="date" name="textSolFechaFin" class="form-control" id="inputEmail" value="" placeholder="Ingresa un nombre"/>
+                                                            <input type="date" name="textSolFechaFin" class="form-control" placeholder="Ingresa un nombre"/>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="txtNombre">Cliente</label>
@@ -379,11 +410,8 @@
                                                             </select>   
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="txtNombre">Estado</label>
-                                                            <select name="textSolEstado" required>
-                                                                <option> ACTIVO </option>
-                                                                <option> INACTIVO </option>
-                                                            </select>      
+                                                            <input type="hidden" name="textSolEstado" value="ACTIVO">
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -414,12 +442,11 @@
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Estado</th>
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Fin</th>
-                                            <th>Apellido Cliente</th>
+                                            <th>Nombre</th>
                                             <th>Nombre Cliente</th>
+                                            <th>Estado</th>
 
                                             <th>Editar</th>
                                             <th>Inactivar</th>
@@ -435,20 +462,19 @@
                                             SolicitudVO solVO = new SolicitudVO();
                                             SolicitudDAO solDAO = new SolicitudDAO();
 
-                                            ArrayList<SolicitudVO> listaSolicitudes = solDAO.listar();
-                                            for (int i = 0; i < listaSolicitudes.size(); i++) {
+                                            ArrayList<SolicitudVO> listaSolicitudes1 = solDAO.listar();
+                                            for (int i = 0; i < listaSolicitudes1.size(); i++) {
 
-                                                solVO = listaSolicitudes.get(i);
+                                                solVO = listaSolicitudes1.get(i);
                                         %>
 
                                         <tr>
-
-                                            <td><%=solVO.getSolId()%></td>
-                                            <td><%=solVO.getSolNombre()%></td>
                                             <td><%=solVO.getSolFechaInicio()%></td>
                                             <td><%=solVO.getSolFechaFin()%></td>
-                                            <td><%=solVO.getSolEstado()%></td>
+                                            <td><%=solVO.getSolNombre()%></td>
                                             <td><%=solVO.getClienteId()%></td>
+                                            <td><%=solVO.getSolEstado()%></td>
+
 
                                             <td>
 
@@ -473,26 +499,27 @@
                                                             <div class="modal-body">
                                                                 <p class="statusMsg"></p>
 
-                                                                <form class="formulario" method="post" action="Solicitud">
+
+                                                                <form  method="post" action="Solicitud"  class="formulario"  id="update-solicitud-form" novalidate="novalidate">
                                                                     <div class="form-group">
                                                                         <label for="textId" class="d-none">Id:</label>
                                                                         <input class="d-none" type="number" name="textSolId" class="form-control" id="inputName"  value="<%=solVO.getSolId()%>" readonly />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Nombre:</label>
-                                                                        <input type="text" name="textSolNombre" class="form-control" id="inputEmail" value="<%=solVO.getSolId()%>" />
+                                                                        <label for="textSolNombre">Nombre:</label>
+                                                                        <input type="text" name="textSolNombre" class="form-control"  value="<%=solVO.getSolNombre()%>" />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Fecha Inicio:</label>
-                                                                        <input type="text" name="textSolFechaInicio" class="form-control" id="inputEmail" value="<%=solVO.getSolFechaInicio()%>" readonly />
+                                                                        <label for="textSolFechaInicio">Fecha Inicio:</label>
+                                                                        <input type="text" name="textSolFechaInicio" class="form-control"  value="<%=solVO.getSolFechaInicio()%>" readonly />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Fecha Fin:</label>
-                                                                        <input type="date" name="textSolFechaFin" class="form-control" id="inputEmail" value="<%=solVO.getSolFechaFin()%>" />
+                                                                        <label for="textSolFechaFin">Fecha Fin:</label>
+                                                                        <input type="date" name="textSolFechaFin" class="form-control"  value="<%=solVO.getSolFechaFin()%>" readonly/>
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="txtNombre">Nombre Cliente:</label>
-                                                                        <input type="text" name="textFkCliente" class="form-control" id="inputEmail"  value="<%=solVO.getClienteId()%>" readonly />
+                                                                        <label for="textFkCliente">Nombre Cliente:</label>
+                                                                        <input type="text" name="textFkCliente" class="form-control"   value="<%=solVO.getClienteId()%>" readonly />
                                                                     </div>
 
 
@@ -532,9 +559,14 @@
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
 
                                     </tbody>
+                                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                                <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+
+                                <script src="assets/js/validacionesCampo/Solicitud/actualizarSolicitud.js" type="text/javascript"></script>
+                                <script src="assets/js/validacionesCampo/Solicitud/registrarSolicitud.js" type="text/javascript"></script>
+
                                 </table>
-
-
+                                
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row -->
@@ -546,6 +578,8 @@
                     </footer>
 
                     <!-- End Footer -->
+
+
 
                     <!-- jQuery  -->
                     <script src="assets/js/jquery.min.js"></script>
@@ -577,6 +611,8 @@
 
 
 
+                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <!-- jQuery library MODAL-->
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
@@ -600,6 +636,7 @@
                     <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
                     <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
                     <!-- Page level custom scripts -->
                     <script src="assets/js/demo/datatables-demo.js"></script>
 
@@ -609,7 +646,5 @@
                     <%} else {%>
                     ${mensajeExito}
                     <% }%>
-
-
                     </body>
                     </html>

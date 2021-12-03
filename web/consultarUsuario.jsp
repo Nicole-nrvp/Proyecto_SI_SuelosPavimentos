@@ -4,13 +4,20 @@
     Author     : Andrés
 --%>
 <%@page import="ModeloVO.RolVO"%>
-<%@page import="Util.RolDAO"%>
+<%@page import="ModeloDAO.RolDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%//@include file="sesiones.jsp" %>
+<%@include file="sesiones.jsp" %>
 <!DOCTYPE html>
+
+<%
+    RolDAO rolDAO = new RolDAO();
+    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 <html lang="en">
 
     <head>
@@ -41,6 +48,8 @@
         <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+
 
     </head>
 
@@ -78,7 +87,13 @@
                                 <!-- language-->
                                 <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/img/flags/spain_flag.jpg" class="mr-2" height="12" alt="" />Español <span class="mdi mdi-chevron-down" ></span>
+                                        <%=Rol%> 
+
+                                    </a>
+                                </li>
+                                <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                        <%=Nombre%> 
 
                                     </a>
                                 </li>
@@ -179,33 +194,63 @@
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Modulos <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
-                                         <li class="has-submenu">
+                                        %>
+                                        <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
+
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
                                             </ul>
                                         </li>
+                                        <%}%>
 
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
 
+                                        %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
-                                        </li>
 
+                                        </li>
+                                        <%}%>
+                                        <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
+
+                                        %>
                                         <li>
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
-
+                                        <%}%>
 
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
-                                                <li><a href="">Prueba</a></li>  
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
+                                                    <%}%>
+                                                <li><a href="Prueba.jsp">Prueba</a></li> 
+
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
+
+                                                %>
+                                                <li><a href="Aspecto.jsp">Aspecto</a></li>
+                                                    <%}%>
+                                                <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
+
+                                                <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
+
+                                                %>
+                                                <li><a href="Procedimiento.jsp">Procedimiento</a></li>
+                                                    <%}%>
+                                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+
+                                                    %>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <li><a href="#">Aspecto</a></li>
-                                                <li><a href="#">Procedimiento</a></li>
+                                                    <%}%>
+
                                             </ul>
                                         </li>
 
@@ -219,18 +264,16 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Asignaciones <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
 
                                         <li>
-                                            <a href="#">Calendario </a>
+                                            <a href="Calendario.jsp">Calendario </a>
                                         </li>
 
                                     </ul>
                                 </li>
-
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -250,7 +293,7 @@
 
                                     </ul>
                                 </li>
-                                
+
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                     <ul class="submenu">
@@ -301,12 +344,6 @@
                     <div class="col-12">
                         <div class="card m-b-30">
                             <div class="card-body">
-                                <!-- modal agregar registro-->
-
-                                <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                                
                                 <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
                                     <form method="post" action="GenerarPDF.jsp" target="_black">
                                         <!--<a href="assets/reportes/Reporte1.jrxml"></a>
@@ -315,6 +352,16 @@
                                         <input type="hidden" value="ReporteUsuario.jasper" name="nombreReporte">
                                     </form>
                                 </button>
+                                <%if (Rol.equals("GERENTE")) {
+
+                                %>
+                                <!-- modal agregar registro-->
+
+                                <button style="margin: 3px; float: right;" class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
+
+
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal" role="dialog">
@@ -333,23 +380,22 @@
                                                 <p class="statusMsg"></p>
 
                                                 <form class="formulario" method="post" action="Usuario" id="register-user-form" novalidate="novalidate">
-                                                    
+
                                                     <div class="form-group">
                                                         <label for="txtNombre">Nombre: </label>
                                                         <input type="text" class="form-control" name="txtNombre"/>
                                                     </div>                                                   
-                                                    
+
                                                     <div class="form-group">
                                                         <label for="txtCorreo">Correo:</label>
-                                                         <input type="text" class="form-control" name="txtCorreo"/>
+                                                        <input type="text" class="form-control" name="txtCorreo"/>
                                                     </div>  
-                                                    
+
                                                     <div class="form-group">
                                                         <label for="txtRolId">Rol:</label>
                                                         <select name="txtRolId" class="form-control">
                                                             <option value="">Seleccione...</option>
-                                                            <%
-                                                                RolDAO rolDAO = new RolDAO();
+                                                            <%  
                                                                 for (RolVO rolVO : rolDAO.listar()) {
                                                             %> 
                                                             <option value="<%=rolVO.getRolId()%>"><%=rolVO.getRolNombre()%></option>
@@ -357,7 +403,7 @@
                                                         </select>
                                                     </div>
 
-                                                    
+
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -371,13 +417,19 @@
                                             <!-- Modal Footer -->
 
 
+
                                         </div>
+
                                     </div>
                                 </div>
+                                <%}%>
+
                                 <!-- end modal-->
                                 <h4 class="mt-0 header-title">Usuario</h4>
 
-
+                                <p class="sub-title">
+                                    el modulo Usuario encontrarmos los usuarios del sistema
+                                </p>
 
                                 <!---TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA-->
 
@@ -385,16 +437,20 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>Correo</th>                                 
-                                            <th>Gestion</th>
-                                            
+                                            <th>Correo</th> 
+                                                <%if (Rol.equals("GERENTE")) {
 
+                                                %>
+                                            <th>Gestion</th>
+
+                                            <%}%>
                                         </tr>
                                     </thead>
 
 
                                     <tbody>
-                                        <%                                            UsuarioVO usuVO = new UsuarioVO();
+                                        <%
+                                            UsuarioVO usuVO = new UsuarioVO();
                                             UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
                                             ArrayList<UsuarioVO> ListarUsuario = usuDAO.listar();
                                             for (int i = 0; i < ListarUsuario.size(); i++) {
@@ -406,7 +462,9 @@
                                             <td><%=usuVO.getUsuNombre()%></td>
                                             <td><%=usuVO.getUsuCorreo()%></td>
 
+                                            <%if (Rol.equals("GERENTE")) {
 
+                                            %>
                                             <td>
 
                                                 <!-- Button to trigger modal -->
@@ -431,7 +489,7 @@
                                                                 <p class="statusMsg"></p>
 
                                                                 <form class="formulario" method="post" action="Usuario" id="update-user-form" novalidate="novalidate">
-                                                                    
+
                                                                     <div class="form-group">
                                                                         <label for="txtNombre">Nombre:</label>
                                                                         <input type="hidden" name="textId" value="<%=usuVO.getUsuId()%>">
@@ -460,26 +518,10 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="form-group">
-                                                                        <label for="txtEstado">Estado:</label>
-                                                                        <select class="form-control" name="txtEstado">
-                                                                            <option selected><%=usuVO.getUsuEstado()%></option>
-                                                                            <%
-                                                                                if (usuVO.getUsuEstado().equals("ACTIVO")) {
 
-
-                                                                            %>
-
-                                                                            <option value="INACTIVO" >INACTIVO</option>
-                                                                            <%                            } else {
-
-                                                                            %>
-                                                                            <option value="ACTIVO">ACTIVO</option>
-                                                                            <%}%>
-                                                                        </select>
-                                                                    </div>
 
                                                                     <div class="modal-footer">
+                                                                        <input type="hidden" name="txtEstado" value="ACTIVO"> 
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                                                         <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
                                                                         <input type="hidden" value="2" name="opcion">
@@ -503,15 +545,20 @@
                                                     </div>
                                                 </form> 
                                             </td>
-
+                                            <%}}%>
 
                                         </tr>
-                                        <%}%>
+
 
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
 
 
                                     </tbody>
+                                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+                                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                                    <script src="assets/js/validacionesCampo/Usuario/registrarUsuario.js"></script>
+                                    <script src="assets/js/validacionesCampo/Usuario/actualizarUsuarioV.js"></script>
+
                                 </table>
 
 
@@ -519,83 +566,78 @@
                         </div> <!-- end col -->
                     </div> <!-- end row -->
                     <!-- end wrapper -->
+                </div>
 
-                    <!-- Footer -->
-                    <footer class="footer">
-                        © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
-                    </footer>
+                <!-- Footer -->
+                <footer class="footer">
+                    © 2019 - 2020 Stexo <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</span>.
+                </footer>
 
-                    <!-- End Footer -->
+                <!-- End Footer -->
 
-                    <!-- jQuery  -->
-                    <script src="assets/js/jquery.min.js"></script>
-                    <script src="assets/js/bootstrap.bundle.min.js"></script>
-                    <script src="assets/js/jquery.slimscroll.js"></script>
-                    <script src="assets/js/waves.min.js"></script>
+                <!-- jQuery  -->
+                <script src="assets/js/jquery.min.js"></script>
+                <script src="assets/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/js/jquery.slimscroll.js"></script>
+                <script src="assets/js/waves.min.js"></script>
 
-                    <!-- Required datatable js -->
-                    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-                    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-                    <!-- Buttons examples -->
-                    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
-                    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
-                    <script src="../plugins/datatables/jszip.min.js"></script>
-                    <script src="../plugins/datatables/pdfmake.min.js"></script>
-                    <script src="../plugins/datatables/vfs_fonts.js"></script>
-                    <script src="../plugins/datatables/buttons.html5.min.js"></script>
-                    <script src="../plugins/datatables/buttons.print.min.js"></script>
-                    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
-                    <!-- Responsive examples -->
-                    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
-                    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
+                <!-- Required datatable js -->
+                <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                <!-- Buttons examples -->
+                <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                <script src="../plugins/datatables/jszip.min.js"></script>
+                <script src="../plugins/datatables/pdfmake.min.js"></script>
+                <script src="../plugins/datatables/vfs_fonts.js"></script>
+                <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                <script src="../plugins/datatables/buttons.print.min.js"></script>
+                <script src="../plugins/datatables/buttons.colVis.min.js"></script>
+                <!-- Responsive examples -->
+                <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
-                    <!-- Datatable init js -->
-                    <script src="assets/pages/datatables.init.js"></script>  
+                <!-- Datatable init js -->
+                <script src="assets/pages/datatables.init.js"></script>  
 
-                    <!-- App js -->
-                    <script src="assets/js/app.js"></script>
-
-
-
-                    <!-- jQuery library MODAL-->
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-                    <!-- Latest minified bootstrap js MODAL-->
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <!-- App js -->
+                <script src="assets/js/app.js"></script>
 
 
 
-                    <!-- Bootstrap core JavaScript-->
-                    <script src="assets/vendor/jquery/jquery.min.js"></script>
+                <!-- jQuery library MODAL-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+                <!-- Latest minified bootstrap js MODAL-->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
-                    <!-- Core plugin JavaScript-->
-                    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Bootstrap core JavaScript-->
+                <script src="assets/vendor/jquery/jquery.min.js"></script>
 
-                    <!-- Custom scripts for all pages-->
-                    <script src="assets/js/sb-admin-2.min.js"></script>
 
-                    <!-- Page level plugins -->
-                    <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-                    <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-                    <!-- Page level custom scripts -->
-                    <script src="assets/js/demo/datatables-demo.js"></script>
-                    
-                    
-                    <!--Reportes SweetAlert-->
-                    <%
-                        if (request.getAttribute("mensajeError") != null) {  %>           
-                    ${mensajeError}
-                    <%} else {%>
-                    ${mensajeExito}
-                    <% }%>
-                    <!--Validaciones de Campos-->
-                    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                    <script src="assets/js/validacionesCampo/Usuario/registrarUsuario.js"></script>
-                    <script src="assets/js/validacionesCampo/Usuario/actualizarUsuarioV.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                    </body>
-                    </html>
+                <!-- Custom scripts for all pages-->
+                <script src="assets/js/sb-admin-2.min.js"></script>
+
+                <!-- Page level plugins -->
+                <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                <!-- Page level custom scripts -->
+                <script src="assets/js/demo/datatables-demo.js"></script>
+
+                <%
+                    if (request.getAttribute("mensajeError") != null) {  %>           
+                ${mensajeError}
+                <%} else {%>
+                ${mensajeExito}
+                <% }%>
+                <!--Validaciones de Campos-->
+
+                </body>
+                </html>

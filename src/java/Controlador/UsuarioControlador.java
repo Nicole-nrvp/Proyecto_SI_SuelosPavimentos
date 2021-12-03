@@ -85,27 +85,20 @@ public class UsuarioControlador extends HttpServlet {
         UsuarioDAO usuDAO = new UsuarioDAO(usuVo);
 
         FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
-
+        
         switch (opcion) {
             case 1:
 
                 if (usuDAO.iniciarSesion(UsuCorreo, UsuPassword)) {
                     String IdUsuario = "";
+                    String rol = "";
                     HttpSession miSesion = request.getSession(true);
                     usuVo = new UsuarioVO(usuVo.getUsuId(), usuVo.getUsuRol());
                     miSesion.setAttribute("datosUsuario", usuVo);
-
-                    ArrayList<UsuarioVO> listaRoles = usuDAO.rol(UsuCorreo);
-
-                    for (int i = 0; i < listaRoles.size(); i++) {
-
-                        usuVo = listaRoles.get(i);
-                        IdUsuario = usuVo.getUsuId();
-
-                    }
-
-                    miSesion.setAttribute("rol", listaRoles);
-
+                    usuVo = usuDAO.rol(UsuCorreo);                    
+                    IdUsuario = usuVo.getUsuId();
+                    rol = usuVo.getUsuRol();
+                    miSesion.setAttribute("rol", rol);
                     usuVo = usuDAO.ConsultarUsuario2(IdUsuario);
                     if (usuVo != null) {
 
@@ -249,7 +242,7 @@ public class UsuarioControlador extends HttpServlet {
                     buscarSesion.removeAttribute("DatosCargados");
                     buscarSesion.removeAttribute("rol");
                     buscarSesion.invalidate();
-                    request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
                 } else {
 
                     if (funDAO.agregarRegistro()) {
@@ -261,7 +254,7 @@ public class UsuarioControlador extends HttpServlet {
                             buscarSesion.removeAttribute("DatosCargados");
                             buscarSesion.removeAttribute("rol");
                             buscarSesion.invalidate();
-                            request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+                            request.getRequestDispatcher("Login.jsp").forward(request, response);
                         } else {
                             request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
                             HttpSession buscarSesion = request.getSession();
@@ -269,7 +262,7 @@ public class UsuarioControlador extends HttpServlet {
                             buscarSesion.removeAttribute("DatosCargados");
                             buscarSesion.removeAttribute("rol");
                             buscarSesion.invalidate();
-                            request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+                            request.getRequestDispatcher("Login.jsp").forward(request, response);
                         }
                     } else {
                         request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
@@ -278,14 +271,14 @@ public class UsuarioControlador extends HttpServlet {
                         buscarSesion.removeAttribute("DatosCargados");
                         buscarSesion.removeAttribute("rol");
                         buscarSesion.invalidate();
-                        request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+                        request.getRequestDispatcher("Login.jsp").forward(request, response);
                     }
                     HttpSession buscarSesion = request.getSession();
                     buscarSesion.removeAttribute("datosUsuario");
                     buscarSesion.removeAttribute("DatosCargados");
                     buscarSesion.removeAttribute("rol");
                     buscarSesion.invalidate();
-                    request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
                 break;
             case 9:
@@ -367,7 +360,7 @@ public class UsuarioControlador extends HttpServlet {
                         buscarSesion.removeAttribute("DatosCargados");
                         buscarSesion.removeAttribute("rol");
                         buscarSesion.invalidate();
-                        request.getRequestDispatcher("IniciarSesion.jsp").forward(request, response);
+                        request.getRequestDispatcher("Login").forward(request, response);
                     } else {
                         request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
                         request.getRequestDispatcher("cambiarClave.jsp").forward(request, response);
