@@ -4,16 +4,12 @@
     Author     : as
 --%>
 
-<%@page import="ModeloDAO.FuncionarioDAO"%>
-<%@page import="ModeloVO.FuncionarioVO"%>
-<%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.RolVO"%>
 <%@page import="ModeloDAO.RolDAO"%>
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO")) {
+<%    if (Rol.equals("TECNICO") || Rol.equals("INGENIERO") || Rol.equals("SECRETARIA")) {
         response.sendRedirect("index.jsp");
     }
 %>
@@ -30,7 +26,7 @@
 
         <!--plantilla nueva-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Terre | Funcionario </title>
+        <title>Terre | Configuracion </title>
 
         <link rel="shortcut icon" href="assets/img/icon/icono.png">
         <meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
@@ -136,18 +132,10 @@
                                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                             <!-- item-->
                                             <a class="dropdown-item" href="editarDatos.jsp"><i class="mdi mdi-account-circle"></i> Perfil</a>
-                                            <%if (Rol.equals("GERENTE")) {%>
-                                            <a class="dropdown-item d-block" href="configuracion.jsp"><span class="badge badge-success float-right"></span><i class="mdi mdi-settings"></i> Configuración</a><%}%>
+                                            <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">1</span><i class="mdi mdi-settings"></i> Configuración</a>
+                                            <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Bloquear Pantalla</a>
                                             <div class="dropdown-divider"></div>
-                                            <form action="Sesiones" method="POST"><button type="submit" style="
-                                                                                          background: none;
-                                                                                          color: inherit;
-                                                                                          border: none;
-                                                                                          padding: 0;
-                                                                                          font: inherit;
-                                                                                          cursor: pointer;
-                                                                                          outline: inherit;">
-                                                    <a class="dropdown-item text-danger" ><i class="mdi mdi-power text-danger"></i> Cerra Sesión</a></form></button>
+                                            <a class="dropdown-item text-danger" href="Login.jsp"><i class="mdi mdi-power text-danger"></i> Cerra Sesión</a>
                                         </div>
                                     </div>
                                 </li>
@@ -273,7 +261,24 @@
                                     </ul>
                                 </li>
 
-                                
+                                <li class="has-submenu">
+                                    <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+                                    <ul class="submenu">
+
+
+                                        <li class="has-submenu">
+                                            <a href="#">Parametrizados </a>
+                                        </li>
+
+                                        <li class="has-submenu">
+                                            <a href="#">Mapa</a>
+                                            <ul class="submenu">
+                                                <li><a href="maps-google.html"> Google Map</a></li>
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+                                </li>
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>
@@ -292,9 +297,11 @@
                             <!-- End navigation menu -->
                         </div>
                         <!-- end #navigation -->
-                    </div>                    <!-- end container -->
+                    </div> 
+                    <!-- end container -->
                 </div>
                 <!-- end container -->
+                <!-- end navbar-custom -->
             </header>
             <!-- End Navigation Bar-->
 
@@ -312,8 +319,8 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-right">
                                 <li class="breadcrumb-item"><a href="javascript:void(0);">Terre</a></li>
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Modulos</a></li>
-                                <li class="breadcrumb-item active">Datos Personales</li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Configuracion</a></li>
+
                             </ol>
                         </div>
                     </div>
@@ -326,20 +333,64 @@
                             <div class="card-body">
                                 <!-- modal agregar registro-->
 
-
-                                <button style="margin: 3px; float: right; background-color: #FFF;" class="btn btn-success btn-lg " >                                 
-                                    <form method="post" action="GenerarPDF.jsp" target="_black">    
-
-
-                                        <input style="margin: 1px; float: right; height: 20px; background-color: #FFF; border: none" class="submit" type="submit" value="Generar Reporte">
-                                        <input type="hidden" value="reportFuncionario.jasper" name="nombreReporte">
-                                    </form>
+                                <button style="margin: 3px; float: right; " class="btn btn-success btn-lg " data-toggle="modal" data-target="#modal">
+                                    <i class="fas fa-plus-circle"></i>
                                 </button>
+                                <div class="modal fade" id="modal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
 
-                                <h4 class="mt-0 header-title">Datos Personales</h4>
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+
+                                                <h4 class="modal-title" id="myModalLabel">Registrar Puesto</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <!-- Modal Body -->
+                                            <div class="modal-body">
+                                                <p class="statusMsg"></p>
+
+
+                                                <form method="post" action="Usuario"  class="formulario"  id="register-user-form" novalidate="novalidate">
+                                                    <div class="form-group">
+
+                                                        <div class="form-group">
+                                                            <label for="">Nombre del puesto</label>
+                                                            <input type="text" name="txtRolNombre" class="form-control"  placeholder="Ingresa un nombre"/>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                            <input type="hidden" id="opcion" name="opcion" value="14">
+                                                            <button type="submit" class="btn btn-success submitBtn">Registrar</button>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </form>
+
+                                                <!-- Modal Footer -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end modal-->
+
+
+
+
+
+
+
+                                <h4 class="mt-0 header-title">Configuracion</h4>
 
                                 <p class="sub-title">
-                                    el modulo funcionario es donde encontraremos los datos personales de los usuarios 
+                                    En este modulo podras cambiar los diferentes puestos que le vas a <br>asignar a tus usuarios en sus datos personales
                                 </p>
 
                                 <!---TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA TABLA-->
@@ -347,54 +398,33 @@
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
-                                            <th>Nick</th>
+
                                             <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Documento</th>
-                                            <th>Celular</th>
-                                            <th>Sexo</th>
-                                            <th>Puesto</th> 
-                                                <%if (Rol.equals("GERENTE")) {
-
-                                                %>
-                                            <th>Editar</th>
-                                            <th>Inactivar</th>
-                                                <%}%>
-
+                                            <th>Actualizar</th>
+                                            <th>Eliminar</th>
                                         </tr>
                                     </thead>
 
 
                                     <tbody>
                                         <%
-                                            String sexo = "";
+
                                             RolVO Puestos = new RolVO();
                                             RolDAO rolDAO = new RolDAO(Puestos);
                                             ArrayList<RolVO> ListarPuestos = rolDAO.ListarPuestos();
-                                            FuncionarioVO funVO = new FuncionarioVO();
-                                            FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
-                                            ArrayList<FuncionarioVO> ListarUsuario = funDAO.listar();
-                                            for (int i = 0; i < ListarUsuario.size(); i++) {
-                                                funVO = ListarUsuario.get(i);
-                                                if (funVO.getFunSexo().equals("1")) {
-                                                    sexo = "Hombre";
-                                                } else {
-                                                    sexo = "Mujer";
-                                                }
+
+                                            for (int i = 0; i < ListarPuestos.size(); i++) {
+
+                                                Puestos = ListarPuestos.get(i);
                                         %>
 
                                         <tr>
 
-                                            <td><%=funVO.getFunUsuNombre()%></td>
-                                            <td><%=funVO.getFunNombre()%></td>
-                                            <td><%=funVO.getFunApellido()%></td>
-                                            <td><%=funVO.getFunDoc()%></td>
-                                            <td><%=funVO.getFunCelular()%></td>
-                                            <td><%=sexo%></td>
-                                            <td><%=funVO.getFunPuesto()%></td>
-                                            <%if (Rol.equals("GERENTE")) {
+                                            <td><%=Puestos.getRolNombre()%></td>
 
-                                            %>
+
+
+
                                             <td>
 
                                                 <!-- Button to trigger modal -->
@@ -402,134 +432,62 @@
                                                     <i class="fas fa-edit"></i>
                                                 </button>
 
+
+
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="modal<%=i%>" role="dialog">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <!-- Modal Header -->
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel">Actualizar Funcionario</h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                <div class="modal fade" id="modal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="modal<%=i%>" aria-hidden="true">
+                                                    <form method="POST" action="Usuario">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Actualizar Puesto</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">                                                             
+                                                                    <div class="form-group">
+                                                                        <label for="txtRolNombre">Nombre del Puesto</label>
+                                                                        <input class="form-control"  type="text" name="txtRolNombre" class="form-control" id="inputName"  value="<%=Puestos.getRolNombre()%>" />
+                                                                        
+                                                                    </div>                                                                
+                                                                    
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <input type="hidden" name="opcion" value="15">
+                                                                    <input type="hidden" name="txtRolId" value="<%=Puestos.getRolId()%>">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                                                </div>
                                                             </div>
-
-                                                            <!-- Modal Body -->
-                                                            <div class="modal-body">
-                                                                <p class="statusMsg"></p>
-
-                                                                <form method="post" action="Usuario" class="formulario"  id="update-funcionario-form" novalidate="novalidate" >
-
-                                                                    <div class="form-group">
-                                                                        <label for="txtFunNombre">Nombre:</label>
-                                                                        <input type="text" class="form-control"  name="txtFunNombre" value="<%=funVO.getFunNombre()%>"/>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="txtApellido">Apellido:</label>
-                                                                        <input type="text" class="form-control" name="txtApellido" value="<%=funVO.getFunApellido()%>" />
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="txtDireccion">Direccion: </label>
-                                                                        <input type="text" class="form-control" name="txtDireccion" value="<%=funVO.getFunDireccion()%>"/>
-                                                                    </div>                                                                    
-                                                                    <div class="form-group">
-                                                                        <label for="txtSexo">Sexo: </label>
-                                                                        <select class="form-control" id="" name="txtSexo">
-                                                                            <%if (funVO.getFunSexo().equals("1")) {%>
-                                                                            <option value="1" selected>Hombre</option>
-                                                                            <option value="2">Mujer</option>
-                                                                            <%} else {%>
-                                                                            <option value="1" >Hombre</option>
-                                                                            <option value="2" selected>Mujer</option>
-                                                                            <%}%>
-                                                                        </select>
-                                                                    </div>  
-                                                                    <div class="form-group">
-                                                                        <label for="txtTipoDoc">Tipo de Documento: </label>
-                                                                        <input type="text" class="form-control" name="txtTipoDoc" value="<%=funVO.getFunTipoDoc()%>" readonly/>
-                                                                    </div>  
-                                                                    <div class="form-group">
-                                                                        <label for="txtDoc">Documento: </label>
-                                                                        <input type="text" class="form-control" name="txtDoc" value="<%=funVO.getFunDoc()%>" readonly/>
-                                                                    </div>   
-                                                                    <div class="form-group">
-                                                                        <label for="txtFechaNacimiento">Fecha de nacimiento: </label>
-                                                                        <input type="date" class="form-control" name="txtFechaNacimiento" value="<%=funVO.getFechaNacimiento()%>"/>
-                                                                    </div> 
-                                                                    <div class="form-group">
-                                                                        <label for="txtFechaNacimiento">Celular: </label>
-                                                                        <input type="text" class="form-control" name="txtCelular" value="<%=funVO.getFunCelular()%>"/>
-                                                                    </div> 
-                                                                    <div class="form-group">
-                                                                        <label for="txtCorreo">Correo Secundario: </label>
-                                                                        <input type="text" class="form-control" name="txtCorreo" value="<%=funVO.getFunCorreo()%>" />
-                                                                    </div>  
-                                                                    <div class="form-group">
-                                                                        <label for="txtPuesto">Puesto:</label>
-                                                                        <select name="txtPuesto" class="form-control">
-                                                                            <option value="<%=funVO.getFunFkPuesto()%>" selected><%=funVO.getFunPuesto()%></option>
-                                                                            <%
-
-                                                                                for (int y = 0; y < ListarPuestos.size(); y++) {
-                                                                                    Puestos = ListarPuestos.get(y);
-                                                                                    if (Puestos.getRolId().equals(funVO.getFunFkPuesto())) {
-
-                                                                                    } else {
-
-                                                                            %> 
-                                                                            <option value="<%=Puestos.getRolId()%>"><%=Puestos.getRolNombre()%></option>
-                                                                            <%}
-                                                                                }%>
-                                                                        </select>
-                                                                    </div>
-
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                                                        <button type="submit" class="btn btn-info submitBtn">Actualizar</button>
-                                                                        <input type="hidden" value="<%=funVO.getFunId()%>" name="txtFunId">
-                                                                        <input type="hidden" value="6" name="opcion">
-                                                                    </div>
-                                                                </form>
-
-
-                                                            </div>
-
-
-                                                            <!-- Modal Footer -->
-
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
+
+
+
+
                                             </td>
                                             <td>
 
-                                                <form method="POST" action="Usuario" id="delete">   
+                                                <form method="POST" action="Usuario" id="delete">    
                                                     <div class="frm-g-input">
-                                                        <input type="hidden" name="txtFunId" value="<%=funVO.getFunId()%>">
-                                                        <input type="hidden" name="textId" value="<%=funVO.getFunFkUsuario()%>">
-                                                        <input type="hidden" placeholder="Nombre"  name="txtEstado" value="INACTIVO">
-                                                        <input type="hidden" id="opcion" name="opcion" value="7">
+
+                                                        <input type="hidden" id="opcion" name="opcion" value="16">
+                                                        <input type="hidden" name="txtRolId" value="<%=Puestos.getRolId()%>">
                                                         <button style="margin: 3px" type="submit" id="boton" class="btn btn-danger btn-lg"><i class="fas fa-trash-alt"></i></button> 
                                                     </div>
                                                 </form> 
 
                                             </td>
 
-
-
+                                            <%}%>
                                         </tr>
-                                        <%}
-                                            }%>
-
                                     <script src="assets/js/validar.js" type="text/javascript"></script>
-
 
                                     </tbody>
 
                                 </table>
-
-
 
                             </div>
                         </div> <!-- end col -->
@@ -543,6 +501,8 @@
 
                     <!-- End Footer -->
 
+
+
                     <!-- jQuery  -->
                     <script src="assets/js/jquery.min.js"></script>
                     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -550,20 +510,20 @@
                     <script src="assets/js/waves.min.js"></script>
 
                     <!-- Required datatable js -->
-                    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-                    <script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
+                    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+                    <script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
                     <!-- Buttons examples -->
-                    <script src="plugins/datatables/dataTables.buttons.min.js"></script>
-                    <script src="plugins/datatables/buttons.bootstrap4.min.js"></script>
-                    <script src="plugins/datatables/jszip.min.js"></script>
-                    <script src="plugins/datatables/pdfmake.min.js"></script>
-                    <script src="plugins/datatables/vfs_fonts.js"></script>
-                    <script src="plugins/datatables/buttons.html5.min.js"></script>
-                    <script src="plugins/datatables/buttons.print.min.js"></script>
-                    <script src="plugins/datatables/buttons.colVis.min.js"></script>
+                    <script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+                    <script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+                    <script src="../plugins/datatables/jszip.min.js"></script>
+                    <script src="../plugins/datatables/pdfmake.min.js"></script>
+                    <script src="../plugins/datatables/vfs_fonts.js"></script>
+                    <script src="../plugins/datatables/buttons.html5.min.js"></script>
+                    <script src="../plugins/datatables/buttons.print.min.js"></script>
+                    <script src="../plugins/datatables/buttons.colVis.min.js"></script>
                     <!-- Responsive examples -->
-                    <script src="plugins/datatables/dataTables.responsive.min.js"></script>
-                    <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
+                    <script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+                    <script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
                     <!-- Datatable init js -->
                     <script src="assets/pages/datatables.init.js"></script>  
@@ -573,15 +533,21 @@
 
 
 
+                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <!-- jQuery library MODAL-->
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+
+                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
+
+                    <script src="assets/js/validacionesCampo/Usuario/registrarUsuario.js" type="text/javascript"></script>
 
                     <!-- Latest minified bootstrap js MODAL-->
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-                    <!--Validaciones de campos de texto-->                    
-                    <script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js'></script>
-                    <script src="assets/js/validacionesCampo/Funcionario/actualizarFuncionario.js"></script>    
+
 
                     <!-- Bootstrap core JavaScript-->
                     <script src="assets/vendor/jquery/jquery.min.js"></script>
@@ -598,16 +564,15 @@
                     <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
                     <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
                     <!-- Page level custom scripts -->
                     <script src="assets/js/demo/datatables-demo.js"></script>
 
-                    <!--Evitar R-->
-                    <script src="assets/js/reenvio.js"></script>
-                    <% if (request.getAttribute("mensajeError") != null) {  %>           
+                    <%
+                        if (request.getAttribute("mensajeError") != null) {  %>           
                     ${mensajeError}
                     <%} else {%>
                     ${mensajeExito}
                     <% }%>
-                    <!--Validaciones de Campos-->
                     </body>
                     </html>

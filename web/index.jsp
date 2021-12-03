@@ -115,7 +115,7 @@
                                         </a>
                                     </div>
                                 </li>
-                                
+
 
                                 <li class="dropdown notification-list list-inline-item">
                                     <div class="dropdown notification-list nav-pro-img">
@@ -126,10 +126,18 @@
                                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                             <!-- item-->
                                             <a class="dropdown-item" href="editarDatos.jsp"><i class="mdi mdi-account-circle"></i> Perfil</a>
-                                            <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">1</span><i class="mdi mdi-settings"></i> Configuración</a>
-                                            <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline"></i> Bloquear Pantalla</a>
+                                            <%if (Rol.equals("GERENTE")) {%>
+                                            <a class="dropdown-item d-block" href="configuracion.jsp"><span class="badge badge-success float-right"></span><i class="mdi mdi-settings"></i> Configuración</a><%}%>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item text-danger" href="Login.jsp"><i class="mdi mdi-power text-danger"></i> Cerra Sesión</a>
+                                            <form action="Sesiones" method="POST"><button type="submit" style="
+                                                                                          background: none;
+                                                                                          color: inherit;
+                                                                                          border: none;
+                                                                                          padding: 0;
+                                                                                          font: inherit;
+                                                                                          cursor: pointer;
+                                                                                          outline: inherit;">
+                                                    <a class="dropdown-item text-danger" ><i class="mdi mdi-power text-danger"></i> Cerra Sesión</a></form></button>
                                         </div>
                                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 
@@ -184,7 +192,7 @@
                                         %>
                                         <li class="has-submenu">
                                             <a href="consultarUsuario.jsp">Usuarios </a>
-                                            
+
                                             <ul class="submenu">
                                                 <li><a href="consultarFuncionario.jsp">Funcionario</a></li>  
 
@@ -197,7 +205,7 @@
                                         %>
                                         <li>
                                             <a href="consultarCliente.jsp">Clientes </a>
-                                            
+
                                         </li>
                                         <%}%>
                                         <%if (Rol.equals("GERENTE") || Rol.equals("SECRETARIA")) {
@@ -207,7 +215,7 @@
                                             <a href="consultarSolicitud.jsp">Solicitudes </a>
                                         </li>
                                         <%}%>
-                                        
+
                                         <li class="has-submenu">
                                             <a href="#">Laboratorio</a>
                                             <ul class="submenu">
@@ -215,27 +223,27 @@
 
                                                 %>
                                                 <li><a href="consultarMuestra.jsp">Muestra</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="Prueba.jsp">Prueba</a></li> 
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO") || Rol.equals("TECNICO")) {
 
                                                 %>
                                                 <li><a href="Aspecto.jsp">Aspecto</a></li>
-                                                <%}%>
+                                                    <%}%>
                                                 <li><a href="AsPru.jsp">Aspecto-Prueba</a></li>
-                                                
+
                                                 <%if (Rol.equals("GERENTE") || Rol.equals("INGENIERO")) {
 
                                                 %>
                                                 <li><a href="Procedimiento.jsp">Procedimiento</a></li>
-                                                <%}%>
-                                                <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
+                                                    <%}%>
+                                                    <%if (Rol.equals("GERENTE") || Rol.equals("TECNICO")) {
 
-                                                %>
+                                                    %>
                                                 <li><a href="consultarTipoMuestra.jsp">Tipo Muestra</a></li>
-                                                <%}%>
-                                                
+                                                    <%}%>
+
                                             </ul>
                                         </li>
 
@@ -260,24 +268,6 @@
                                     </ul>
                                 </li>
 
-                                <li class="has-submenu">
-                                    <a href="#"><i class="icon-life-buoy"></i> Reportes <i class="mdi mdi-chevron-down mdi-drop"></i></a>
-                                    <ul class="submenu">
-
-
-                                        <li class="has-submenu">
-                                            <a href="#">Parametrizados </a>
-                                        </li>
-
-                                        <li class="has-submenu">
-                                            <a href="#">Mapa</a>
-                                            <ul class="submenu">
-                                                <li><a href="maps-google.html"> Google Map</a></li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
 
                                 <li class="has-submenu">
                                     <a href="#"><i class="icon-life-buoy"></i> Otros <i class="mdi mdi-chevron-down mdi-drop"></i></a>

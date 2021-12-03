@@ -6,6 +6,7 @@
 package Controlador;
 
 import ModeloDAO.FuncionarioDAO;
+import ModeloDAO.RolDAO;
 import ModeloDAO.UsuarioDAO;
 import ModeloVO.FuncionarioVO;
 import ModeloVO.RolVO;
@@ -68,6 +69,7 @@ public class UsuarioControlador extends HttpServlet {
         }
         String UsuNombre = request.getParameter("txtNombre");
         String RolId = request.getParameter("txtRolId");
+        String RolNombre = request.getParameter("txtRolNombre");
         String UsuEstado = request.getParameter("txtEstado");
         //FUNCIONARIO
         String FunId = request.getParameter("txtFunId");
@@ -80,11 +82,16 @@ public class UsuarioControlador extends HttpServlet {
         String FunFechaNacimiento = request.getParameter("txtFechaNacimiento");
         String FunDireccion = request.getParameter("txtDireccion");
         String FunPuesto = request.getParameter("txtPuesto");
+        
+        
         UsuarioVO usuVo = new UsuarioVO(UsuId, UsuNombre, UsuPassword, RolId, UsuCorreo, UsuEstado);
         FuncionarioVO funVO = new FuncionarioVO(FunId, FunNombre, FunApellido, FunTipoDoc, FunDoc, FunCelular, FunSexo, FunFechaNacimiento, FunDireccion, UsuCorreo, FunPuesto, UsuEstado);
         UsuarioDAO usuDAO = new UsuarioDAO(usuVo);
 
         FuncionarioDAO funDAO = new FuncionarioDAO(funVO);
+        
+        RolVO rolVO = new RolVO(RolId, RolNombre);
+        RolDAO rolDAO = new RolDAO(rolVO);
         
         switch (opcion) {
             case 1:
@@ -371,6 +378,30 @@ public class UsuarioControlador extends HttpServlet {
                     request.getRequestDispatcher("cambiarClave.jsp").forward(request, response);
                 }
                 
+                break;
+            case 14:
+                if (rolDAO.agregarRegistro(RolNombre)) {
+                    request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                } else {
+                    request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                }
+                request.getRequestDispatcher("configuracion.jsp").forward(request, response);
+                break;
+            case 15:
+                if (rolDAO.actualizarRegistro(RolId,RolNombre)) {
+                  request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                } else {
+                    request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                }
+                request.getRequestDispatcher("configuracion.jsp").forward(request, response);
+                break;
+            case 16:
+                if (rolDAO.eliminarRegistro(RolId)) {
+                  request.setAttribute("mensajeExito", "<script src=\"assets/js/Bien.js\"></script>");
+                } else {
+                    request.setAttribute("mensajeError", "<script src=\"assets/js/Error.js\"></script>");
+                }
+                request.getRequestDispatcher("configuracion.jsp").forward(request, response);
                 break;
 
         }

@@ -20,15 +20,32 @@ import java.util.logging.Logger;
  *
  * @author Camilo
  */
-public class RolDAO extends Conexion{
+public class RolDAO extends Conexion {
 
-     private Connection conexion;
+    private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
-
+    private boolean operacion = false;
     private String sql;
+
+    private String RolId = "", RolNombre = "";
     
-    private String CatId ="",CatTipo="";
+    public RolDAO(RolVO rolVO) {
+
+        super();
+
+        try {
+            
+            conexion = this.obtenerConexión();
+            RolId = rolVO.getRolId();
+            RolNombre = rolVO.getRolNombre();
+            
+            
+        } catch (Exception e) {
+
+            Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
     
     public ArrayList<RolVO> listar() {
 
@@ -42,7 +59,7 @@ public class RolDAO extends Conexion{
 
             while (mensajero.next()) {
 
-                RolVO rolVO = new RolVO(mensajero.getString(1),mensajero.getString(2));                
+                RolVO rolVO = new RolVO(mensajero.getString(1), mensajero.getString(2));
                 listaRoles.add(rolVO);
 
             }
@@ -54,6 +71,7 @@ public class RolDAO extends Conexion{
 
         return listaRoles;
     }
+
     public ArrayList<RolVO> ListarPuestos() {
 
         ArrayList<RolVO> ListarPuestos = new ArrayList<>();
@@ -62,26 +80,93 @@ public class RolDAO extends Conexion{
 
             conexion = this.obtenerConexión();
             sql = "SELECT * FROM ListarPuestos";
-            puente = conexion.prepareStatement(sql);            
+            puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
-             while (mensajero.next()) {
+            while (mensajero.next()) {
 
-                RolVO rolVO = new RolVO(mensajero.getString(2),mensajero.getString(1));                
+                RolVO rolVO = new RolVO(mensajero.getString(2), mensajero.getString(1));
                 ListarPuestos.add(rolVO);
 
             }
-             
 
         } catch (Exception e) {
             Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
-        }finally {
+        } finally {
             try {
                 this.cerrarConexión();
             } catch (SQLException e) {
                 Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-        
+
         return ListarPuestos;
+    }
+
+    public boolean agregarRegistro(String NombrePuesto) {
+
+        try {
+            sql = "Call AgregarPuesto(?)";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, NombrePuesto);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return operacion;
+    }
+    public boolean actualizarRegistro(String Id, String NombrePuesto) {
+        //UPDATE funcionario set FUN_NOMBRE=?, FUN_APELLIDO=?,FUN_TIPO_DOC=?,FUN_NUM_DOC=?,FUN_CELULAR=?,FUN_CORREO=?,FUN_DIRECCION=?,FK_puesto=?,FUN_SEXO=?,FUN_FECHA_NACIMIENTO=? WHERE FUN_ID=?
+        try {
+            
+            
+            sql = "Call ActualizarPuesto(?,?)";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id);
+            puente.setString(2, NombrePuesto);
+            
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return operacion;
+    }
+    public boolean eliminarRegistro(String Id) {
+
+        try {
+            sql = "Call BorrarPuesto(?)";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexión();
+            } catch (SQLException e) {
+                Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+
+            }
+        }
+        return operacion;
     }
 }

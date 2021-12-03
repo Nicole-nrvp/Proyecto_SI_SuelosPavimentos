@@ -8,7 +8,8 @@ $(document).ready(function ($) {
         rules: {
             txtNombre: {
                 required: true,
-                minlength: 3
+                minlength: 3,
+                maxlength: 3
             },
             txtCorreo: {
                 required: true,
@@ -19,6 +20,10 @@ $(document).ready(function ($) {
                 required: true
                 
                 
+            },
+            txtRolNombre: {
+                required: true,
+                minlength: 3
             }
 
         },
@@ -34,6 +39,12 @@ $(document).ready(function ($) {
             },
             txtRolId: {
                 required: "Por favor seleccione un rol"
+                
+                
+            },
+            txtRolId: {
+                required: "Por favor seleccione un rol",
+                minlength: "Minimo 3 caracteres"
                 
                 
             }

@@ -3,23 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+jQuery.validator.addMethod("letterswithspace", function(value, element) {
+    return this.optional(element) || /^[a-z\s]+$/i.test(value);
+}, "Solo letras");
+ 
 $(document).ready(function ($) {
     $("#update-funcionario-form").validate({
         rules: {
             txtFunNombre: {
-                required: true,
+                required: true,                
                 minlength: 3,
-                maxlength: 20
+                maxlength: 20,
+                letterswithspace: true
+                
             },
             txtApellido: {
-                required: true,
+                required: true,                
                 minlength: 3,
-                maxlength: 20
+                maxlength: 20,
+                letterswithspace: true
+                
             },
             txtDireccion: {
                 required: true,
                 minlength: 3,
                 maxlength: 30
+                
             },
             txtCorreo: {
                 required: true,
@@ -33,20 +42,23 @@ $(document).ready(function ($) {
             },
             txtFechaNacimiento: {
                required: true
+              
                 
-            },
+            }
 
         },
         messages: {
             txtFunNombre: {
                 required: "Por favor ingrese su nombre",
                 minlength: "Minimo 3 caracteres",
-                maxlength: "Maximo 20 caracteres"
+                maxlength: "Maximo 20 caracteres",
+                letterswithspace: "Ponga solo letras"
             },
             txtApellido: {
                 required: "Por favor ingrese su apellido",
                 minlength: "Minimo 3 caracteres",
-                maxlength: "Maximo 20 caracteres"
+                maxlength: "Maximo 20 caracteres",
+                letterswithspace: "Ponga solo letras"
             },
             txtDireccion: {
                 required: "Por favor ingrese su direccion",
